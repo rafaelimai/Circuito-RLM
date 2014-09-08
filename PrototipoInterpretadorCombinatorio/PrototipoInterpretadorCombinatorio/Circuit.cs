@@ -34,7 +34,31 @@ namespace CombinatoryParserPrototype
                 l.reset();
             }
 
-            
+            bool mustRun = true;
+            Connection[] firstCopy = new Connection[connections.Count];                   
+            connections.CopyTo(firstCopy);
+            List<Connection> workingCopy = firstCopy.ToList<Connection>();
+
+            while (mustRun)
+            {
+                pushValuesForward(workingCopy);
+
+                foreach (LogicGate l in logicGates)
+                {
+                    l.evaluate();
+                }
+
+
+                                
+
+            }
+
+            //IDEIA GERAL
+            //dar pushforward --- ok
+            //processar as portas lógicas que derem
+            // atualizar tabela de conexões, mudando valores para 
+            //parara
+
 
 
 
@@ -46,7 +70,10 @@ namespace CombinatoryParserPrototype
             foreach (Connection c in newConnections)
             {
                 byte b = c.getStartPoint().getCurrentValue();
-                c.getEndPoint().setValue(b);
+                if (b != StatePoint.UNDEFINED)
+                {
+                    c.getEndPoint().setValue(b);
+                }
             }
         }
 
