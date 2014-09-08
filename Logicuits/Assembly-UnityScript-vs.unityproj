@@ -46,8 +46,6 @@
 	</Reference>
   </ItemGroup>
   <ItemGroup>
-     <Compile Include="Assets\gates_bg.js" />
-     <Compile Include="Assets\menu_setup.js" />
      <Compile Include="Assets\mutebutton.js" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
