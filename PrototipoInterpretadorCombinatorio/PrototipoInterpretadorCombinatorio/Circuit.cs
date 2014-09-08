@@ -29,7 +29,25 @@ namespace CombinatoryParserPrototype
 
         public void refreshOutputs()
         {
+            foreach (LogicGate l in logicGates)
+            {
+                l.reset();
+            }
 
+            
+
+
+
+        }
+
+        private void pushValuesForward(List<Connection> newConnections)
+        {
+
+            foreach (Connection c in newConnections)
+            {
+                byte b = c.getStartPoint().getCurrentValue();
+                c.getEndPoint().setValue(b);
+            }
         }
 
         

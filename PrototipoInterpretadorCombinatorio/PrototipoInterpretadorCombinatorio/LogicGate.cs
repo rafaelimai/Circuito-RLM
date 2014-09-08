@@ -24,28 +24,45 @@ namespace CombinatoryParserPrototype
         public LogicGate(StatePoint A, StatePoint B)
         {
 
-            output = new StatePoint(false,false);
+            output = new StatePoint(0,false);
             A.setOwner(this); 
             B.setOwner(this);
             this.input1 = A;
-            this.input2 = B;
-            this.output.setValue(processOutput());
+            this.input2 = B; 
         }
 
-        public bool processOutput()
+        public void evaluate()
         {
             if (input1 == null && input2 == null)
             {
                 throw new Exception("Logic gate must have at least one StatePoint");
 
             }
+            else if (input1 != null && input2 == null && input1.getCurrentValue() != StatePoint.UNDEFINED)
+            {
+                //Single State point logic gate. (e.g, NOT gate)
 
-            /*
-             * The code that models the logic gate function needs to be codified in this method, in classes that extend LogicGate.
-             */
+                //Code for single state point gates must be written here.
 
-            return true;
+
+            }
+            else if (input1.getCurrentValue() != StatePoint.UNDEFINED || input2.getCurrentValue() != StatePoint.UNDEFINED)
+            {
+
+                /*
+                 * The code that models the logic gate function needs to be codified in this method, in classes that extend LogicGate.
+                 */
+                
+            }
                       
+        }
+
+        //Reset the logic gate input ports, so the entire circuit parsing can be done correctly again.
+        public void reset()
+        {
+            input1.setUndefined();
+            input2.setUndefined();
+            output.setUndefined();
         }
 
     }
