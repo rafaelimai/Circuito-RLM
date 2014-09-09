@@ -5,7 +5,7 @@ class porta:
     '''
 
     def __init__(self, operacao, entradas):
-        self.operaca£o = operacao
+        self.operacao = operacao
         self.entradas = entradas
 
         
