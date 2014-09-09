@@ -10,8 +10,8 @@ def resolver (porta):
     string = ''
     for i in porta.entradas:
         if not string == '':
-            string.append (porta.operacao)
-        string.append (str(i))
+            string += (porta.operacao)
+        string+= (str(i))
     return string
 
 def interpretar (string):
