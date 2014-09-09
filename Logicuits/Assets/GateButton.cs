@@ -18,7 +18,6 @@ public class GateButton : MonoBehaviour {
 	public string type;
 	public int qtty;
 	public bool start = false;
-	bool flag = true;
 	
 
 	// Use this for initialization

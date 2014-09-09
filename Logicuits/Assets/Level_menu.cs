@@ -28,7 +28,7 @@ public class Level_menu : MonoBehaviour {
 		}
 
 		if (GUI.Button (new Rect (Screen.width*1/32,  Screen.height*14/16, Screen.width*1/8, guiSkin.button.fontSize), "Main Menu")) {
-			
+			Application.LoadLevel("menu");
 		}
 
 	}
