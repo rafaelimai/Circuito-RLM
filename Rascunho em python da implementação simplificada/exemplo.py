@@ -2,11 +2,11 @@
 Exemplo simples de uma aplicacao do rascunho
 '''
 
-import porta.py
-import parser.py
+from porta import Porta
+from parser import parse, resolver
 
-p01 = porta.porta(' or ', [p02, p03])
-p02 = porta.porta(' and ', [True, False])
-p03 = porta.porta(' not ', [False])
+p01 = Porta(' or ', [p02, p03])
+p02 = Porta(' and ', [True, False])
+p03 = Porta(' not ', [False])
 
-parser.parser(str(p01))
+parse(str(p01))
