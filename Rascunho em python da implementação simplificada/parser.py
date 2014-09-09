@@ -14,7 +14,7 @@ def resolver (porta):
         string.append (str(i))
     return string
 
-def parse (string):
+def parse1 (string):
     ispure = True
     for i in range(len(string)):
         if string[i] == 'p':
