@@ -7,4 +7,9 @@ Nesse rascunho, utiliza uma string para represetar a expressão, e a executa.
 '''
 
 def resolver (porta):
-    if (for i in porta.entradas (i != True or False)):
+    string = ''
+    for i in porta.entradas:
+        if not string == '':
+            string.append porta.operacao
+        string.append str(i)
+        
