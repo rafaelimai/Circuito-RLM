@@ -1,11 +1,11 @@
 class porta:
     '''
-    Abstração simples de uma porta lógica, repesenta apenas o tipo de operação
-    ("e", "ou", "não" etc) e o que está conectado à sua entrada.
+    Abstracao simples de uma porta logica, repesenta apenas o tipo de operação
+    ("e", "ou", "nao" etc) e o que estao conectado a� sua entrada.
     '''
 
-    def __init__(self, operação, entradas):
-        self.operação = operação
+    def __init__(self, operacao, entradas):
+        self.operaca�o = operacao
         self.entradas = entradas
 
         
