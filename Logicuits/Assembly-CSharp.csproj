@@ -47,9 +47,12 @@
   </ItemGroup>
   <ItemGroup>
      <Compile Include="Assets\Drawing.cs" />
+     <Compile Include="Assets\GateButton.cs" />
+     <Compile Include="Assets\Level_menu.cs" />
      <Compile Include="Assets\Menu_setup.cs" />
      <Compile Include="Assets\Mutebutton.cs" />
      <Compile Include="Assets\StageSelect_setup.cs" />
+     <Compile Include="Assets\Toolbox_setup.cs" />
      <Compile Include="Assets\gatesBG.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
