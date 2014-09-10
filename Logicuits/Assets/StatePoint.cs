@@ -67,6 +67,7 @@ public class StatePoint : MonoBehaviour {
 				start = false;
 				vertices = 0;
 				Wire.GetComponent<LineRenderer>().SetVertexCount(vertices);
+				Wire.GetComponent<LineRenderer>().SetColors(Color.red,Color.blue);
 			}
 		}
 	}
