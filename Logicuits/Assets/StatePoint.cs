@@ -53,14 +53,15 @@ public class StatePoint : MonoBehaviour {
 			// If button is released
 			if (Input.GetMouseButtonUp(0)) {
 
-				// If EndPoint is valid, create new wire
+				// If EndPoint is valid, set up connetion create new wire
 				foreach (Transform Gate in GateManager.transform) {
 					foreach (Transform statePoint in Gate) {
-						if (DetectMouseOver (statePoint.gameObject)) {
+						if (DetectMouseOver (statePoint.gameObject) && !(isAssigned && statePoint.gameObject.GetComponent<StatePoint>().isAssigned)) {
 							Wire.GetComponent<LineRenderer>().SetColors(Color.red,Color.red);
-							Wire = Instantiate(Wire) as GameObject;
 							connections.Add(statePoint.gameObject);
-
+							statePoint.gameObject.GetComponent<StatePoint>().connections.Add(this.gameObject);
+							PropagateAssignment(this.gameObject);
+							Wire = Instantiate(Wire) as GameObject;
 						}
 					}
 				}
@@ -98,7 +99,14 @@ public class StatePoint : MonoBehaviour {
 		return (ans);
 	}
 
-	void Propagate (GameObject SP) {
-		// Propagates state of current
+	void PropagateAssignment (GameObject SP) {
+		// Propagates assignment state of current StatePoint to the ones connected to it
+		foreach (GameObject statePoint in SP.GetComponent<StatePoint>().connections) {
+			if (SP.GetComponent<StatePoint>().isAssigned != statePoint.GetComponent<StatePoint>().isAssigned) {
+				SP.GetComponent<StatePoint>().isAssigned = true;
+				statePoint.GetComponent<StatePoint>().isAssigned = true;
+				PropagateAssignment (statePoint);
+			}
+		}
 	}
 }
