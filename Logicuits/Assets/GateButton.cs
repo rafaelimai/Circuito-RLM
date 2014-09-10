@@ -12,8 +12,10 @@ public class GateButton : MonoBehaviour {
 	public GameObject ORGate;
 	public Sprite NOTSprite;
 	public GameObject NOTGate;
+	public GameObject GateManager;
 	GameObject Gate;
 	GameObject GateOnMouse;
+
 
 	public string type;
 	public int qtty;
@@ -63,6 +65,7 @@ public class GateButton : MonoBehaviour {
 				start = false;
 			}
 		}
+
 	}
 	
 	void OnMouseDown() {
@@ -72,6 +75,7 @@ public class GateButton : MonoBehaviour {
 		
 		if (!start && qtty > 0) {
 			GateOnMouse = Instantiate(Gate) as GameObject;
+			GateOnMouse.transform.parent = GateManager.transform;
 			qtty --;
 			start = true;
 		}

@@ -5,10 +5,12 @@ public class GateInput : MonoBehaviour {
 
 	public Camera mainCam;
 	public GameObject Wire;
+	public GameObject GateManager;
 
 	Vector3 pos;
 	int vertices = 0;
 	bool start = false;
+	bool valid = false;
 
 	// Use this for initialization
 	void Start () {
@@ -39,15 +41,28 @@ public class GateInput : MonoBehaviour {
 				start = false;
 			}
 			
-			// End drawing if mouse button is released , and ready new wire
+			// If button is released
 			if (Input.GetMouseButtonUp(0)) {
+
+				// If EndPoint is valid, create new wire
+				foreach (Transform Gate in GateManager.transform) {
+					foreach (Transform StatePoint in Gate) {
+						if (DetectMouseOver (StatePoint.gameObject)) {
+							valid = true;
+						}
+					}
+				}
+				if (valid) {
+					Wire = Instantiate(Wire) as GameObject;
+				}
+
+				// End drawing either way
 				start = false;
-				Wire = Instantiate(Wire) as GameObject;
+				valid = false;
 				vertices = 0;
 				Wire.GetComponent<LineRenderer>().SetVertexCount(vertices);
 			}
 		}
-		
 	}
 
 	void OnMouseOver () {
@@ -59,5 +74,18 @@ public class GateInput : MonoBehaviour {
 
 		// Start drawing if user clicks valid area
 		start = true;
+	}
+
+	bool DetectMouseOver (GameObject GO) {
+		// Returns true if mouse is over GO
+		CircleCollider2D collider = GO.GetComponent<CircleCollider2D>();
+		bool ans;
+		if ((collider.center + new Vector2 (GO.transform.position.x, GO.transform.position.y) - new Vector2 (mainCam.ScreenToWorldPoint(Input.mousePosition).x,mainCam.ScreenToWorldPoint(Input.mousePosition).y)).magnitude < 2*collider.radius) {
+			ans = true;
+		}
+		else {
+			ans = false;
+		}
+		return (ans);
 	}
 }
