@@ -20,6 +20,7 @@ public class StatePoint : MonoBehaviour {
 
 
 
+
 	void Start () {
 
 		vertices = 0;
@@ -54,11 +55,12 @@ public class StatePoint : MonoBehaviour {
 
 				// If EndPoint is valid, create new wire
 				foreach (Transform Gate in GateManager.transform) {
-					foreach (Transform StatePoint in Gate) {
-						if (DetectMouseOver (StatePoint.gameObject)) {
+					foreach (Transform statePoint in Gate) {
+						if (DetectMouseOver (statePoint.gameObject)) {
 							Wire.GetComponent<LineRenderer>().SetColors(Color.red,Color.red);
 							Wire = Instantiate(Wire) as GameObject;
-							connections.Add(StatePoint.gameObject);
+							connections.Add(statePoint.gameObject);
+
 						}
 					}
 				}
@@ -94,5 +96,9 @@ public class StatePoint : MonoBehaviour {
 			ans = false;
 		}
 		return (ans);
+	}
+
+	void Propagate (GameObject SP) {
+		// Propagates state of current
 	}
 }
