@@ -33,7 +33,7 @@ public class StatePoint : MonoBehaviour {
 
 		// If drawing has started
 		if (start) {
-			
+
 			// Draw if mouse is still pressed and has moved enough from last point
 			if ((new Vector3 (pos.x,pos.y,-10) - mainCam.ScreenToWorldPoint(Input.mousePosition)).magnitude > 0.05) {
 				vertices ++;

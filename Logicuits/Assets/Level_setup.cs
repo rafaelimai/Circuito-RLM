@@ -1,9 +1,14 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class Level_menu : MonoBehaviour {
+public class Level_setup : MonoBehaviour {
 
 	public GUISkin guiSkin;
+	public Texture2D pointer;
+	public Texture2D hand;
+	public GameObject toolbox;
+
+	public static bool handCursor = false;
 
 	// Use this for initialization
 	void Start () {
@@ -12,6 +17,14 @@ public class Level_menu : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+		//Set custom cursor
+		if (handCursor){
+			Cursor.SetCursor(hand, new Vector2 (10,0), CursorMode.Auto);
+		}
+		else {
+			Cursor.SetCursor(pointer, Vector2.zero, CursorMode.Auto);
+		}
+		handCursor = false;
 	
 	}
 

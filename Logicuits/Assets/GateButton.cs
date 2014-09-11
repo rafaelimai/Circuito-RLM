@@ -5,8 +5,7 @@ public class GateButton : MonoBehaviour {
 
 	public Camera mainCam;
 	public GUISkin guiSkin;
-
-	public Texture2D pointer;
+	
 	public Sprite ANDSprite;
 	public GameObject ANDGate;
 	public Sprite ORSprite;
@@ -25,8 +24,6 @@ public class GateButton : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-
-		Cursor.SetCursor(pointer, Vector2.zero, CursorMode.Auto);
 
 		// Set sprite according to type chosen
 		if (type == "AND") {
@@ -53,6 +50,7 @@ public class GateButton : MonoBehaviour {
 		if (start) {
 			GateOnMouse.transform.position = mainCam.ScreenToWorldPoint(Input.mousePosition);
 			GateOnMouse.transform.position = new Vector3 (GateOnMouse.transform.position.x,GateOnMouse.transform.position.y,0);
+			Level_setup.handCursor = true;
 
 
 			// If the user releases click during procedure
@@ -83,6 +81,10 @@ public class GateButton : MonoBehaviour {
 			start = true;
 		}
 
+	}
+
+	void OnMouseOver() {
+		Level_setup.handCursor = true;
 	}
 
 	void OnGUI () {
