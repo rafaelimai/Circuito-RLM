@@ -9,6 +9,7 @@ public class Level_setup : MonoBehaviour {
 	public GameObject toolbox;
 
 	public static bool handCursor = false;
+	public static bool verify = true;
 
 	// Use this for initialization
 	void Start () {
@@ -19,7 +20,7 @@ public class Level_setup : MonoBehaviour {
 	void Update () {
 		//Set custom cursor
 		if (handCursor){
-			Cursor.SetCursor(hand, new Vector2 (10,0), CursorMode.Auto);
+			Cursor.SetCursor(hand, new Vector2 (11,0), CursorMode.Auto);
 		}
 		else {
 			Cursor.SetCursor(pointer, Vector2.zero, CursorMode.Auto);

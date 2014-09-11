@@ -4,25 +4,30 @@ using System.Collections.Generic;
 
 public class StatePoint : MonoBehaviour {
 	// A StatePoint is either an Input or Output region delimited by a circle collider.
+	// It propagates assignment state to all adjacent statepoints
+	// When verification is triggered, propagates information to verify answer
+	// Four types: INPUT, OUTPUT, C-INPUT, C-OUTPUT
+	// INPUTS pass their value onto OUTPUTS, according to LogicGate.type
+	// C-INPUTS take on a set of to-be-propagated values
+	// C-OUTPUTS, once they acquire values, associate them with C-INPUTS and sends results
 
 	public Camera mainCam;
 	public GameObject Wire;
 	public GameObject GateManager;
 
+	public string type;
 	public bool isAssigned;
-	public bool state;
-	public int size = 0;
+	public List<int> statelist = new List<int>();
+	public int state;
 	public List<GameObject> connections = new List<GameObject>();
 
 	Vector3 pos;
 	int vertices = 0;
 	bool start = false;
+	int iteration = 0;
 
-
-
-
+	
 	void Start () {
-
 		vertices = 0;
 		Wire.GetComponent<LineRenderer>().SetVertexCount(vertices);
 
@@ -31,7 +36,7 @@ public class StatePoint : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 
-		// If drawing has started
+		// DRAWING
 		if (start) {
 
 			// Draw if mouse is still pressed and has moved enough from last point
@@ -73,6 +78,64 @@ public class StatePoint : MonoBehaviour {
 				Wire.GetComponent<LineRenderer>().SetColors(Color.red,Color.blue);
 			}
 		}
+
+		// VERIFICATION
+		if (Level_setup.verify) {
+			// C-INPUTS: at the beginning of iteration, take up next value on list and
+			//           propagate it through connections
+			if (type == "C-INPUT") {
+				state = statelist[iteration];
+				PropagateState(this.gameObject);
+			}
+
+			// INPUTS: DO NOTHING
+
+
+			// OUTPUTS: If all INPUTS have acquired states, take up state accordingly
+			//          if so, propagate state through connections
+			if (type == "OUTPUT") {
+				bool done = true;
+				foreach (Transform statePoint in transform.parent) {
+					if (statePoint.gameObject.GetComponent<StatePoint>().type == "INPUT" && statePoint.gameObject.GetComponent<StatePoint>().state == 2) {
+						done = false;
+					}
+				}
+				if (done) {
+					if (transform.parent.GetComponent<LogicGate>().type == "AND") {
+						state = 1;
+						foreach (Transform statePoint in transform.parent) {
+							if (statePoint.gameObject.GetComponent<StatePoint>().type == "INPUT") {
+								state = state & statePoint.gameObject.GetComponent<StatePoint>().state;
+							}
+						}
+					}
+
+					if (transform.parent.GetComponent<LogicGate>().type == "OR") {
+						state = 0;
+						foreach (Transform statePoint in transform.parent) {
+							if (statePoint.gameObject.GetComponent<StatePoint>().type == "INPUT") {
+								state = state | statePoint.gameObject.GetComponent<StatePoint>().state;
+							}
+						}
+					}
+
+					if (transform.parent.GetComponent<LogicGate>().type == "NOT") {
+						foreach (Transform statePoint in transform.parent) {
+							if (statePoint.gameObject.GetComponent<StatePoint>().type == "INPUT") {
+								state = 1-statePoint.gameObject.GetComponent<StatePoint>().state;
+							}
+						}
+					}
+					PropagateState(this.gameObject);
+				}
+			}
+
+
+			// C-OUTPUTS: If all have acquired states, take answer and move on 
+			//            to next iteration. If maximum iteration is reached, compare
+			//            results, pass / reject solution and end verification
+		}
+
 	}
 
 	void OnMouseOver () {
@@ -106,6 +169,16 @@ public class StatePoint : MonoBehaviour {
 				SP.GetComponent<StatePoint>().isAssigned = true;
 				statePoint.GetComponent<StatePoint>().isAssigned = true;
 				PropagateAssignment (statePoint);
+			}
+		}
+	}
+
+	void PropagateState (GameObject SP) {
+		// Propagates state of current StatePoint to the ones connected to it
+		foreach (GameObject statePoint in SP.GetComponent<StatePoint>().connections) {
+			if (statePoint.GetComponent<StatePoint>().state == 2) {
+				statePoint.GetComponent<StatePoint>().state = SP.GetComponent<StatePoint>().state;
+				PropagateState (statePoint);
 			}
 		}
 	}
