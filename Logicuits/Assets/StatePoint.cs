@@ -23,12 +23,13 @@ public class StatePoint : MonoBehaviour {
 
 	Vector3 pos;
 	int vertices = 0;
-	bool start = false;
+	bool start;
 	bool done;
 	public static int iteration = 0;
 
 	
 	void Start () {
+		// Reset variables
 		vertices = 0;
 		Wire.GetComponent<LineRenderer>().SetVertexCount(vertices);
 
@@ -84,7 +85,7 @@ public class StatePoint : MonoBehaviour {
 		if (Level_setup.verify) {
 			// C-INPUTS: at the beginning of iteration, take up next value on list and
 			//           propagate it through connections
-			if (type == "C-INPUT") {
+			if (type == "C-INPUT" && state == 2) {
 				state = statelist[iteration];
 				PropagateState(this.gameObject);
 			}

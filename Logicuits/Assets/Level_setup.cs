@@ -15,15 +15,22 @@ public class Level_setup : MonoBehaviour {
 	public static bool handCursor = false;
 	public static bool verify = false;
 	public static bool finish = false;
-	public static List<List<int>> answer = new List<List<int>>();
-	public List<int> aux = new List<int>();
+	public static List<List<int>> answer;
+	public List<int> aux;
 	public static string answerString;
 	public static bool zueira = false;
+	int counter;
 
 
 
 	// Use this for initialization
 	void Start () {
+		// Reset variables
+		verify = false;
+		finish = false;
+		answer = new List<List<int>>();
+		aux = new List<int>();
+		answerString = "";
 
 	}
 	
@@ -56,6 +63,7 @@ public class Level_setup : MonoBehaviour {
 						aux.Add (statePoint.GetComponent<StatePoint>().state);
 					}
 				}
+
 				Level_setup.answer.Add(new List<int>(aux));
 				aux.Clear();
 
@@ -68,11 +76,9 @@ public class Level_setup : MonoBehaviour {
 						}
 					}
 				}
-				//#####################################
 				else {
 					finish = true;
 				}
-				//#####################################
 			}
 		}
 	
@@ -96,16 +102,33 @@ public class Level_setup : MonoBehaviour {
 			Application.LoadLevel("menu");
 		}
 
-		if (finish && verify) {
-			verify = false;
-			foreach(List<int> ans in answer) {
-				foreach (int bit in ans) {
-					answerString += bit.ToString();
-				}
-				answerString += "\n";
-			}
-			Debug.Log(answerString);
-		}
+		if (finish) {
+			if (verify) {
+				verify = false;
+				counter = 0;
+				foreach(List<int> ans in answer) {
+					// Add input
+					foreach(Transform statePoint in circuit.transform) {
+						if (statePoint.gameObject.GetComponent<StatePoint>().type == "C-INPUT"){
+							answerString += statePoint.GetComponent<StatePoint>().statelist[counter].ToString();
+						}
+					}
 
+					// Add space
+					answerString += " ";
+
+					// Add output
+					foreach (int bit in ans) {
+						answerString += bit.ToString();
+					}
+
+					// Next line
+					answerString += "\n";
+
+					counter ++;
+				}
+			}
+			GUI.TextArea(new Rect(Screen.width*1/4,Screen.height*1/4,Screen.width/2,Screen.height/2), answerString);
+		}
 	}
 }
