@@ -24,7 +24,8 @@ public class StatePoint : MonoBehaviour {
 	Vector3 pos;
 	int vertices = 0;
 	bool start = false;
-	int iteration = 0;
+	bool done;
+	public static int iteration = 0;
 
 	
 	void Start () {
@@ -94,7 +95,7 @@ public class StatePoint : MonoBehaviour {
 			// OUTPUTS: If all INPUTS have acquired states, take up state accordingly
 			//          if so, propagate state through connections
 			if (type == "OUTPUT") {
-				bool done = true;
+				done = true;
 				foreach (Transform statePoint in transform.parent) {
 					if (statePoint.gameObject.GetComponent<StatePoint>().type == "INPUT" && statePoint.gameObject.GetComponent<StatePoint>().state == 2) {
 						done = false;
@@ -130,10 +131,11 @@ public class StatePoint : MonoBehaviour {
 				}
 			}
 
-
 			// C-OUTPUTS: If all have acquired states, take answer and move on 
 			//            to next iteration. If maximum iteration is reached, compare
 			//            results, pass / reject solution and end verification
+			//            THIS SHOULD BE HANDLED BY THE LEVEL SETUP
+
 		}
 
 	}
