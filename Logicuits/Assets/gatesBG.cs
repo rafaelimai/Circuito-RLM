@@ -35,7 +35,7 @@ public class gatesBG : MonoBehaviour {
 
 
 	//Those vectors here intend to avoid creating multiple instances with the same values.
-	//Their names are given based on their behavior; up and down represent, in this order, a raise or a decrease in the rigid body position.
+	//Their names are given based on their behavior; up and down represent, in this order, an increase or a decrease in the rigid body position.
 	//The first word refers to the x-axis vector behaviour, and the second word to the y-axis vector behaviour.
 	public Vector2 up_none = new Vector2 (VELOCITY_MODULE, 0f);
 	public Vector2 down_none = new Vector2 (-VELOCITY_MODULE, 0f);
