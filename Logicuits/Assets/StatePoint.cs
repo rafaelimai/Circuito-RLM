@@ -25,7 +25,6 @@ public class StatePoint : MonoBehaviour {
 	int vertices = 0;
 	bool start;
 	bool done;
-	public static int iteration = 0;
 
 	
 	void Start () {
@@ -86,7 +85,7 @@ public class StatePoint : MonoBehaviour {
 			// C-INPUTS: at the beginning of iteration, take up next value on list and
 			//           propagate it through connections
 			if (type == "C-INPUT" && state == 2) {
-				state = statelist[iteration];
+				state = statelist[Level_setup.iteration];
 				PropagateState(this.gameObject);
 			}
 

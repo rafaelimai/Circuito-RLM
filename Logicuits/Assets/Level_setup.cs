@@ -19,6 +19,7 @@ public class Level_setup : MonoBehaviour {
 	public List<int> aux;
 	public static string answerString;
 	public static bool zueira = false;
+	public static int iteration;
 	int counter;
 
 
@@ -31,6 +32,7 @@ public class Level_setup : MonoBehaviour {
 		answer = new List<List<int>>();
 		aux = new List<int>();
 		answerString = "";
+		iteration = 0;
 
 	}
 	
@@ -68,8 +70,8 @@ public class Level_setup : MonoBehaviour {
 				aux.Clear();
 
 				// Move on to next iteration or end verification
-				if (StatePoint.iteration+1 < circuit.GetComponentInChildren<StatePoint>().statelist.Capacity) {
-					StatePoint.iteration ++;
+				if (iteration+1 < circuit.GetComponentInChildren<StatePoint>().statelist.Capacity) {
+					iteration ++;
 					foreach (Transform Gate in gateManager.transform) {
 						foreach (Transform statePoint in Gate) {
 							statePoint.gameObject.GetComponent<StatePoint>().state = 2;
