@@ -81,7 +81,7 @@ namespace DialogIntlHandling
 
         }
 
-        //R
+        //Return the languages which the translations were (or were intended to) be written.
         public List<Language> getAvaliableLanguages()
         {
             return avaliableLanguages;

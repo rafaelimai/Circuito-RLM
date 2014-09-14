@@ -5,6 +5,8 @@ using System.Text;
 
 namespace DialogIntlHandling
 {
+    /*The class Language briefly abstracts a real-life Language, with two attributes: its usual name (on the commonName variable) and its ISO 639-1 code.
+     */
     class Language
     {
         private string commonName;
@@ -14,7 +16,6 @@ namespace DialogIntlHandling
         {
             this.commonName = commonName;
             this.isoCode = isoCode;
-
         }
 
         public string getCommonName()

@@ -5,10 +5,18 @@ using System.Text;
 
 namespace DialogIntlHandling
 {
+
+    /*
+     * The class DialogList represents the abstraction of a dialog list. //Circular definitions FTW
+     * 
+     * Aside from being a list itself, it implements a issue-checking method, that is able to check problems in the listed dialogs.
+     */
     class DialogList
     {
         private List<Dialog> dialogList;
+        //List the languages that the dialogs in this DialogList should have translations avaliable.
         private List<Language> avaliableLanguages;
+        //List found issues while running the checkIssues method.
         private List<Issue> issues;
         
         public DialogList()
@@ -18,6 +26,10 @@ namespace DialogIntlHandling
             issues = new List<Issue>();
         }
 
+        /*
+         * Return a Dialog, given an index number.
+         * Returns null if there is nothing at the given index.
+         */
         public Dialog retrieveEntry(int entry)
         {
             Dialog d = null;
@@ -25,6 +37,13 @@ namespace DialogIntlHandling
             return d;
         }
 
+
+        /*
+         * Check the dialogs listed, seeking for:
+         * 1-Dialogs that need to be reviewed
+         * 2-Dialogs that don't have one or more translations for the languages listed in avaliableLanguages.
+         * 
+         */
         public void checkIssues() 
         { 
             
@@ -50,6 +69,9 @@ namespace DialogIntlHandling
             }
         }
 
+        /*
+         * Return the issue list.
+         */
         public List<Issue> getIssues()
         {
             return issues;
