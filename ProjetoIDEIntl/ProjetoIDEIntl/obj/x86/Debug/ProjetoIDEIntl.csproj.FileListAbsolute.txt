@@ -1,0 +1,8 @@
+c:\users\manjuba\documents\visual studio 2010\Projects\ProjetoIDEIntl\ProjetoIDEIntl\bin\Debug\ProjetoIDEIntl.exe
+c:\users\manjuba\documents\visual studio 2010\Projects\ProjetoIDEIntl\ProjetoIDEIntl\bin\Debug\ProjetoIDEIntl.pdb
+c:\users\manjuba\documents\visual studio 2010\Projects\ProjetoIDEIntl\ProjetoIDEIntl\obj\x86\Debug\ProjetoIDEIntl.MainGUI.resources
+c:\users\manjuba\documents\visual studio 2010\Projects\ProjetoIDEIntl\ProjetoIDEIntl\obj\x86\Debug\ProjetoIDEIntl.Properties.Resources.resources
+c:\users\manjuba\documents\visual studio 2010\Projects\ProjetoIDEIntl\ProjetoIDEIntl\obj\x86\Debug\ProjetoIDEIntl.csproj.GenerateResource.Cache
+c:\users\manjuba\documents\visual studio 2010\Projects\ProjetoIDEIntl\ProjetoIDEIntl\obj\x86\Debug\ProjetoIDEIntl.exe
+c:\users\manjuba\documents\visual studio 2010\Projects\ProjetoIDEIntl\ProjetoIDEIntl\obj\x86\Debug\ProjetoIDEIntl.pdb
+C:\Users\Manjuba\documents\visual studio 2010\Projects\ProjetoIDEIntl\ProjetoIDEIntl\obj\x86\Debug\ProjetoIDEIntl.csprojResolveAssemblyReference.cache
