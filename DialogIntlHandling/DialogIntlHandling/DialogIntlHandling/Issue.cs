@@ -5,7 +5,7 @@ using System.Text;
 
 namespace DialogIntlHandling
 {
-    class Issue
+    public class Issue
     {
 
         public const int NEED_TO_BE_REVIEWED = 1;

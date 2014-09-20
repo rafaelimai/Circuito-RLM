@@ -11,7 +11,7 @@ namespace DialogIntlHandling
      * 
      * Aside from being a list itself, it implements a issue-checking method, that is able to check problems in the listed dialogs.
      */
-    class DialogList
+    public class DialogList
     {
         private List<Dialog> dialogList;
         //List the languages that the dialogs in this DialogList should have translations avaliable.

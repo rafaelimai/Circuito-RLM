@@ -10,7 +10,7 @@ namespace DialogIntlHandling
     /*
      * The class FileHandler centralize the functions needed to read and write DialogList objects to a XML file.
      */
-    class FileHandler
+    public class FileHandler
     {
         private XmlSerializer x;
 
