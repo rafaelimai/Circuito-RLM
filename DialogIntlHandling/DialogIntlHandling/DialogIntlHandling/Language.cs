@@ -7,7 +7,7 @@ namespace DialogIntlHandling
 {
     /*The class Language briefly abstracts a real-life Language, with two attributes: its usual name (on the commonName variable) and its ISO 639-1 code.
      */
-    class Language
+    public class Language
     {
         private string commonName;
         private string isoCode;

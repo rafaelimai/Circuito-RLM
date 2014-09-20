@@ -1,0 +1,5 @@
+C:\Users\RAFAELD\Desktop\Práticas 2\Circuito RLM\trunk\DialogIntlHandling\DialogIntlHandling\DialogIntlHandling\obj\Debug\DialogIntlHandling.csprojResolveAssemblyReference.cache
+C:\Users\RAFAELD\Desktop\Práticas 2\Circuito RLM\trunk\DialogIntlHandling\DialogIntlHandling\DialogIntlHandling\bin\Debug\DialogIntlHandling.dll
+C:\Users\RAFAELD\Desktop\Práticas 2\Circuito RLM\trunk\DialogIntlHandling\DialogIntlHandling\DialogIntlHandling\bin\Debug\DialogIntlHandling.pdb
+C:\Users\RAFAELD\Desktop\Práticas 2\Circuito RLM\trunk\DialogIntlHandling\DialogIntlHandling\DialogIntlHandling\obj\Debug\DialogIntlHandling.dll
+C:\Users\RAFAELD\Desktop\Práticas 2\Circuito RLM\trunk\DialogIntlHandling\DialogIntlHandling\DialogIntlHandling\obj\Debug\DialogIntlHandling.pdb
