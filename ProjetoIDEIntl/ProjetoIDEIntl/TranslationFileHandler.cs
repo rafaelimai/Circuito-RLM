@@ -3,16 +3,21 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.IO;
+using System.Xml.Serialization;
+using DialogIntlHandling;
 
 namespace ProjetoIDEIntl
 {
     class TranslationFileHandler
     {
         private static TranslationFileHandler auto;
-
+        private XmlSerializer x;
 
         private TranslationFileHandler()
         {
+            
+            DialogList d = new DialogList();
+            x = new XmlSerializer(d.GetType());
         }
 
         public static TranslationFileHandler getInstance()
@@ -24,9 +29,16 @@ namespace ProjetoIDEIntl
             return auto;
         }
 
-        public string processFile(Stream s)
+        public DialogList readTranslationFile(Stream s)
+        {             
+            DialogList result = (DialogList)x.Deserialize(s);
+            return result;   
+        }
+
+        public void writeFile(DialogList d, string path)
         {
-            return null;
+            StreamWriter sw = new StreamWriter(path, false);
+            x.Serialize(sw, d);
         }
 
 

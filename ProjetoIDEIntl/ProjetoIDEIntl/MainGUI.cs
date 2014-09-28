@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 using System.IO;
+using System.Diagnostics;
 
 namespace ProjetoIDEIntl
 {
@@ -20,8 +21,12 @@ namespace ProjetoIDEIntl
 
         private void openFileDialog1_FileOk(object sender, CancelEventArgs e)
         {
-            Stream s = ofd.OpenFile();
-            TranslationFileHandler.getInstance().processFile(s);
+            if(ofd.CheckPathExists){
+                ProgramData.getInstance().loadTranslation(ofd.OpenFile());
+            } else{
+                MessageBox.Show("Invalid path.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            
 
         }
 
@@ -58,6 +63,16 @@ namespace ProjetoIDEIntl
         }
 
         private void updateSupportedlanguagesdatToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void intlIDEWebsiteToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Process.Start("https://github.com/rafaelimai/Circuito-RLM");
+        }
+
+        private void groupBox1_Enter(object sender, EventArgs e)
         {
 
         }

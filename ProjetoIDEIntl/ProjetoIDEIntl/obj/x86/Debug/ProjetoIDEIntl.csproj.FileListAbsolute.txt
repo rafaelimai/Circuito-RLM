@@ -6,3 +6,13 @@ c:\users\manjuba\documents\visual studio 2010\Projects\ProjetoIDEIntl\ProjetoIDE
 c:\users\manjuba\documents\visual studio 2010\Projects\ProjetoIDEIntl\ProjetoIDEIntl\obj\x86\Debug\ProjetoIDEIntl.exe
 c:\users\manjuba\documents\visual studio 2010\Projects\ProjetoIDEIntl\ProjetoIDEIntl\obj\x86\Debug\ProjetoIDEIntl.pdb
 C:\Users\Manjuba\documents\visual studio 2010\Projects\ProjetoIDEIntl\ProjetoIDEIntl\obj\x86\Debug\ProjetoIDEIntl.csprojResolveAssemblyReference.cache
+C:\Users\RAFAELD\Desktop\Práticas 2\Circuito RLM\trunk\ProjetoIDEIntl\ProjetoIDEIntl\obj\x86\Debug\ProjetoIDEIntl.exe
+C:\Users\RAFAELD\Desktop\Práticas 2\Circuito RLM\trunk\ProjetoIDEIntl\ProjetoIDEIntl\obj\x86\Debug\ProjetoIDEIntl.pdb
+C:\Users\RAFAELD\Desktop\Práticas 2\Circuito RLM\trunk\ProjetoIDEIntl\ProjetoIDEIntl\bin\Debug\ProjetoIDEIntl.exe
+C:\Users\RAFAELD\Desktop\Práticas 2\Circuito RLM\trunk\ProjetoIDEIntl\ProjetoIDEIntl\bin\Debug\ProjetoIDEIntl.pdb
+C:\Users\RAFAELD\Desktop\Práticas 2\Circuito RLM\trunk\ProjetoIDEIntl\ProjetoIDEIntl\obj\x86\Debug\ProjetoIDEIntl.csprojResolveAssemblyReference.cache
+C:\Users\RAFAELD\Desktop\Práticas 2\Circuito RLM\trunk\ProjetoIDEIntl\ProjetoIDEIntl\obj\x86\Debug\ProjetoIDEIntl.MainGUI.resources
+C:\Users\RAFAELD\Desktop\Práticas 2\Circuito RLM\trunk\ProjetoIDEIntl\ProjetoIDEIntl\obj\x86\Debug\ProjetoIDEIntl.Properties.Resources.resources
+C:\Users\RAFAELD\Desktop\Práticas 2\Circuito RLM\trunk\ProjetoIDEIntl\ProjetoIDEIntl\obj\x86\Debug\ProjetoIDEIntl.csproj.GenerateResource.Cache
+C:\Users\RAFAELD\Desktop\Práticas 2\Circuito RLM\trunk\ProjetoIDEIntl\ProjetoIDEIntl\bin\Debug\DialogIntlHandling.dll
+C:\Users\RAFAELD\Desktop\Práticas 2\Circuito RLM\trunk\ProjetoIDEIntl\ProjetoIDEIntl\bin\Debug\DialogIntlHandling.pdb
