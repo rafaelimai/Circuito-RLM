@@ -40,6 +40,14 @@ public class StatePoint : MonoBehaviour {
 			// Get mouse position
 			mousePos = mainCam.ScreenToWorldPoint(Input.mousePosition);
 
+			// Snap mouse position when over valid StatePoint
+			foreach (Transform Gate1 in GateManager.transform) {
+				foreach (Transform statePoint1 in Gate1) {
+					if (DetectMouseOver (statePoint1.gameObject)&& !(isAssigned && statePoint1.gameObject.GetComponent<StatePoint>().isAssigned)) {
+						mousePos = statePoint1.position;
+					}
+				}
+			}
 			// Continuously draw preview of wire
 			Wire.GetComponent<LineRenderer>().SetVertexCount(152);
 			for (int index = 0; index <= 50; index++){
@@ -63,12 +71,12 @@ public class StatePoint : MonoBehaviour {
 			if (Input.GetMouseButtonUp(0)) {
 
 				// If EndPoint is valid, set up connetion create new wire
-				foreach (Transform Gate in GateManager.transform) {
-					foreach (Transform statePoint in Gate) {
-						if (DetectMouseOver (statePoint.gameObject) && !(isAssigned && statePoint.gameObject.GetComponent<StatePoint>().isAssigned)) {
+				foreach (Transform Gate2 in GateManager.transform) {
+					foreach (Transform statePoint2 in Gate2) {
+						if (DetectMouseOver (statePoint2.gameObject) && !(isAssigned && statePoint2.gameObject.GetComponent<StatePoint>().isAssigned)) {
 							Wire.GetComponent<LineRenderer>().SetColors(Color.red,Color.red);
-							connections.Add(statePoint.gameObject);
-							statePoint.gameObject.GetComponent<StatePoint>().connections.Add(this.gameObject);
+							connections.Add(statePoint2.gameObject);
+							statePoint2.gameObject.GetComponent<StatePoint>().connections.Add(this.gameObject);
 							PropagateAssignment(this.gameObject);
 							Wire = Instantiate(Wire) as GameObject;
 						}
