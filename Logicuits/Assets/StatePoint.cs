@@ -21,17 +21,14 @@ public class StatePoint : MonoBehaviour {
 	public int state;
 	public List<GameObject> connections = new List<GameObject>();
 
-	Vector3 pos;
-	int vertices = 0;
+	Vector3 mousePos;
+
 	bool start;
 	bool done;
 
 	
 	void Start () {
-		// Reset variables
-		vertices = 0;
-		Wire.GetComponent<LineRenderer>().SetVertexCount(vertices);
-
+		Wire = transform.FindChild("Wire").gameObject;
 	}
 	
 	// Update is called once per frame
@@ -40,19 +37,25 @@ public class StatePoint : MonoBehaviour {
 		// DRAWING
 		if (start) {
 
-			// Draw if mouse is still pressed and has moved enough from last point
-			if ((new Vector3 (pos.x,pos.y,-10) - mainCam.ScreenToWorldPoint(Input.mousePosition)).magnitude > 0.05) {
-				vertices ++;
-				Wire.GetComponent<LineRenderer>().SetVertexCount(vertices);
-				pos = mainCam.ScreenToWorldPoint(Input.mousePosition);
-				pos = new Vector3 (pos.x,pos.y,0);
-				Wire.GetComponent<LineRenderer>().SetPosition(vertices-1,pos);
+			// Get mouse position
+			mousePos = mainCam.ScreenToWorldPoint(Input.mousePosition);
+
+			// Continuously draw preview of wire
+			Wire.GetComponent<LineRenderer>().SetVertexCount(152);
+			for (int index = 0; index <= 50; index++){
+				Wire.GetComponent<LineRenderer>().SetPosition(index,new Vector3 (gameObject.transform.position.x+(((float)index/100)*(mousePos.x-gameObject.transform.position.x)),gameObject.transform.position.y,0));
 			}
+			for (int index = 51; index <= 100; index++) {
+				Wire.GetComponent<LineRenderer>().SetPosition(index,new Vector3 ((gameObject.transform.position.x+mousePos.x)/2,gameObject.transform.position.y+((((float)index-50)/50)*(mousePos.y-gameObject.transform.position.y)),0));
+			}
+			for (int index = 101; index <= 150; index++) {
+				Wire.GetComponent<LineRenderer>().SetPosition(index,new Vector3 (gameObject.transform.position.x+(((float)index/200)*(mousePos.x-gameObject.transform.position.x)),mousePos.y,0));
+			}
+			Wire.GetComponent<LineRenderer>().SetPosition(151,mousePos);
 			
 			// Start over if, while drawing, user hits invalid area
 			if (Input.mousePosition.x < Screen.width*3/16 || Input.mousePosition.x > Screen.width || Input.mousePosition.y < 0 || Input.mousePosition.y > Screen.height) {
-				vertices = 0;
-				Wire.GetComponent<LineRenderer>().SetVertexCount(vertices);
+				Wire.GetComponent<LineRenderer>().SetVertexCount(0);
 				start = false;
 			}
 			
@@ -74,8 +77,7 @@ public class StatePoint : MonoBehaviour {
 
 				// End drawing
 				start = false;
-				vertices = 0;
-				Wire.GetComponent<LineRenderer>().SetVertexCount(vertices);
+				Wire.GetComponent<LineRenderer>().SetVertexCount(0);
 				Wire.GetComponent<LineRenderer>().SetColors(Color.red,Color.blue);
 			}
 		}
