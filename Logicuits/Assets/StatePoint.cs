@@ -49,7 +49,7 @@ public class StatePoint : MonoBehaviour {
 				Wire.GetComponent<LineRenderer>().SetPosition(index,new Vector3 ((gameObject.transform.position.x+mousePos.x)/2,gameObject.transform.position.y+((((float)index-50)/50)*(mousePos.y-gameObject.transform.position.y)),0));
 			}
 			for (int index = 101; index <= 150; index++) {
-				Wire.GetComponent<LineRenderer>().SetPosition(index,new Vector3 (gameObject.transform.position.x+(((float)index/200)*(mousePos.x-gameObject.transform.position.x)),mousePos.y,0));
+				Wire.GetComponent<LineRenderer>().SetPosition(index,new Vector3 ((gameObject.transform.position.x+mousePos.x)/2+((((float)index-100)/100)*(mousePos.x-gameObject.transform.position.x)),mousePos.y,0));
 			}
 			Wire.GetComponent<LineRenderer>().SetPosition(151,mousePos);
 			
