@@ -30,7 +30,8 @@ public class StatePoint : MonoBehaviour {
 
 	
 	void Start () {
-		//wire = transform.FindChild("Wire").gameObject;
+		mainCam = GameObject.Find("Main Camera").camera;
+		GateManager = GameObject.Find("Gate Manager");
 	}
 	
 	// Update is called once per frame
