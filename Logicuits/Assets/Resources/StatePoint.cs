@@ -14,7 +14,9 @@ public class StatePoint : MonoBehaviour {
 	public Camera mainCam;
 	public GameObject Wire;
 	GameObject wire;
+	public GameObject statePoint;
 	public GameObject GateManager;
+	public GameObject Circuit;
 
 	public string type;
 	public bool isAssigned;
@@ -30,8 +32,10 @@ public class StatePoint : MonoBehaviour {
 
 	
 	void Start () {
+		Wire = Resources.Load("Prefabs/Wire") as GameObject;
 		mainCam = GameObject.Find("Main Camera").camera;
 		GateManager = GameObject.Find("Gate Manager");
+		Circuit = GameObject.Find("Gate Manager/Circuit");
 	}
 	
 	// Update is called once per frame
@@ -92,6 +96,21 @@ public class StatePoint : MonoBehaviour {
 				if (!valid) {
 					Destroy(wire);
 				}
+			}
+
+			// If right click
+			if (Input.GetMouseButtonDown(1)) {
+				statePoint = Instantiate(statePoint) as GameObject;
+				statePoint.transform.position = new Vector3 (mousePos.x, mousePos.y, 0);
+				statePoint.transform.parent = Circuit.transform;
+				wire.GetComponent<LineRenderer>().SetColors(Color.red,Color.red);
+				connections.Add(statePoint.gameObject);
+				statePoint.gameObject.GetComponent<StatePoint>().connections.Add(this.gameObject);
+				PropagateAssignment(this.gameObject);
+				valid = true;
+				start = false;
+				statePoint.gameObject.GetComponent<StatePoint>().OnMouseDown();
+
 			}
 		}
 
