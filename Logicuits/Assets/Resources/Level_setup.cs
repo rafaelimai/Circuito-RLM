@@ -4,13 +4,16 @@ using System.Collections.Generic;
 
 public class Level_setup : MonoBehaviour {
 
+	// Unity Engine stuff
 	public GUISkin guiSkin;
 	public Texture2D pointer;
 	public Texture2D hand;
 	public GameObject toolbox;
 	public GameObject gateManager;
 	public GameObject circuit;
+	public Camera mainCam;
 
+	// Execution variables
 	public static string currentLevel;
 	public static bool handCursor = false;
 	public static bool verify = false;
@@ -22,6 +25,21 @@ public class Level_setup : MonoBehaviour {
 	public static int iteration;
 	int counter;
 
+	// Level-creating parameters
+	public int numberOfInputs;
+	public int numberOfOutputs;
+
+	public List<int> inputStateList1;
+	public List<int> inputStateList2;
+	public List<int> inputStateList3;
+	public List<int> inputStateList4;
+	List<List<int>> inputStateLists = new List<List<int>>();
+
+	public List<int> outputStateList1;
+	public List<int> outputStateList2;
+	public List<int> outputStateList3;
+	public List<int> outputStateList4;
+	List<List<int>> outputStateLists = new List<List<int>>();
 
 
 	// Use this for initialization
@@ -33,6 +51,33 @@ public class Level_setup : MonoBehaviour {
 		aux = new List<int>();
 		answerString = "";
 		iteration = 0;
+
+		// Create the level
+		inputStateLists.Add(inputStateList1);
+		inputStateLists.Add(inputStateList2);
+		inputStateLists.Add(inputStateList3);
+		inputStateLists.Add(inputStateList4);
+
+		outputStateLists.Add(outputStateList1);
+		outputStateLists.Add(outputStateList2);
+		outputStateLists.Add(outputStateList3);
+		outputStateLists.Add(outputStateList4);
+
+
+		for (int index = 1; index <= numberOfInputs; index++) {
+			GameObject inputCreated = Instantiate(Resources.Load("Prefabs/C-Input")) as GameObject;
+			inputCreated.transform.parent = GameObject.Find ("Gate Manager/Circuit").transform;
+			inputCreated.transform.position = new Vector3(-5f, mainCam.ScreenToWorldPoint(new Vector3(0f,Screen.height,0f)).y*(1f-2*(float)index/(numberOfInputs+1)), 0);
+			inputCreated.GetComponent<StatePoint>().statelist = inputStateLists[index-1];
+		}
+
+		for (int index = 1; index <= numberOfOutputs; index++) {
+			GameObject outputCreated = Instantiate(Resources.Load("Prefabs/C-Output")) as GameObject;
+			outputCreated.transform.parent = GameObject.Find ("Gate Manager/Circuit").transform;
+			outputCreated.transform.position = new Vector3(8f, mainCam.ScreenToWorldPoint(new Vector3(0f,Screen.height,0f)).y*(1f-2*(float)index/(numberOfInputs+1)), 0);
+			outputCreated.GetComponent<StatePoint>().statelist = outputStateLists[index-1];
+		}
+
 
 	}
 	
