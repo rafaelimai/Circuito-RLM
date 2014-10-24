@@ -70,19 +70,19 @@ Escreve um pouco descrevendo o padrao de nomenclatura das variaveis. Pode cair m
 	public int numberOfInputs;
 	public int numberOfOutputs;
 
-	public List<int> inputStateList1;
-	public List<int> inputStateList2;
-	public List<int> inputStateList3;
-	public List<int> inputStateList4;
-	List<List<int>> inputStateLists = new List<List<int>>();
+	public string inputStateList1;
+	public string inputStateList2;
+	public string inputStateList3;
+	public string inputStateList4;
+	List<string> inputStateLists = new List<string>();
 
-	public List<int> outputStateList1;
-	public List<int> outputStateList2;
-	public List<int> outputStateList3;
-	public List<int> outputStateList4;
+	public string outputStateList1;
+	public string outputStateList2;
+	public string outputStateList3;
+	public string outputStateList4;
 
 	//Da pra dar um tapa, se criarmos uma classe Resposta, por exemplo. Essa classe encapsularia coisas como os valores de input e output.
-	List<List<int>> outputStateLists = new List<List<int>>();
+	List<string> outputStateLists = new List<string>();
 
 	bool done;
 
@@ -208,7 +208,7 @@ Escreve um pouco descrevendo o padrao de nomenclatura das variaveis. Pode cair m
 			
 			// Move on to next iteration or end verification
 			//Explica um pouco aqui do porque do if abaixo.
-			if (iteration+1 < circuit.GetComponentInChildren<StatePoint>().statelist.Capacity) {
+			if (iteration+1 < circuit.GetComponentInChildren<StatePoint>().statelist.Length) {
 				iteration ++;
 				foreach(Object spark in GameObject.FindGameObjectsWithTag("Spark")) {
 					Destroy(spark);

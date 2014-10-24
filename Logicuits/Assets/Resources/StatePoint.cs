@@ -22,7 +22,7 @@ public class StatePoint : MonoBehaviour {
 
 	public string type;
 	public bool isAssigned;
-	public List<int> statelist = new List<int>();
+	public string statelist;
 	public int state;
 	public List<GameObject> connections = new List<GameObject>();
 
@@ -86,7 +86,7 @@ public class StatePoint : MonoBehaviour {
 				foreach (Transform Gate2 in GateManager.transform) {
 					foreach (Transform statePoint2 in Gate2) {
 						if (DetectMouseOver (statePoint2.gameObject) && !(isAssigned && statePoint2.gameObject.GetComponent<StatePoint>().isAssigned)) {
-							wire.GetComponent<LineRenderer>().SetColors(Color.red,Color.red);
+							wire.GetComponent<LineRenderer>().SetColors(Color.green,Color.green);
 							connections.Add(statePoint2.gameObject);
 							statePoint2.gameObject.GetComponent<StatePoint>().connections.Add(this.gameObject);
 							PropagateAssignment(this.gameObject);
@@ -107,7 +107,7 @@ public class StatePoint : MonoBehaviour {
 				statePoint = Instantiate(statePoint) as GameObject;
 				statePoint.transform.position = new Vector3 (mousePos.x, mousePos.y, 0);
 				statePoint.transform.parent = Circuit.transform;
-				wire.GetComponent<LineRenderer>().SetColors(Color.red,Color.red);
+				wire.GetComponent<LineRenderer>().SetColors(Color.green,Color.green);
 				connections.Add(statePoint.gameObject);
 				statePoint.gameObject.GetComponent<StatePoint>().connections.Add(this.gameObject);
 				PropagateAssignment(this.gameObject);
@@ -123,7 +123,7 @@ public class StatePoint : MonoBehaviour {
 			// C-INPUTS: at the beginning of iteration, take up next value on list and
 			//           propagate it through connections
 			if (type == "C-INPUT" && state == 2) {
-				state = statelist[Level_setup.iteration];
+				state = System.Convert.ToInt32(statelist[Level_setup.iteration].ToString());
 				PropagateState(this.gameObject);
 			}
 
