@@ -12,7 +12,7 @@ public class StatePoint : MonoBehaviour {
 	// C-OUTPUTS, once they acquire values, associate them with C-INPUTS and sends results
 
 	public Camera mainCam;
-	public GameObject Wire;
+	public Object Wire;
 	GameObject wire;
 	public GameObject statePoint;
 	public GameObject GateManager;
@@ -31,10 +31,11 @@ public class StatePoint : MonoBehaviour {
 	bool start;
 	bool valid;
 	bool done;
+	public bool alreadyPropagated = false;
 
 	
 	void Start () {
-		Wire = Resources.Load("Prefabs/Wire") as GameObject;
+		Wire = Resources.Load("Prefabs/Wire");
 		Spark = Resources.Load("Prefabs/Spark") as GameObject;
 		mainCam = GameObject.Find("Main Camera").camera;
 		GateManager = GameObject.Find("Gate Manager");
@@ -138,7 +139,8 @@ public class StatePoint : MonoBehaviour {
 						done = false;
 					}
 				}
-				if (done) {
+				if (done && !alreadyPropagated) {
+					alreadyPropagated = true;
 					if (transform.parent.GetComponent<LogicGate>().type == "AND") {
 						state = 1;
 						foreach (Transform statePoint in transform.parent) {
@@ -165,6 +167,7 @@ public class StatePoint : MonoBehaviour {
 						}
 					}
 					PropagateState(this.gameObject);
+					done = false;
 				}
 			}
 
@@ -213,12 +216,15 @@ public class StatePoint : MonoBehaviour {
 		}
 	}
 
-	void PropagateState (GameObject SP) {
+	public void PropagateState (GameObject SP) {
 		// Propagates state of current StatePoint to the ones connected to it
 		foreach (GameObject statePoint in SP.GetComponent<StatePoint>().connections) {
 			if (statePoint.GetComponent<StatePoint>().state == 2) {
-				statePoint.GetComponent<StatePoint>().state = SP.GetComponent<StatePoint>().state;
-				PropagateState (statePoint);
+				spark = Instantiate(Spark) as GameObject;
+				spark.transform.position = SP.transform.position;
+				spark.GetComponent<Spark>().startPoint = SP;
+				spark.GetComponent<Spark>().endPoint = statePoint;
+				spark.GetComponent<Spark>().state = SP.GetComponent<StatePoint>().state;
 
 			}
 		}

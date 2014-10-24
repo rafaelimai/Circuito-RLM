@@ -117,9 +117,13 @@ public class Level_setup : MonoBehaviour {
 				// Move on to next iteration or end verification
 				if (iteration+1 < circuit.GetComponentInChildren<StatePoint>().statelist.Capacity) {
 					iteration ++;
+					foreach(Object spark in GameObject.FindGameObjectsWithTag("Spark")) {
+						Destroy(spark);
+					}
 					foreach (Transform Gate in gateManager.transform) {
 						foreach (Transform statePoint in Gate) {
 							statePoint.gameObject.GetComponent<StatePoint>().state = 2;
+							statePoint.gameObject.GetComponent<StatePoint>().alreadyPropagated = false;
 						}
 					}
 				}
@@ -138,6 +142,7 @@ public class Level_setup : MonoBehaviour {
 		guiSkin.textArea.fontSize = Screen.height/16;
 
 		if (GUI.Button (new Rect (Screen.width*1/32,  Screen.height*12/16, Screen.width*1/8, guiSkin.button.fontSize), "Check")) {
+			answerString = "";
 			verify = true;
 		}
 
@@ -153,7 +158,7 @@ public class Level_setup : MonoBehaviour {
 			if (verify) {
 				verify = false;
 				counter = 0;
-				foreach(List<int> ans in answer) {
+				for (int i = 0; i < answer.Count; i++) {
 					// Add input
 					foreach(Transform statePoint in circuit.transform) {
 						if (statePoint.gameObject.GetComponent<StatePoint>().type == "C-INPUT"){
@@ -163,9 +168,8 @@ public class Level_setup : MonoBehaviour {
 
 					// Add space
 					answerString += " ";
-
 					// Add output
-					foreach (int bit in ans) {
+					foreach (int bit in answer[i]) {
 						answerString += bit.ToString();
 					}
 
@@ -173,9 +177,11 @@ public class Level_setup : MonoBehaviour {
 					answerString += "\n";
 
 					counter ++;
+
 				}
 			}
-			GUI.TextArea(new Rect(Screen.width*1/4,Screen.height*1/4,Screen.width/2,Screen.height/2), answerString);
+			finish = false;
 		}
+		GUI.TextArea(new Rect(Screen.width*3f/4f,Screen.height*3f/4f,Screen.width/4f,Screen.height/4f), answerString);
 	}
 }
