@@ -17,6 +17,8 @@ public class StatePoint : MonoBehaviour {
 	public GameObject statePoint;
 	public GameObject GateManager;
 	public GameObject Circuit;
+	public GameObject Spark;
+	GameObject spark;
 
 	public string type;
 	public bool isAssigned;
@@ -33,6 +35,7 @@ public class StatePoint : MonoBehaviour {
 	
 	void Start () {
 		Wire = Resources.Load("Prefabs/Wire") as GameObject;
+		Spark = Resources.Load("Prefabs/Spark") as GameObject;
 		mainCam = GameObject.Find("Main Camera").camera;
 		GateManager = GameObject.Find("Gate Manager");
 		Circuit = GameObject.Find("Gate Manager/Circuit");
@@ -58,13 +61,13 @@ public class StatePoint : MonoBehaviour {
 			// Continuously draw preview of wire
 			wire.GetComponent<LineRenderer>().SetVertexCount(152);
 			for (int index = 0; index <= 50; index++){
-				wire.GetComponent<LineRenderer>().SetPosition(index,new Vector3 (gameObject.transform.position.x+(((float)index/100)*(mousePos.x-gameObject.transform.position.x)),gameObject.transform.position.y,0));
+				wire.GetComponent<LineRenderer>().SetPosition(index,new Vector3 (gameObject.transform.position.x+(((float)index/150)*(mousePos.x-gameObject.transform.position.x)),gameObject.transform.position.y,0));
 			}
 			for (int index = 51; index <= 100; index++) {
-				wire.GetComponent<LineRenderer>().SetPosition(index,new Vector3 ((gameObject.transform.position.x+mousePos.x)/2,gameObject.transform.position.y+((((float)index-50)/50)*(mousePos.y-gameObject.transform.position.y)),0));
+				wire.GetComponent<LineRenderer>().SetPosition(index,new Vector3 (gameObject.transform.position.x+(((float)index/150)*(mousePos.x-gameObject.transform.position.x)),gameObject.transform.position.y+((((float)index-50)/50)*(mousePos.y-gameObject.transform.position.y)),0));
 			}
 			for (int index = 101; index <= 150; index++) {
-				wire.GetComponent<LineRenderer>().SetPosition(index,new Vector3 ((gameObject.transform.position.x+mousePos.x)/2+((((float)index-100)/100)*(mousePos.x-gameObject.transform.position.x)),mousePos.y,0));
+				wire.GetComponent<LineRenderer>().SetPosition(index,new Vector3 ((gameObject.transform.position.x+mousePos.x)/2+((((float)index-50)/200)*(mousePos.x-gameObject.transform.position.x)),mousePos.y,0));
 			}
 			wire.GetComponent<LineRenderer>().SetPosition(151,mousePos);
 			
@@ -176,7 +179,6 @@ public class StatePoint : MonoBehaviour {
 
 	void OnMouseOver () {
 
-		// Flash continuoulsy on mouse hover, if wire is not being drawn
 	}
 
 	void OnMouseDown () {
@@ -184,6 +186,7 @@ public class StatePoint : MonoBehaviour {
 		// Start drawing if user clicks valid area
 		start = true;
 		wire = Instantiate(Wire) as GameObject;
+		wire.transform.parent = this.transform;
 	}
 
 	bool DetectMouseOver (GameObject GO) {
@@ -216,6 +219,7 @@ public class StatePoint : MonoBehaviour {
 			if (statePoint.GetComponent<StatePoint>().state == 2) {
 				statePoint.GetComponent<StatePoint>().state = SP.GetComponent<StatePoint>().state;
 				PropagateState (statePoint);
+
 			}
 		}
 	}
