@@ -1,6 +1,8 @@
 fileFormatVersion: 2
 guid: 291df9f32f121e846ae4037d38f83bcc
 TextureImporter:
+  fileIDToRecycleName:
+    21300000: Mute Button2
   serializedVersion: 2
   mipmaps:
     mipMapMode: 0
@@ -24,9 +26,9 @@ TextureImporter:
   maxTextureSize: 1024
   textureSettings:
     filterMode: -1
-    aniso: -1
+    aniso: 1
     mipBias: -1
-    wrapMode: -1
+    wrapMode: 1
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
