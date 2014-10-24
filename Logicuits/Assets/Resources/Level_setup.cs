@@ -113,7 +113,25 @@ public class Level_setup : MonoBehaviour {
 
 				Level_setup.answer.Add(new List<int>(aux));
 				aux.Clear();
+			}
+		}
+	
+	}
 
+	void OnGUI () {
+		GUI.skin = guiSkin;
+		guiSkin.button.fontSize = Screen.height/16;
+		guiSkin.label.fontSize = Screen.height/16;
+		guiSkin.textArea.fontSize = Screen.height/16;
+
+		if (!verify) {
+			if (GUI.Button (new Rect (Screen.width*1/32,  Screen.height*12/16, Screen.width*1/8, guiSkin.button.fontSize), "Check")) {
+				answerString = "";
+				verify = true;
+			}
+		}
+		else if (iteration+1 < circuit.GetComponentInChildren<StatePoint>().statelist.Capacity) {
+			if (GUI.Button (new Rect (Screen.width*1/32,  Screen.height*12/16, Screen.width*1/8, guiSkin.button.fontSize), "Next")) {
 				// Move on to next iteration or end verification
 				if (iteration+1 < circuit.GetComponentInChildren<StatePoint>().statelist.Capacity) {
 					iteration ++;
@@ -127,23 +145,10 @@ public class Level_setup : MonoBehaviour {
 						}
 					}
 				}
-				else {
-					finish = true;
-				}
 			}
 		}
-	
-	}
-
-	void OnGUI () {
-		GUI.skin = guiSkin;
-		guiSkin.button.fontSize = Screen.height/16;
-		guiSkin.label.fontSize = Screen.height/16;
-		guiSkin.textArea.fontSize = Screen.height/16;
-
-		if (GUI.Button (new Rect (Screen.width*1/32,  Screen.height*12/16, Screen.width*1/8, guiSkin.button.fontSize), "Check")) {
-			answerString = "";
-			verify = true;
+		else {
+			finish = true;
 		}
 
 		if (GUI.Button (new Rect (Screen.width*1/32,  Screen.height*13/16, Screen.width*1/8, guiSkin.button.fontSize), "Undo")) {
