@@ -54,12 +54,11 @@ Escreve um pouco descrevendo o padrao de nomenclatura das variaveis. Pode cair m
 	public static bool handCursor = false;
 	public static bool verify = false;
 	public static bool finish = false;
-	public static List<List<int>> answer;
-	public List<int> aux;
+	public static List<string> answer;
+	public string aux;
 	public static string answerString;
 	public static bool zueira = false;
 	public static int iteration;
-	int counter;
 
 	/*-----VARIAVEIS CRIADORAS DE NIVEL-----> Devem ser editadas por nos developers para criar niveis
 	 * numberOfInputs/Outputs: numero de Inputs e outputs do circuito
@@ -98,8 +97,8 @@ Escreve um pouco descrevendo o padrao de nomenclatura das variaveis. Pode cair m
 
 		verify = false;
 		finish = false;
-		answer = new List<List<int>>();
-		aux = new List<int>();
+		answer = new List<string>();
+		aux = "";
 		answerString = "";
 		iteration = 0;
 
@@ -163,6 +162,32 @@ Escreve um pouco descrevendo o padrao de nomenclatura das variaveis. Pode cair m
 				}
 			}
 		}
+
+		/*
+		 **************************************************
+		 * PROCEDIMENTO DE FIM DE TESTE
+		 **************************************************
+		 * Salvar resultados no answerString, desativar verify
+		 */
+		if (done && verify) {
+			foreach(Transform statePoint in circuit.transform) {
+				if (statePoint.gameObject.GetComponent<StatePoint>().type == "C-INPUT"){
+					answerString += statePoint.GetComponent<StatePoint>().state.ToString();
+				}
+			}
+			// Add space
+			answerString += " ";
+			// Add output
+			foreach (Transform statePoint in circuit.transform) {
+				if (statePoint.GetComponent<StatePoint>().type == "C-OUTPUT") {
+					answerString += statePoint.GetComponent<StatePoint>().state.ToString ();
+				}
+			}
+			// Next line
+			answerString += "\n";
+
+			verify = false;
+		}
 	}
 
 	void OnGUI () {
@@ -178,11 +203,11 @@ Escreve um pouco descrevendo o padrao de nomenclatura das variaveis. Pode cair m
 
 		/*
 		 **************************************************
-		 * BOTAO DE CHECAGEM / PROXIMO PASSO
+		 * BOTAO CHECK / NEXT
 		 **************************************************
 		 */
 
-		// Se nao esta verificando, nem terminou a verificaçao de um teste, botao Check inicia verificaçao
+		// Durante montagem de circuito, botao Check inicia verificaçao
 		if (!verify && !done && GUI.Button (new Rect (Screen.width*1/32,  Screen.height*12/16, Screen.width*1/8, guiSkin.button.fontSize), "Check")) {
 			answerString = "";
 			verify = true;
@@ -190,25 +215,16 @@ Escreve um pouco descrevendo o padrao de nomenclatura das variaveis. Pode cair m
 
 		// Se esta no meio de um teste, botao (desativado) Testing... impede que o usuario faça caca
 		GUI.enabled = false;
-		if (!done && verify && GUI.Button (new Rect (Screen.width*1/32,  Screen.height*12/16, Screen.width*1/8, guiSkin.button.fontSize), "Testing...")) {
-		}
+		if (!done && verify && GUI.Button (new Rect (Screen.width*1/32,  Screen.height*12/16, Screen.width*1/8, guiSkin.button.fontSize), "Testing...")) {}
 		GUI.enabled = true;
 
 		// Se terminou a presente iteraçao da checagem, botao Next passa para o proximo passo
 		if (done && GUI.Button (new Rect (Screen.width*1/32,  Screen.height*12/16, Screen.width*1/8, guiSkin.button.fontSize), "Next")) {
-			foreach (Transform statePoint in circuit.transform) {
-				if (statePoint.GetComponent<StatePoint>().type == "C-OUTPUT") {
-					aux.Add (statePoint.GetComponent<StatePoint>().state);
-				}
-			}
 
-
-			Level_setup.answer.Add(new List<int>(aux));
-			aux.Clear();
-			
-			// Move on to next iteration or end verification
-			//Explica um pouco aqui do porque do if abaixo.
+			// Move on to next iteration (if there are any to be done) or end verification (if not)
 			if (iteration+1 < circuit.GetComponentInChildren<StatePoint>().statelist.Length) {
+				done = false;
+				verify = true;
 				iteration ++;
 				foreach(Object spark in GameObject.FindGameObjectsWithTag("Spark")) {
 					Destroy(spark);
@@ -253,25 +269,8 @@ Escreve um pouco descrevendo o padrao de nomenclatura das variaveis. Pode cair m
 		if (finish) {
 			if (verify) {
 				verify = false;
-				counter = 0;
 				for (int i = 0; i < answer.Count; i++) {
-					// Add input
-					foreach(Transform statePoint in circuit.transform) {
-						if (statePoint.gameObject.GetComponent<StatePoint>().type == "C-INPUT"){
-							answerString += statePoint.GetComponent<StatePoint>().statelist[counter].ToString();
-						}
-					}
 
-					// Add space
-					answerString += " ";
-					// Add output
-					foreach (int bit in answer[i]) {
-						answerString += bit.ToString();
-					}
-
-					// Next line
-					answerString += "\n";
-					counter ++;
 				}
 			}
 			finish = false;
