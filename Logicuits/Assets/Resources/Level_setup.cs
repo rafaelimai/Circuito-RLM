@@ -112,7 +112,7 @@ public class Level_setup : MonoBehaviour {
 			GameObject inputCreated = Instantiate(Resources.Load("Prefabs/C-Input")) as GameObject;
 			inputCreated.transform.parent = GameObject.Find ("Gate Manager/Circuit").transform;
 			inputCreated.transform.position = new Vector3
-				(-5f, mainCam.ScreenToWorldPoint(new Vector3(0f,Screen.height,0f)).y*(1f-2*(float)index/(numberOfInputs+1)), 0);
+				(-4F, mainCam.ScreenToWorldPoint(new Vector3(0f,Screen.height,0f)).y*(1f-2*(float)index/(numberOfInputs+1)), 0);
 			inputCreated.GetComponent<StatePoint>().statelist = inputStateLists[index-1];
 		}
 
@@ -120,7 +120,7 @@ public class Level_setup : MonoBehaviour {
 			GameObject outputCreated = Instantiate(Resources.Load("Prefabs/C-Output")) as GameObject;
 			outputCreated.transform.parent = GameObject.Find ("Gate Manager/Circuit").transform;
 			outputCreated.transform.position = new Vector3
-				(8f, mainCam.ScreenToWorldPoint(new Vector3(0f,Screen.height,0f)).y*(1f-2*(float)index/(numberOfInputs+1)), 0);
+				(7F, mainCam.ScreenToWorldPoint(new Vector3(0f,Screen.height,0f)).y*(1f-2*(float)index/(numberOfInputs+1)), 0);
 			outputCreated.GetComponent<StatePoint>().statelist = outputStateLists[index-1];
 		}
 
