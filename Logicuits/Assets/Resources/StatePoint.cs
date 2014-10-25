@@ -35,6 +35,11 @@ public class StatePoint : MonoBehaviour {
 
 	
 	void Start () {
+		/*
+		 **************************************************
+		 * INICIALIZA VARIAVEIS
+		 **************************************************
+		 */
 		Wire = Resources.Load("Prefabs/Wire");
 		Spark = Resources.Load("Prefabs/Spark") as GameObject;
 		mainCam = GameObject.Find("Main Camera").camera;
@@ -45,7 +50,11 @@ public class StatePoint : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 
-		// DRAWING
+		/*
+		 **************************************************
+		 * FIOS
+		 **************************************************
+		 */
 		if (start) {
 
 			// Get mouse position
