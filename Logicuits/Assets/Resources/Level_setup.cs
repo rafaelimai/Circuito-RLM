@@ -19,6 +19,9 @@ public class Level_setup : MonoBehaviour {
 	public GameObject toolbox;
 	public GameObject gateManager;
 	public GameObject circuit;
+	public GameObject Correct;
+	public GameObject Wrong;
+	public GameObject symbol;
 	public Camera mainCam;
 
 	/* -----VARIAVEIS NORMAIS-----
@@ -41,6 +44,7 @@ public class Level_setup : MonoBehaviour {
 	public static string inputsString;
 	public static string expectedString;
 	public static string answerString;
+	public static string auxString;
 	public static bool zueira = false;
 	public static int iteration;
 
@@ -96,6 +100,9 @@ public class Level_setup : MonoBehaviour {
 		outputStateLists.Add(outputStateList3);
 		outputStateLists.Add(outputStateList4);
 
+		Correct = Resources.Load("Prefabs/Correct") as GameObject;
+		Wrong = Resources.Load("Prefabs/Wrong") as GameObject;
+
 		/*
 		 **************************************************
 		 * POSICIONAMENTO DE INPUTS/OUTPUTS
@@ -123,7 +130,7 @@ public class Level_setup : MonoBehaviour {
 		 **************************************************
 		 */
 
-		// Inputs
+
 		for (int i = 0; i < inputStateList1.Length; i++) {
 			foreach(Transform statePoint in circuit.transform) {
 				if (statePoint.gameObject.GetComponent<StatePoint>().type == "C-INPUT"){
@@ -178,12 +185,19 @@ public class Level_setup : MonoBehaviour {
 			// Add output
 			foreach (Transform statePoint in circuit.transform) {
 				if (statePoint.GetComponent<StatePoint>().type == "C-OUTPUT") {
-					answerString += statePoint.GetComponent<StatePoint>().state.ToString ();
+					auxString += statePoint.GetComponent<StatePoint>().state.ToString ();
 				}
 			}
 			// Next line
-			answerString += "\n";
-
+			answerString += auxString+"\n";
+			if (auxString == expectedString.Substring(10+(numberOfOutputs+1)*iteration,numberOfOutputs)) {
+				symbol = Instantiate (Correct, new Vector3(iteration, 4f, 0f), new Quaternion(0,0,0,0)) as GameObject;
+			}
+			else {
+				symbol = Instantiate (Wrong, new Vector3(iteration, 4f, 0f), new Quaternion(0,0,0,0)) as GameObject;
+			}
+			auxString = "";
+			
 			verify = false;
 		}
 	}
@@ -212,7 +226,7 @@ public class Level_setup : MonoBehaviour {
 
 		// Se esta no meio de um teste, botao (desativado) Testing... impede que o usuario faça caca
 		GUI.enabled = false;
-		if (!done && verify && GUI.Button (new Rect (Screen.width*1/32,  Screen.height*12/16, Screen.width*1/8, guiSkin.button.fontSize), "Testing...")) {}
+		if (verify && GUI.Button (new Rect (Screen.width*1/32,  Screen.height*12/16, Screen.width*1/8, guiSkin.button.fontSize), "Testing...")) {}
 		GUI.enabled = true;
 
 		// Se terminou a presente iteraçao da checagem, botao Next passa para o proximo passo
