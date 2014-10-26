@@ -19,9 +19,11 @@ public class Level_setup : MonoBehaviour {
 	public GameObject toolbox;
 	public GameObject gateManager;
 	public GameObject circuit;
-	public GameObject Correct;
-	public GameObject Wrong;
+	public Object Correct;
+	public Object Wrong;
 	public GameObject symbol;
+	public Object LevelComplete;
+	public GameObject endMessage;
 	public Camera mainCam;
 
 	/* -----VARIAVEIS NORMAIS-----
@@ -52,7 +54,7 @@ public class Level_setup : MonoBehaviour {
 	 * numberOfInputs/Outputs: numero de Inputs e outputs do circuito
 	 * inputStateList: Lista de valores que os inputs assumem em cada teste (na ordem). Primeiro teste -> primeiro elemento...
 	 * outputStateList: Lista de valores esperados no output do circuito, em cada teste (Sao a resposta do problema) }  SOB RISCO DE
-	 * input/outputStateLists: Listas de listas, so para deixa mais facil iterar sobre elas                          }    EXTINÇAO
+	 * input/outputStateLists: Listas de listas, so para deixar mais facil iterar sobre elas                          }    EXTINÇAO
 	 */
 	public int numberOfInputs;
 	public int numberOfOutputs;
@@ -100,8 +102,9 @@ public class Level_setup : MonoBehaviour {
 		outputStateLists.Add(outputStateList3);
 		outputStateLists.Add(outputStateList4);
 
-		Correct = Resources.Load("Prefabs/Correct") as GameObject;
-		Wrong = Resources.Load("Prefabs/Wrong") as GameObject;
+		Correct = Resources.Load("Prefabs/Correct");
+		Wrong = Resources.Load("Prefabs/Wrong");
+		LevelComplete = Resources.Load("Prefabs/LevelComplete");
 
 		/*
 		 **************************************************
@@ -197,8 +200,11 @@ public class Level_setup : MonoBehaviour {
 				symbol = Instantiate (Wrong, new Vector3(iteration, 4f, 0f), new Quaternion(0,0,0,0)) as GameObject;
 			}
 			auxString = "";
-			
 			verify = false;
+
+			if (GameObject.FindGameObjectsWithTag("Correct").Length == inputStateList1.Length) {
+				endMessage = Instantiate(LevelComplete, new Vector3 (0,2,0), new Quaternion(0,0,0,0)) as GameObject;
+			}
 		}
 	}
 
