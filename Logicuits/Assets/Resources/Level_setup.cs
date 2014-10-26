@@ -226,17 +226,17 @@ public class Level_setup : MonoBehaviour {
 		 */
 
 		// Durante montagem de circuito, botao Check inicia verificaçao
-		if (!verify && !done && GUI.Button (new Rect (Screen.width*1/32,  Screen.height*12/16, Screen.width*1/8, guiSkin.button.fontSize), "Check")) {
+		if (!verify && !done && GUI.Button (new Rect (Screen.width*1/64,  Screen.height*12/16, Screen.width*1/6, guiSkin.button.fontSize*1.1f), "Check")) {
 			verify = true;
 		}
 
 		// Se esta no meio de um teste, botao (desativado) Testing... impede que o usuario faça caca
 		GUI.enabled = false;
-		if (verify && GUI.Button (new Rect (Screen.width*1/32,  Screen.height*12/16, Screen.width*1/8, guiSkin.button.fontSize), "Testing...")) {}
+		if (verify && GUI.Button (new Rect (Screen.width*1/64,  Screen.height*12/16, Screen.width*1/6, guiSkin.button.fontSize*1.1f), "Testing...")) {}
 		GUI.enabled = true;
 
 		// Se terminou a presente iteraçao da checagem, botao Next passa para o proximo passo
-		if (done && GUI.Button (new Rect (Screen.width*1/32,  Screen.height*12/16, Screen.width*1/8, guiSkin.button.fontSize), "Next")) {
+		if (done && GUI.Button (new Rect (Screen.width*1/64,  Screen.height*12/16, Screen.width*1/6, guiSkin.button.fontSize*1.1f), "Next")) {
 
 			// Move on to next iteration (if there are any to be done) or end verification (if not)
 			if (iteration+1 < circuit.GetComponentInChildren<StatePoint>().statelist.Length) {
@@ -264,7 +264,7 @@ public class Level_setup : MonoBehaviour {
 		 **************************************************
 		 */
 
-		if (GUI.Button (new Rect (Screen.width*1/32,  Screen.height*13/16, Screen.width*1/8, guiSkin.button.fontSize), "Undo")) {
+		if (GUI.Button (new Rect (Screen.width*1/64,  Screen.height*13/16, Screen.width*1/6, guiSkin.button.fontSize*1.1f), "Undo")) {
 			Application.LoadLevel(Level_setup.currentLevel);
 		}
 
@@ -274,7 +274,7 @@ public class Level_setup : MonoBehaviour {
 		 **************************************************
 		 */
 
-		if (GUI.Button (new Rect (Screen.width*1/32,  Screen.height*14/16, Screen.width*1/8, guiSkin.button.fontSize), "Main Menu")) {
+		if (GUI.Button (new Rect (Screen.width*1/64,  Screen.height*14/16, Screen.width*1/6, guiSkin.button.fontSize*1.1f), "Main Menu")) {
 			Application.LoadLevel("menu");
 		}
 
