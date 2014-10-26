@@ -40,6 +40,7 @@ public class Level_setup : MonoBehaviour {
 	public static string currentLevel;
 	public static bool handCursor = false;
 	public static bool verify = false;
+	bool done;
 	public static bool finish = false;
 	public static List<string> answer;
 	public string aux;
@@ -71,9 +72,9 @@ public class Level_setup : MonoBehaviour {
 	public string outputStateList4;
 	List<string> outputStateLists = new List<string>();
 
-	bool done;
 
-
+	public static float BUTTON_WIDTH;
+	public static float BUTTON_HEIGHT;
 	// Use this for initialization
 	void Start () {
 
@@ -105,6 +106,9 @@ public class Level_setup : MonoBehaviour {
 		Correct = Resources.Load("Prefabs/Correct");
 		Wrong = Resources.Load("Prefabs/Wrong");
 		LevelComplete = Resources.Load("Prefabs/LevelComplete");
+
+		BUTTON_WIDTH = Screen.width*1/6;
+		BUTTON_HEIGHT = guiSkin.button.fontSize*1.1f;
 
 		/*
 		 **************************************************
@@ -226,17 +230,17 @@ public class Level_setup : MonoBehaviour {
 		 */
 
 		// Durante montagem de circuito, botao Check inicia verificaçao
-		if (!verify && !done && GUI.Button (new Rect (Screen.width*1/64,  Screen.height*12/16, Screen.width*1/6, guiSkin.button.fontSize*1.1f), "Check")) {
+		if (!verify && !done && GUI.Button (new Rect (Screen.width*1/10-BUTTON_WIDTH/2,  Screen.height*12/16, BUTTON_WIDTH, BUTTON_HEIGHT), "Check")) {
 			verify = true;
 		}
 
 		// Se esta no meio de um teste, botao (desativado) Testing... impede que o usuario faça caca
 		GUI.enabled = false;
-		if (verify && GUI.Button (new Rect (Screen.width*1/64,  Screen.height*12/16, Screen.width*1/6, guiSkin.button.fontSize*1.1f), "Testing...")) {}
+		if (verify && GUI.Button (new Rect (Screen.width*1/10-BUTTON_WIDTH/2,  Screen.height*12/16, BUTTON_WIDTH, BUTTON_HEIGHT), "Testing...")) {}
 		GUI.enabled = true;
 
 		// Se terminou a presente iteraçao da checagem, botao Next passa para o proximo passo
-		if (done && GUI.Button (new Rect (Screen.width*1/64,  Screen.height*12/16, Screen.width*1/6, guiSkin.button.fontSize*1.1f), "Next")) {
+		if (done && GUI.Button (new Rect (Screen.width*1/10-BUTTON_WIDTH/2,  Screen.height*12/16, BUTTON_WIDTH, BUTTON_HEIGHT), "Next")) {
 
 			// Move on to next iteration (if there are any to be done) or end verification (if not)
 			if (iteration+1 < circuit.GetComponentInChildren<StatePoint>().statelist.Length) {
@@ -264,7 +268,7 @@ public class Level_setup : MonoBehaviour {
 		 **************************************************
 		 */
 
-		if (GUI.Button (new Rect (Screen.width*1/64,  Screen.height*13/16, Screen.width*1/6, guiSkin.button.fontSize*1.1f), "Undo")) {
+		if (GUI.Button (new Rect (Screen.width*1/10-BUTTON_WIDTH/2,  Screen.height*12/16+BUTTON_HEIGHT, BUTTON_WIDTH, BUTTON_HEIGHT), "Undo")) {
 			Application.LoadLevel(Level_setup.currentLevel);
 		}
 
@@ -274,7 +278,7 @@ public class Level_setup : MonoBehaviour {
 		 **************************************************
 		 */
 
-		if (GUI.Button (new Rect (Screen.width*1/64,  Screen.height*14/16, Screen.width*1/6, guiSkin.button.fontSize*1.1f), "Main Menu")) {
+		if (GUI.Button (new Rect (Screen.width*1/10-BUTTON_WIDTH/2,  Screen.height*12/16+2*BUTTON_HEIGHT, BUTTON_WIDTH, BUTTON_HEIGHT), "Main Menu")) {
 			Application.LoadLevel("menu");
 		}
 
