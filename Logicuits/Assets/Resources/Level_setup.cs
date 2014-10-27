@@ -14,19 +14,18 @@ public class Level_setup : MonoBehaviour {
 	 * circuit: Objeto que contem as entradas e saidas do circuito
 	 * mainCam: Camera (usada aqui para conversao pixel-unidades, apenas)
 	 */
-	public GUISkin guiSkin;
-	public Texture2D pointer;
-	public Texture2D hand;
-	public GameObject toolbox;
-	public GameObject gateManager;
-	public GameObject circuit;
+	GUISkin guiSkin;
+	Texture2D pointer;
+	Texture2D hand;
+	GameObject gateManager;
+	GameObject circuit;
 	static TextAsset LevelsInfo;
 	Object Correct;
 	Object Wrong;
 	GameObject symbol;
 	Object LevelComplete;
 	GameObject endMessage;
-	public Camera mainCam;
+	Camera mainCam;
 
 	/* -----VARIAVEIS NORMAIS-----
 	 * currentLevel: String que representa o nivel atual. (currentLevel = "level1", etc)
@@ -39,19 +38,20 @@ public class Level_setup : MonoBehaviour {
 	 * zueira: Ao incluir zueiras, sempre usar if (zueira) {}
 	 * iteration: Indica o numero do teste programado para o nivel
 	 */
-	public static int currentLevel = 2;
+	public static int currentLevel = 1;
 	public static bool handCursor = false;
 	public static bool verify = false;
-	bool done;
+	bool itterationComplete;
 	public static bool finish = false;
+	bool won;
 	public static List<string> answer;
 	string[] LevelList;
 	string[] currentLevelInfo;
-	public string aux;
-	public static string inputsString;
-	public static string expectedString;
-	public static string answerString;
-	public static string auxString;
+	string aux;
+	string inputsString;
+	string expectedString;
+	string answerString;
+	string auxString;
 	public static bool zueira = false;
 	public static int iteration;
 
@@ -88,7 +88,13 @@ public class Level_setup : MonoBehaviour {
 		 **************************************************
 		 */
 
-		// Carregamento de elemento do Unity
+		// Carregamento de elementos do Unity
+		mainCam = GameObject.Find("Main Camera").camera;
+		guiSkin = Resources.Load ("Pixel Font") as GUISkin;
+		pointer = Resources.Load("Images/pointer") as Texture2D;
+		hand = Resources.Load("Images/hand") as Texture2D;
+		circuit = GameObject.Find("Gate Manager/Circuit");
+		gateManager = GameObject.Find ("Gate Manager");
 		LevelsInfo = Resources.Load("LevelsInfo") as TextAsset;
 		Correct = Resources.Load("Prefabs/Correct");
 		Wrong = Resources.Load("Prefabs/Wrong");
@@ -101,6 +107,7 @@ public class Level_setup : MonoBehaviour {
 		// Atribuiçao de valores a variaveis
 		verify = false;
 		finish = false;
+		won = false;
 		answer = new List<string>();
 		aux = "";
 		inputsString = "Inputs:\n";
@@ -197,10 +204,10 @@ public class Level_setup : MonoBehaviour {
 		 **************************************************
 		 */
 		if (verify) {
-			done = true; // Beneficio da duvida
+			itterationComplete = true; // Beneficio da duvida
 			foreach (Transform statePoint in circuit.transform) {
 				if (statePoint.gameObject.GetComponent<StatePoint>().type == "C-OUTPUT" && statePoint.gameObject.GetComponent<StatePoint>().state == 2) {
-					done = false;
+					itterationComplete = false;
 				}
 			}
 		}
@@ -211,7 +218,7 @@ public class Level_setup : MonoBehaviour {
 		 **************************************************
 		 * Salvar resultados no answerString, desativar verify
 		 */
-		if (done && verify) {
+		if (itterationComplete && verify) {
 
 			// Add output
 			foreach (Transform statePoint in circuit.transform) {
@@ -232,7 +239,23 @@ public class Level_setup : MonoBehaviour {
 
 			if (GameObject.FindGameObjectsWithTag("Correct").Length == inputStateList1.Length) {
 				endMessage = Instantiate(LevelComplete, new Vector3 (0,2,0), new Quaternion(0,0,0,0)) as GameObject;
+				won = true;
 			}
+		}
+
+		/*
+		 **************************************************
+		 * PROCEDIMENTO DE FIM DE VERIFICAÇAO
+		 **************************************************
+		 */
+		if (finish) {
+			if (verify) {
+				verify = false;
+				for (int i = 0; i < answer.Count; i++) {
+					
+				}
+			}
+			finish = false;
 		}
 	}
 
@@ -254,7 +277,7 @@ public class Level_setup : MonoBehaviour {
 		 */
 
 		// Durante montagem de circuito, botao Check inicia verificaçao
-		if (!verify && !done && GUI.Button (new Rect (Screen.width*1/10-BUTTON_WIDTH/2,  Screen.height*12/16, BUTTON_WIDTH, BUTTON_HEIGHT), "Check")) {
+		if (!verify && !itterationComplete && GUI.Button (new Rect (Screen.width*1/10-BUTTON_WIDTH/2,  Screen.height*12/16, BUTTON_WIDTH, BUTTON_HEIGHT), "Check")) {
 			verify = true;
 		}
 
@@ -264,11 +287,11 @@ public class Level_setup : MonoBehaviour {
 		GUI.enabled = true;
 
 		// Se terminou a presente iteraçao da checagem, botao Next passa para o proximo passo
-		if (done && GUI.Button (new Rect (Screen.width*1/10-BUTTON_WIDTH/2,  Screen.height*12/16, BUTTON_WIDTH, BUTTON_HEIGHT), "Next")) {
+		if (itterationComplete && GUI.Button (new Rect (Screen.width*1/10-BUTTON_WIDTH/2,  Screen.height*12/16, BUTTON_WIDTH, BUTTON_HEIGHT), "Next")) {
 
 			// Move on to next iteration (if there are any to be done) or end verification (if not)
 			if (iteration+1 < circuit.GetComponentInChildren<StatePoint>().statelist.Length) {
-				done = false;
+				itterationComplete = false;
 				verify = true;
 				iteration ++;
 				foreach(Object spark in GameObject.FindGameObjectsWithTag("Spark")) {
@@ -308,18 +331,15 @@ public class Level_setup : MonoBehaviour {
 
 		/*
 		 **************************************************
-		 * PROCEDIMENTO DE FIM DE VERIFICAÇAO
+		 * BOTAO NEXT LEVEL -> AVANÇA PARA O PROXIMO NIVEL (APENAS SE GANHOU)
 		 **************************************************
 		 */
-		if (finish) {
-			if (verify) {
-				verify = false;
-				for (int i = 0; i < answer.Count; i++) {
 
-				}
-			}
-			finish = false;
+		if (won && GUI.Button(new Rect((Screen.width-BUTTON_WIDTH)*1/2, Screen.height*5/8, BUTTON_WIDTH, BUTTON_HEIGHT), "Next Level")) {
+			currentLevel++;
+			Application.LoadLevel("leveleditor");
 		}
+
 		/*
 		 **************************************************
 		 * FEEDBACK
