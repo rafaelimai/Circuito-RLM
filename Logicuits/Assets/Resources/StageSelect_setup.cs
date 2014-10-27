@@ -27,9 +27,9 @@ public class StageSelect_setup : MonoBehaviour {
 
 		textSize = guiSkin.button.CalcSize(new GUIContent("Level 1")).x;
 		if (GUI.Button(new Rect ((Screen.width - textSize)/2, Screen.height * 12/16, textSize, guiSkin.button.fontSize), "Level 1")) {
-			Level_setup.currentLevel = "level1";
+			Level_setup.currentLevel = 1;
 			DialogueManager.isOn = true;
-			Application.LoadLevel("level1");
+			Application.LoadLevel("leveleditor");
 		}
 	}
 }

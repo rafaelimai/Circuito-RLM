@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
+using System.Text.RegularExpressions;
 
 public class Level_setup : MonoBehaviour {
 	
@@ -19,11 +20,12 @@ public class Level_setup : MonoBehaviour {
 	public GameObject toolbox;
 	public GameObject gateManager;
 	public GameObject circuit;
-	public Object Correct;
-	public Object Wrong;
-	public GameObject symbol;
-	public Object LevelComplete;
-	public GameObject endMessage;
+	static TextAsset LevelsInfo;
+	Object Correct;
+	Object Wrong;
+	GameObject symbol;
+	Object LevelComplete;
+	GameObject endMessage;
 	public Camera mainCam;
 
 	/* -----VARIAVEIS NORMAIS-----
@@ -37,12 +39,14 @@ public class Level_setup : MonoBehaviour {
 	 * zueira: Ao incluir zueiras, sempre usar if (zueira) {}
 	 * iteration: Indica o numero do teste programado para o nivel
 	 */
-	public static string currentLevel;
+	public static int currentLevel = 2;
 	public static bool handCursor = false;
 	public static bool verify = false;
 	bool done;
 	public static bool finish = false;
 	public static List<string> answer;
+	string[] LevelList;
+	string[] currentLevelInfo;
 	public string aux;
 	public static string inputsString;
 	public static string expectedString;
@@ -84,6 +88,17 @@ public class Level_setup : MonoBehaviour {
 		 **************************************************
 		 */
 
+		// Carregamento de elemento do Unity
+		LevelsInfo = Resources.Load("LevelsInfo") as TextAsset;
+		Correct = Resources.Load("Prefabs/Correct");
+		Wrong = Resources.Load("Prefabs/Wrong");
+		LevelComplete = Resources.Load("Prefabs/LevelComplete");
+
+		// Tomada de informaçoes do arquivo txt
+		LevelList = Regex.Split(LevelsInfo.text, "\r\n");
+		currentLevelInfo = Regex.Split(LevelList[currentLevel], ",");
+
+		// Atribuiçao de valores a variaveis
 		verify = false;
 		finish = false;
 		answer = new List<string>();
@@ -92,6 +107,18 @@ public class Level_setup : MonoBehaviour {
 		expectedString = "Expected:\n";
 		answerString = "Outputs:\n";
 		iteration = 0;
+
+		numberOfInputs = System.Convert.ToInt32(currentLevelInfo[1]);
+		numberOfOutputs = System.Convert.ToInt32(currentLevelInfo[2]);
+		inputStateList1 = currentLevelInfo[3];
+		inputStateList2 = currentLevelInfo[4];
+		inputStateList3 = currentLevelInfo[5];
+		inputStateList4 = currentLevelInfo[6];
+		outputStateList1 = currentLevelInfo[7];
+		outputStateList2 = currentLevelInfo[8];
+		outputStateList3 = currentLevelInfo[9];
+		outputStateList4 = currentLevelInfo[10];
+
 
 		inputStateLists.Add(inputStateList1);
 		inputStateLists.Add(inputStateList2);
@@ -103,9 +130,6 @@ public class Level_setup : MonoBehaviour {
 		outputStateLists.Add(outputStateList3);
 		outputStateLists.Add(outputStateList4);
 
-		Correct = Resources.Load("Prefabs/Correct");
-		Wrong = Resources.Load("Prefabs/Wrong");
-		LevelComplete = Resources.Load("Prefabs/LevelComplete");
 
 		BUTTON_WIDTH = Screen.width*1/6;
 		BUTTON_HEIGHT = guiSkin.button.fontSize*1.1f;
@@ -127,7 +151,7 @@ public class Level_setup : MonoBehaviour {
 			GameObject outputCreated = Instantiate(Resources.Load("Prefabs/C-Output")) as GameObject;
 			outputCreated.transform.parent = GameObject.Find ("Gate Manager/Circuit").transform;
 			outputCreated.transform.position = new Vector3
-				(7F, mainCam.ScreenToWorldPoint(new Vector3(0f,Screen.height,0f)).y*(1f-2*(float)index/(numberOfInputs+1)), 0);
+				(7F, mainCam.ScreenToWorldPoint(new Vector3(0f,Screen.height,0f)).y*(1f-2*(float)index/(numberOfOutputs+1)), 0);
 			outputCreated.GetComponent<StatePoint>().statelist = outputStateLists[index-1];
 		}
 
@@ -269,7 +293,7 @@ public class Level_setup : MonoBehaviour {
 		 */
 
 		if (GUI.Button (new Rect (Screen.width*1/10-BUTTON_WIDTH/2,  Screen.height*12/16+BUTTON_HEIGHT, BUTTON_WIDTH, BUTTON_HEIGHT), "Undo")) {
-			Application.LoadLevel(Level_setup.currentLevel);
+			Application.LoadLevel("leveleditor");
 		}
 
 		/*
