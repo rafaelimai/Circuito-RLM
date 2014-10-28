@@ -150,9 +150,6 @@ public class Level_setup : MonoBehaviour {
 		outputStateLists.Add(outputStateList4);
 
 
-		BUTTON_WIDTH = Screen.width*1/6;
-		BUTTON_HEIGHT = guiSkin.button.fontSize*1.1f;
-
 		/*
 		 **************************************************
 		 * POSICIONAMENTO DE INPUTS/OUTPUTS
@@ -197,6 +194,8 @@ public class Level_setup : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+		BUTTON_WIDTH = Screen.width*1/6;
+		BUTTON_HEIGHT = guiSkin.button.fontSize*1.1f;
 		/*
 		 **************************************************
 		 * CUSTOMIZAÇAO DO MOUSE
