@@ -41,7 +41,7 @@ public class Level_setup : MonoBehaviour {
 	 * zueira: Ao incluir zueiras, sempre usar if (zueira) {}
 	 * iteration: Indica o numero do teste programado para o nivel
 	 */
-	public static int currentLevel = 9;
+	public static int currentLevel = 8;
 	public static bool handCursor = false;
 	public static bool verify = false;
 	bool itterationComplete;
@@ -357,10 +357,10 @@ public class Level_setup : MonoBehaviour {
 		 **************************************************
 		 */
 		// Inputs
-		GUI.TextArea(new Rect(Screen.width*10f/16f,Screen.height*3f/4f,Screen.width/8f,Screen.height/4f), inputsString);
+		GUI.TextArea(new Rect(Screen.width*10f/16f,Screen.height*2f/4f,Screen.width/8f,Screen.height/2f), inputsString);
 		// Expected outputs
-		GUI.TextArea(new Rect(Screen.width*12f/16f,Screen.height*3f/4f,Screen.width/8f,Screen.height/4f), expectedString);
+		GUI.TextArea(new Rect(Screen.width*12f/16f,Screen.height*2f/4f,Screen.width/8f,Screen.height/2f), expectedString);
 		// Outputs
-		GUI.TextArea(new Rect(Screen.width*14f/16f,Screen.height*3f/4f,Screen.width/8f,Screen.height/4f), answerString);
+		GUI.TextArea(new Rect(Screen.width*14f/16f,Screen.height*2f/4f,Screen.width/8f,Screen.height/2f), answerString);
 	}
 }

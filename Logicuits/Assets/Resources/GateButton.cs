@@ -110,7 +110,7 @@ public class GateButton : MonoBehaviour {
 		GUI.skin = guiSkin;
 		guiSkin.label.fontSize = Screen.height/12;
 
-		if (!DialogueManager.isOn) {
+		if (!DialogueManager.isOn && type != "") {
 			GUI.Label (new Rect (mainCam.WorldToScreenPoint(transform.position).x+Screen.width/16, mainCam.WorldToScreenPoint(-transform.position).y-Screen.height/20, guiSkin.label.fontSize*10, guiSkin.label.fontSize), "x " + qtty.ToString());
 		}
 	}
