@@ -41,7 +41,7 @@ public class Level_setup : MonoBehaviour {
 	 * zueira: Ao incluir zueiras, sempre usar if (zueira) {}
 	 * iteration: Indica o numero do teste programado para o nivel
 	 */
-	public static int currentLevel = 1;
+	public static int currentLevel = 9;
 	public static bool handCursor = false;
 	public static bool verify = false;
 	bool itterationComplete;
@@ -134,8 +134,8 @@ public class Level_setup : MonoBehaviour {
 			gateButton = Instantiate(GATEBUTTON) as GameObject;
 			gateButton.transform.parent = toolbox.transform;
 			gateButton.transform.position = toolbox.transform.position + new Vector3(-0.5f,0.75f-(float)i/2f,0f);
-			gateButton.GetComponent<GateButton>().type = currentLevelInfo[i+10];
-			gateButton.GetComponent<GateButton>().qtty = System.Convert.ToInt32(currentLevelInfo[i+11]);
+			gateButton.GetComponent<GateButton>().type = currentLevelInfo[i+11];
+			gateButton.GetComponent<GateButton>().qtty = System.Convert.ToInt32(currentLevelInfo[i+12]);
 		}
 
 
