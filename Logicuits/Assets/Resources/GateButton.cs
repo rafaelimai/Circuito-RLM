@@ -7,12 +7,14 @@ public class GateButton : MonoBehaviour {
 	public GUISkin guiSkin;
 	
 	public Sprite ANDSprite;
-	public GameObject ANDGate;
-	public Sprite ORSprite;
-	public GameObject ORGate;
-	public Sprite NOTSprite;
-	public GameObject NOTGate;
-	public GameObject GateManager;
+	GameObject ANDGate;
+	Sprite ORSprite;
+	GameObject ORGate;
+	Sprite NOTSprite;
+	GameObject NOTGate;
+	Sprite XORSprite;
+	GameObject XORGate;
+	GameObject GateManager;
 	GameObject Gate;
 	GameObject GateOnMouse;
 
@@ -24,6 +26,19 @@ public class GateButton : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
+
+		// Load Sprites, Prefabs, GO's
+		ANDGate = Resources.Load("Prefabs/ANDGate") as GameObject;
+		ORGate = Resources.Load("Prefabs/ORGate") as GameObject;
+		NOTGate = Resources.Load("Prefabs/NOTGate") as GameObject;
+		XORGate = Resources.Load("Prefabs/XORGate") as GameObject;
+		ANDSprite = Resources.Load("Images/AND", typeof(Sprite)) as Sprite;
+		ORSprite = Resources.Load("Images/OR", typeof(Sprite)) as Sprite;
+		NOTSprite = Resources.Load("Images/NOT", typeof(Sprite)) as Sprite;
+		XORSprite = Resources.Load("Images/XOR", typeof(Sprite)) as Sprite;
+		GateManager = GameObject.Find("Gate Manager");
+		mainCam = GameObject.Find("Main Camera").camera;
+
 
 		// Set sprite according to type chosen
 		if (type == "AND") {
@@ -37,6 +52,10 @@ public class GateButton : MonoBehaviour {
 		if (type == "NOT") {
 			GetComponent<SpriteRenderer>().sprite = NOTSprite;
 			Gate = NOTGate;
+		}
+		if (type == "XOR") {
+			GetComponent<SpriteRenderer>().sprite = XORSprite;
+			Gate = XORGate;
 		}
 		// Add collider only after setting sprite (this is important)
 		gameObject.AddComponent("PolygonCollider2D");
@@ -92,7 +111,7 @@ public class GateButton : MonoBehaviour {
 		guiSkin.label.fontSize = Screen.height/12;
 
 		if (!DialogueManager.isOn) {
-			GUI.Label (new Rect (mainCam.WorldToScreenPoint(transform.position).x+Screen.width/16, mainCam.WorldToScreenPoint(-transform.position).y-Screen.height/20, guiSkin.label.fontSize, guiSkin.label.fontSize), "x " + qtty.ToString());
+			GUI.Label (new Rect (mainCam.WorldToScreenPoint(transform.position).x+Screen.width/16, mainCam.WorldToScreenPoint(-transform.position).y-Screen.height/20, guiSkin.label.fontSize*10, guiSkin.label.fontSize), "x " + qtty.ToString());
 		}
 	}
 }

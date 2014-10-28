@@ -169,9 +169,19 @@ public class StatePoint : MonoBehaviour {
 					}
 
 					if (transform.parent.GetComponent<LogicGate>().type == "NOT") {
+						state = 0;
 						foreach (Transform statePoint in transform.parent) {
 							if (statePoint.gameObject.GetComponent<StatePoint>().type == "INPUT") {
 								state = 1-statePoint.gameObject.GetComponent<StatePoint>().state;
+							}
+						}
+					}
+					if (transform.parent.GetComponent<LogicGate>().type == "XOR") {
+						state = 0;
+						foreach (Transform statePoint in transform.parent) {
+							if (statePoint.gameObject.GetComponent<StatePoint>().type == "INPUT") {
+								state -= statePoint.gameObject.GetComponent<StatePoint>().state;
+								state = System.Math.Abs(state);
 							}
 						}
 					}

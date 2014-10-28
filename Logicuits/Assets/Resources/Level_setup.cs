@@ -19,6 +19,9 @@ public class Level_setup : MonoBehaviour {
 	Texture2D hand;
 	GameObject gateManager;
 	GameObject circuit;
+	GameObject toolbox;
+	GameObject gateButton;
+	Object GATEBUTTON;
 	static TextAsset LevelsInfo;
 	Object Correct;
 	Object Wrong;
@@ -95,6 +98,8 @@ public class Level_setup : MonoBehaviour {
 		hand = Resources.Load("Images/hand") as Texture2D;
 		circuit = GameObject.Find("Gate Manager/Circuit");
 		gateManager = GameObject.Find ("Gate Manager");
+		toolbox = GameObject.Find("Toolbox");
+		GATEBUTTON = Resources.Load("Prefabs/Gate Button");
 		LevelsInfo = Resources.Load("LevelsInfo") as TextAsset;
 		Correct = Resources.Load("Prefabs/Correct");
 		Wrong = Resources.Load("Prefabs/Wrong");
@@ -125,6 +130,13 @@ public class Level_setup : MonoBehaviour {
 		outputStateList2 = currentLevelInfo[8];
 		outputStateList3 = currentLevelInfo[9];
 		outputStateList4 = currentLevelInfo[10];
+		for (int i = 0; i < 6; i += 2) {
+			gateButton = Instantiate(GATEBUTTON) as GameObject;
+			gateButton.transform.parent = toolbox.transform;
+			gateButton.transform.position = toolbox.transform.position + new Vector3(-0.5f,0.75f-(float)i/2f,0f);
+			gateButton.GetComponent<GateButton>().type = currentLevelInfo[i+10];
+			gateButton.GetComponent<GateButton>().qtty = System.Convert.ToInt32(currentLevelInfo[i+11]);
+		}
 
 
 		inputStateLists.Add(inputStateList1);
