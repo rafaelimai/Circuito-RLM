@@ -7,10 +7,10 @@ public class DialogueManager : MonoBehaviour {
 	// The Dialogue Manager initiates, controls, and terminates dialogue scenes
 
 	string currentText;
-	public static int currentNumber;
 	public static int currentLine;
 	public static float currentStep;
 	public static bool isOn;
+	bool hasReturned;
 
 	string dialogue;
 	string[] lines;
@@ -29,11 +29,13 @@ public class DialogueManager : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		dialoguetxt = Resources.Load("Dialogues") as TextAsset;
-		dialogue = Regex.Split(dialoguetxt.text,"\r\n\r\n")[Level_setup.currentLevel];
+		dialogue = Regex.Split(dialoguetxt.text,"\r\n\r\n")[2*Level_setup.currentLevel];
 		lines = Regex.Split(dialogue,"\r\n");
 
-		isOn = true;
-		currentNumber = 1;
+		if (lines[0] != "") {
+			isOn = true;
+		}
+		hasReturned = false;
 		currentLine = 0;
 		currentStep = 0;
 	}
@@ -46,22 +48,36 @@ public class DialogueManager : MonoBehaviour {
 			RightIcon.GetComponent<SpriteRenderer>().enabled = true;
 			currentText = lines[currentLine];
 
-			if (Input.GetKeyDown(pass)) {
-				currentLine ++;
-				currentStep = 0;
-			}
-
-			if (currentLine >= lines.Length || currentText == "") {
-				isOn = false;
-			}
 			currentStep += 20*Time.deltaTime;
 			if (currentStep > currentText.Length) {
 				currentStep = currentText.Length;
 			}
+
+			if (Input.GetKeyDown(pass)) {
+				currentLine ++;
+				currentStep = 0;
+			}
+			
+			if (currentLine >= lines.Length || currentText == "") {
+				isOn = false;
+			}
+
 		}
 		else {
 			dialogueBG.GetComponent<SpriteRenderer>().enabled = false;
 			RightIcon.GetComponent<SpriteRenderer>().enabled = false;
+		}
+
+		if (Level_setup.won && !hasReturned) {
+			dialogue = Regex.Split(dialoguetxt.text,"\r\n\r\n")[2*Level_setup.currentLevel+1];
+			lines = Regex.Split(dialogue,"\r\n");
+			currentLine = 0;
+			currentStep = 0;
+			if (lines[0] != "") {
+				isOn = true;
+				currentText = lines[currentLine];
+			}
+			hasReturned = true;
 		}
 	}
 

@@ -44,9 +44,9 @@ public class Level_setup : MonoBehaviour {
 	public static int currentLevel = 8;
 	public static bool handCursor = false;
 	public static bool verify = false;
-	bool itterationComplete;
+	public static bool itterationComplete;
 	public static bool finish = false;
-	bool won;
+	public static bool won;
 	public static List<string> answer;
 	string[] LevelList;
 	string[] currentLevelInfo;
@@ -161,7 +161,7 @@ public class Level_setup : MonoBehaviour {
 			GameObject inputCreated = Instantiate(Resources.Load("Prefabs/C-Input")) as GameObject;
 			inputCreated.transform.parent = GameObject.Find ("Gate Manager/Circuit").transform;
 			inputCreated.transform.position = new Vector3
-				(-4F, mainCam.ScreenToWorldPoint(new Vector3(0f,Screen.height,0f)).y*(1f-2*(float)index/(numberOfInputs+1)), 0);
+				(-4.5f, mainCam.ScreenToWorldPoint(new Vector3(0f,Screen.height,0f)).y*(1f-2*(float)index/(numberOfInputs+1)), 0);
 			inputCreated.GetComponent<StatePoint>().statelist = inputStateLists[index-1];
 		}
 
@@ -169,7 +169,7 @@ public class Level_setup : MonoBehaviour {
 			GameObject outputCreated = Instantiate(Resources.Load("Prefabs/C-Output")) as GameObject;
 			outputCreated.transform.parent = GameObject.Find ("Gate Manager/Circuit").transform;
 			outputCreated.transform.position = new Vector3
-				(7F, mainCam.ScreenToWorldPoint(new Vector3(0f,Screen.height,0f)).y*(1f-2*(float)index/(numberOfOutputs+1)), 0);
+				(7.5f, mainCam.ScreenToWorldPoint(new Vector3(0f,Screen.height,0f)).y*(1f-2*(float)index/(numberOfOutputs+1)), 0);
 			outputCreated.GetComponent<StatePoint>().statelist = outputStateLists[index-1];
 		}
 
@@ -242,10 +242,10 @@ public class Level_setup : MonoBehaviour {
 			// Next line
 			answerString += auxString+"\n";
 			if (auxString == expectedString.Substring(10+(numberOfOutputs+1)*iteration,numberOfOutputs)) {
-				symbol = Instantiate (Correct, new Vector3(iteration, 4f, 0f), new Quaternion(0,0,0,0)) as GameObject;
+				symbol = Instantiate (Correct, new Vector3(1.5f+iteration-(float)inputStateList1.Length/2f, 4f, 0f), new Quaternion(0,0,0,0)) as GameObject;
 			}
 			else {
-				symbol = Instantiate (Wrong, new Vector3(iteration, 4f, 0f), new Quaternion(0,0,0,0)) as GameObject;
+				symbol = Instantiate (Wrong, new Vector3(1.5f+iteration-(float)inputStateList1.Length/2f, 4f, 0f), new Quaternion(0,0,0,0)) as GameObject;
 			}
 			auxString = "";
 			verify = false;
@@ -285,7 +285,7 @@ public class Level_setup : MonoBehaviour {
 
 		/*
 		 **************************************************
-		 * BOTAO Task -> MOSTRA / ESCONDE TAREFA
+		 * BOTAO TASK -> MOSTRA / ESCONDE TAREFA
 		 **************************************************
 		 */
 		if (GUI.Button (new Rect (Screen.width*1/10-BUTTON_WIDTH/2,  Screen.height*12/16-BUTTON_HEIGHT, BUTTON_WIDTH, BUTTON_HEIGHT), "Task")) {
@@ -338,7 +338,52 @@ public class Level_setup : MonoBehaviour {
 		 */
 
 		if (GUI.Button (new Rect (Screen.width*1/10-BUTTON_WIDTH/2,  Screen.height*12/16+BUTTON_HEIGHT, BUTTON_WIDTH, BUTTON_HEIGHT), "Undo")) {
-			Application.LoadLevel("leveleditor");
+
+			foreach (GameObject gatebutton in GameObject.FindGameObjectsWithTag("GateButton")) {
+				Destroy(gatebutton);
+			}
+			foreach (GameObject gate in GameObject.FindGameObjectsWithTag("LogicGate")) {
+				Destroy(gate);
+			}
+			foreach (GameObject wire in GameObject.FindGameObjectsWithTag("Wire")) {
+				Destroy(wire);
+			}
+			foreach (GameObject spark in GameObject.FindGameObjectsWithTag("Spark")) {
+				Destroy(spark);
+			}
+			foreach (GameObject correct in GameObject.FindGameObjectsWithTag("Correct")) {
+				Destroy(correct);
+			}
+			foreach (GameObject wrong in GameObject.FindGameObjectsWithTag("Wrong")) {
+				Destroy(wrong);
+			}
+			foreach (GameObject statePoint in GameObject.FindGameObjectsWithTag("StatePoint")) {
+				statePoint.GetComponent<StatePoint>().connections.Clear();
+				if (statePoint.GetComponent<StatePoint>().type != "C-INPUT") {
+					statePoint.GetComponent<StatePoint>().isAssigned = false;
+				}
+				statePoint.GetComponent<StatePoint>().state = 2;
+				if (statePoint.GetComponent<StatePoint>().type == "INPUT") {
+					Destroy(statePoint);
+				}
+			}
+			for (int i = 0; i < 6; i += 2) {
+				gateButton = Instantiate(GATEBUTTON) as GameObject;
+				gateButton.transform.parent = toolbox.transform;
+				gateButton.transform.position = toolbox.transform.position + new Vector3(-0.5f,0.75f-(float)i/2f,0f);
+				gateButton.GetComponent<GateButton>().type = currentLevelInfo[i+11];
+				gateButton.GetComponent<GateButton>().qtty = System.Convert.ToInt32(currentLevelInfo[i+12]);
+			}
+			verify = false;
+			itterationComplete = false;
+			finish = false;
+			won = false;
+			taskOn = true;
+			answer = new List<string>();
+			aux = "";
+			answerString = "Outputs:\n";
+			iteration = 0;
+
 		}
 
 		/*

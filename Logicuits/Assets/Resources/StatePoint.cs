@@ -12,9 +12,10 @@ public class StatePoint : MonoBehaviour {
 	// C-OUTPUTS, once they acquire values, associate them with C-INPUTS and sends results
 
 	public Camera mainCam;
-	public Object Wire;
+	public Object WIRE;
 	GameObject wire;
 	public GameObject statePoint;
+	public Object INPUT;
 	public GameObject GateManager;
 	public GameObject Circuit;
 	public GameObject Spark;
@@ -40,8 +41,9 @@ public class StatePoint : MonoBehaviour {
 		 * INICIALIZA VARIAVEIS
 		 **************************************************
 		 */
-		Wire = Resources.Load("Prefabs/Wire");
+		WIRE = Resources.Load("Prefabs/Wire");
 		Spark = Resources.Load("Prefabs/Spark") as GameObject;
+		INPUT = Resources.Load ("Prefabs/Input");
 		mainCam = GameObject.Find("Main Camera").camera;
 		GateManager = GameObject.Find("Gate Manager");
 		Circuit = GameObject.Find("Gate Manager/Circuit");
@@ -50,82 +52,7 @@ public class StatePoint : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 
-		/*
-		 **************************************************
-		 * FIOS
-		 **************************************************
-		 */
-		if (start) {
 
-			// Get mouse position
-			mousePos = mainCam.ScreenToWorldPoint(Input.mousePosition);
-
-			// Snap mouse position when over valid StatePoint
-			foreach (Transform Gate1 in GateManager.transform) {
-				foreach (Transform statePoint1 in Gate1) {
-					if (DetectMouseOver (statePoint1.gameObject)&& !(isAssigned && statePoint1.gameObject.GetComponent<StatePoint>().isAssigned)) {
-						mousePos = statePoint1.position;
-					}
-				}
-			}
-			// Continuously draw preview of wire
-			wire.GetComponent<LineRenderer>().SetVertexCount(152);
-			for (int index = 0; index <= 50; index++){
-				wire.GetComponent<LineRenderer>().SetPosition(index,new Vector3 (gameObject.transform.position.x+(((float)index/150)*(mousePos.x-gameObject.transform.position.x)),gameObject.transform.position.y,0));
-			}
-			for (int index = 51; index <= 100; index++) {
-				wire.GetComponent<LineRenderer>().SetPosition(index,new Vector3 (gameObject.transform.position.x+(((float)index/150)*(mousePos.x-gameObject.transform.position.x)),gameObject.transform.position.y+((((float)index-50)/50)*(mousePos.y-gameObject.transform.position.y)),0));
-			}
-			for (int index = 101; index <= 150; index++) {
-				wire.GetComponent<LineRenderer>().SetPosition(index,new Vector3 ((gameObject.transform.position.x+mousePos.x)/2+((((float)index-50)/200)*(mousePos.x-gameObject.transform.position.x)),mousePos.y,0));
-			}
-			wire.GetComponent<LineRenderer>().SetPosition(151,mousePos);
-			
-			// Start over if, while drawing, user hits invalid area
-			if (Input.mousePosition.x < Screen.width*3/16 || Input.mousePosition.x > Screen.width || Input.mousePosition.y < 0 || Input.mousePosition.y > Screen.height) {
-				Destroy(wire);
-				start = false;
-			}
-			
-			// If button is released
-			if (Input.GetMouseButtonUp(0)) {
-
-				// If EndPoint is valid, set up connetion create new wire
-				valid = false;
-				foreach (Transform Gate2 in GateManager.transform) {
-					foreach (Transform statePoint2 in Gate2) {
-						if (DetectMouseOver (statePoint2.gameObject) && !(isAssigned && statePoint2.gameObject.GetComponent<StatePoint>().isAssigned)) {
-							wire.GetComponent<LineRenderer>().SetColors(Color.green,Color.green);
-							connections.Add(statePoint2.gameObject);
-							statePoint2.gameObject.GetComponent<StatePoint>().connections.Add(this.gameObject);
-							PropagateAssignment(this.gameObject);
-							valid = true;
-						}
-					}
-				}
-
-				// End drawing
-				start = false;
-				if (!valid) {
-					Destroy(wire);
-				}
-			}
-
-			// If right click
-			if (Input.GetMouseButtonDown(1)) {
-				statePoint = Instantiate(statePoint) as GameObject;
-				statePoint.transform.position = new Vector3 (mousePos.x, mousePos.y, 0);
-				statePoint.transform.parent = Circuit.transform;
-				wire.GetComponent<LineRenderer>().SetColors(Color.green,Color.green);
-				connections.Add(statePoint.gameObject);
-				statePoint.gameObject.GetComponent<StatePoint>().connections.Add(this.gameObject);
-				PropagateAssignment(this.gameObject);
-				valid = true;
-				start = false;
-				statePoint.gameObject.GetComponent<StatePoint>().OnMouseDown();
-
-			}
-		}
 
 		// VERIFICATION
 		if (Level_setup.verify) {
@@ -203,28 +130,17 @@ public class StatePoint : MonoBehaviour {
 
 	}
 
-	void OnMouseDown () {
+	public void OnMouseDown () {
 
 		// Start drawing if user clicks valid area
-		start = true;
-		wire = Instantiate(Wire) as GameObject;
-		wire.transform.parent = this.transform;
+		wire = Instantiate(WIRE) as GameObject;
+		wire.GetComponent<Wire>().isDrawing = true;
+		wire.transform.parent = transform;
+		wire.GetComponent<Wire>().startPoint = gameObject;
 	}
 
-	bool DetectMouseOver (GameObject GO) {
-		// Returns true if mouse is over GO
-		CircleCollider2D collider = GO.GetComponent<CircleCollider2D>();
-		bool ans;
-		if ((collider.center + new Vector2 (GO.transform.position.x, GO.transform.position.y) - new Vector2 (mainCam.ScreenToWorldPoint(Input.mousePosition).x,mainCam.ScreenToWorldPoint(Input.mousePosition).y)).magnitude < collider.radius) {
-			ans = true;
-		}
-		else {
-			ans = false;
-		}
-		return (ans);
-	}
 
-	void PropagateAssignment (GameObject SP) {
+	public static void PropagateAssignment (GameObject SP) {
 		// Propagates assignment state of current StatePoint to the ones connected to it
 		foreach (GameObject statePoint in SP.GetComponent<StatePoint>().connections) {
 			if (SP.GetComponent<StatePoint>().isAssigned != statePoint.GetComponent<StatePoint>().isAssigned) {

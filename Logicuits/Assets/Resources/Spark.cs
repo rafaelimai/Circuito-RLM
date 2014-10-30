@@ -64,7 +64,7 @@ public class Spark : MonoBehaviour {
 			else {
 				
 				// If spark is entering the first part
-				if (!first && transform.position.x < startPoint.transform.position.x) {
+				if (!first) {
 					transform.position = startPoint.transform.position;
 					rigidbody2D.velocity = new Vector3 (-speed,0f,0f);
 					first = true;
