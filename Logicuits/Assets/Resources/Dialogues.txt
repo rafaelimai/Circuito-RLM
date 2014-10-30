@@ -1,0 +1,22 @@
+DIALOGUES FILE - EN
+
+Welcome, Test Subject.
+I am Manjubator5000. I will aid you during your tests.
+The challenges ahead of you will test your thinking, willpower, and ultimately, your ability to build logic circuits.
+Do you see the Task tables on the lower right? That's your SPECIFICATION. I said it in CAPS because it's IMPORTANT.
+Every line of the tables represents a TEST. Your circuit must pass all tests to be accepted.
+The Input table indicates the logic values that will be provided on the inputs, the yellow arrows on the left.
+The Expected table indicates the logic values expected on the outputs, the yellow arrows on the right.
+The Output table is what your circuit is actually bringing to the outputs.
+Your job is to make the Expected and Output tables IDENTICAL. EVERY LINE. Don't insist. Seriously.
+Begin by connecting the input, on the left of the screen, to the output, on the right.
+Then press "Check" to see your circuit in action.
+
+Congratulations. You managed to complete the simplest task possible. Are you proud of yourself?
+The next challenge will require you to use a new tool.
+Do you see the Toolbox on the upper left corner? It displays the tools available to you.
+It currently contains an INVERTER, or NOT gate. It outputs the oposite of its input. Simple as that.
+
+Next up you'll be using an OR gate. It basically adds up two signals.
+So if either input is a 1, the output will be 1.
+OR gates are great when you need MORE 1's in your signal. Keep that in mind.

@@ -57,6 +57,7 @@ public class Level_setup : MonoBehaviour {
 	string auxString;
 	public static bool zueira = false;
 	public static int iteration;
+	bool taskOn;
 
 	/*-----VARIAVEIS CRIADORAS DE NIVEL-----> Devem ser editadas por developers para criar niveis
 	 * numberOfInputs/Outputs: numero de Inputs e outputs do circuito
@@ -113,6 +114,7 @@ public class Level_setup : MonoBehaviour {
 		verify = false;
 		finish = false;
 		won = false;
+		taskOn = true;
 		answer = new List<string>();
 		aux = "";
 		inputsString = "Inputs:\n";
@@ -283,6 +285,15 @@ public class Level_setup : MonoBehaviour {
 
 		/*
 		 **************************************************
+		 * BOTAO Task -> MOSTRA / ESCONDE TAREFA
+		 **************************************************
+		 */
+		if (GUI.Button (new Rect (Screen.width*1/10-BUTTON_WIDTH/2,  Screen.height*12/16-BUTTON_HEIGHT, BUTTON_WIDTH, BUTTON_HEIGHT), "Task")) {
+			taskOn = !taskOn;
+		}
+
+		/*
+		 **************************************************
 		 * BOTAO CHECK / NEXT
 		 **************************************************
 		 */
@@ -356,11 +367,14 @@ public class Level_setup : MonoBehaviour {
 		 * FEEDBACK
 		 **************************************************
 		 */
+		if (taskOn) {
 		// Inputs
-		GUI.TextArea(new Rect(Screen.width*10f/16f,Screen.height*2f/4f,Screen.width/8f,Screen.height/2f), inputsString);
-		// Expected outputs
-		GUI.TextArea(new Rect(Screen.width*12f/16f,Screen.height*2f/4f,Screen.width/8f,Screen.height/2f), expectedString);
-		// Outputs
-		GUI.TextArea(new Rect(Screen.width*14f/16f,Screen.height*2f/4f,Screen.width/8f,Screen.height/2f), answerString);
+			GUI.TextArea(new Rect(Screen.width*10f/16f,Screen.height-guiSkin.textArea.fontSize*(inputStateList1.Length+1)*0.85f,Screen.width/8f,guiSkin.textArea.fontSize*(inputStateList1.Length+1)*0.85f), inputsString);
+			// Expected outputs
+			GUI.TextArea(new Rect(Screen.width*12f/16f,Screen.height-guiSkin.textArea.fontSize*(inputStateList1.Length+1)*0.85f,Screen.width/8f,guiSkin.textArea.fontSize*(inputStateList1.Length+1)*0.85f), expectedString);
+			// Outputs
+			GUI.TextArea(new Rect(Screen.width*14f/16f,Screen.height-guiSkin.textArea.fontSize*(inputStateList1.Length+1)*0.85f,Screen.width/8f,guiSkin.textArea.fontSize*(inputStateList1.Length+1)*0.85f), answerString);
+	
+		}
 	}
 }
