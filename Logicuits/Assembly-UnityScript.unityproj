@@ -49,6 +49,7 @@
      <Compile Include="Assets\Resources\gates_bg.js" />
      <Compile Include="Assets\Resources\menu_setup.js" />
      <Compile Include="Assets\Resources\mutebutton.js" />
+     <None Include="Assets\Resources\Dialogues.txt" />
      <None Include="Assets\Resources\LanguageManager\Resources\Languages\Chinese.txt" />
      <None Include="Assets\Resources\LanguageManager\Resources\Languages\Spanish.txt" />
      <None Include="Assets\Resources\LanguageManager\Resources\Languages\English.txt" />

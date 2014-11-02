@@ -9,6 +9,7 @@ public class Menu_setup : MonoBehaviour {
 	public float StartTextHeight;
 	public float SettingsTextHeight;
 	public float CreditsTextHeight;
+	public Rect WindowRect;
 	
 	public GUISkin guiSkin;
 	float textSize;
@@ -52,13 +53,19 @@ public class Menu_setup : MonoBehaviour {
 		
 		textSize = guiSkin.button.CalcSize(new GUIContent("Settings")).x;
 		if (GUI.Button(new Rect ((Screen.width - textSize)/2, Screen.height * SettingsTextHeight, textSize, guiSkin.button.fontSize), "Settings")) {
-			Application.LoadLevel("settings");
+			GUI.Window (0, WindowRect, SettingsWindowMaker, "SettingsWindow");
 		}
 		
 		textSize = guiSkin.button.CalcSize(new GUIContent("Credits")).x;
 		if (GUI.Button(new Rect ((Screen.width - textSize)/2, Screen.height * CreditsTextHeight, textSize, guiSkin.button.fontSize), "Credits")) {
 			Application.LoadLevel("credits");
 		}
+	}
+
+	private void SettingsWindowMaker (int id) {
+
+		GUI.Button (new Rect (15, 15, 50, 50), "BTN");
+
 	}
 }
 
