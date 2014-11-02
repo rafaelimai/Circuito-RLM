@@ -13,6 +13,7 @@ public class Menu_setup : MonoBehaviour {
 	
 	public GUISkin guiSkin;
 	float textSize;
+	bool settingsWindowOn;
 	
 	
 	// Use this for initialization
@@ -23,6 +24,7 @@ public class Menu_setup : MonoBehaviour {
 		StartTextHeight = 11.0f/16.0f;
 		SettingsTextHeight = 12.0f / 16.0f;
 		CreditsTextHeight = 13.0f / 16.0f;
+		settingsWindowOn = false;
 	}
 	
 	// Update is called once per frame
@@ -53,6 +55,10 @@ public class Menu_setup : MonoBehaviour {
 		
 		textSize = guiSkin.button.CalcSize(new GUIContent("Settings")).x;
 		if (GUI.Button(new Rect ((Screen.width - textSize)/2, Screen.height * SettingsTextHeight, textSize, guiSkin.button.fontSize), "Settings")) {
+			settingsWindowOn = !settingsWindowOn;
+		}
+
+		if (settingsWindowOn) {
 			GUI.Window (0, WindowRect, SettingsWindowMaker, "SettingsWindow");
 		}
 		
