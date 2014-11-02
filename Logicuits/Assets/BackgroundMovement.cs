@@ -10,7 +10,7 @@ public class BackgroundMovement : MonoBehaviour {
 	public Vector2 none_none = new Vector2 (0f, 0f);
 
 
-	public const float VERTICAL_UPPER_LIMIT = 23.2f; 
+	public const float VERTICAL_UPPER_LIMIT = 19.4f; 
 
 
 	void Start () {
