@@ -2,7 +2,9 @@
 using System.Collections;
 
 public class Menu_setup : MonoBehaviour {
-	
+
+	GameObject blackout;
+
 	public int ScreenToLabelFontSizeRatio;
 	public int ScreenToButtonFontSizeRatio;
 	public int TitleTextHeight;
@@ -18,6 +20,10 @@ public class Menu_setup : MonoBehaviour {
 	
 	// Use this for initialization
 	void Start () {
+
+		blackout = GameObject.Find("Blackout");
+		blackout.GetComponent<SpriteRenderer>().enabled = true;
+
 		ScreenToLabelFontSizeRatio = 4;
 		ScreenToButtonFontSizeRatio = 16;
 		TitleTextHeight = 4;
@@ -29,7 +35,12 @@ public class Menu_setup : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		
+		if (Time.timeSinceLevelLoad < 1) {
+			blackout.GetComponent<SpriteRenderer>().color = new Color(0,0,0,1-Time.timeSinceLevelLoad);
+		}
+		else {
+			blackout.GetComponent<SpriteRenderer>().color = new Color(0,0,0,0);
+		}
 	}
 	
 	void OnGUI () {
@@ -49,12 +60,12 @@ public class Menu_setup : MonoBehaviour {
 		// Botoes sao como Labels, precisam de um retangulo e um string.
 		// Sao colocados dentro do if, e, quando acionados, executam o laço
 		textSize = guiSkin.button.CalcSize(new GUIContent("Start Game")).x;
-		if (GUI.Button(new Rect ((Screen.width - textSize)/2, Screen.height * StartTextHeight, textSize, guiSkin.button.fontSize), "Start Game")) {
+		if (GUI.Button(new Rect ((Screen.width - 2*textSize)/2, Screen.height * StartTextHeight, 2*textSize, guiSkin.button.fontSize), "Start Game")) {
 			Application.LoadLevel("stageselect");
 		}
 		
 		textSize = guiSkin.button.CalcSize(new GUIContent("Settings")).x;
-		if (GUI.Button(new Rect ((Screen.width - textSize)/2, Screen.height * SettingsTextHeight, textSize, guiSkin.button.fontSize), "Settings")) {
+		if (GUI.Button(new Rect ((Screen.width - 2*textSize)/2, Screen.height * SettingsTextHeight, 2*textSize, guiSkin.button.fontSize), "Settings")) {
 			settingsWindowOn = !settingsWindowOn;
 		}
 
@@ -63,7 +74,7 @@ public class Menu_setup : MonoBehaviour {
 		}
 		
 		textSize = guiSkin.button.CalcSize(new GUIContent("Credits")).x;
-		if (GUI.Button(new Rect ((Screen.width - textSize)/2, Screen.height * CreditsTextHeight, textSize, guiSkin.button.fontSize), "Credits")) {
+		if (GUI.Button(new Rect ((Screen.width - 2*textSize)/2, Screen.height * CreditsTextHeight, 2*textSize, guiSkin.button.fontSize), "Credits")) {
 			Application.LoadLevel("credits");
 		}
 	}

@@ -45,9 +45,105 @@ I'll leave you alone for now. Good luck!
 
 
 
+
+
+
+
+
+
+
+
 Did you notice something about the last two levels? They had the exact same specification.
 Yet you were given different tools. Interesting, right?
 A test subject before you, named De Morgan, figured you could transform an AND into an OR by using NOTS
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
