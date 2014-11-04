@@ -41,7 +41,7 @@ public class Level_setup : MonoBehaviour {
 	 * zueira: Ao incluir zueiras, sempre usar if (zueira) {}
 	 * iteration: Indica o numero do teste programado para o nivel
 	 */
-	public static int currentLevel = 7;
+	public static int currentLevel = 16;
 	public static bool handCursor = false;
 	public static bool verify = false;
 	public static bool itterationComplete;
