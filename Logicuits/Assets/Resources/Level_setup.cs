@@ -41,7 +41,7 @@ public class Level_setup : MonoBehaviour {
 	 * zueira: Ao incluir zueiras, sempre usar if (zueira) {}
 	 * iteration: Indica o numero do teste programado para o nivel
 	 */
-	public static int currentLevel = 20;
+	public static int currentLevel = 7;
 	public static bool handCursor = false;
 	public static bool verify = false;
 	public static bool itterationComplete;
@@ -310,7 +310,7 @@ public class Level_setup : MonoBehaviour {
 		GUI.enabled = true;
 
 		// Se terminou a presente iteraçao da checagem, botao Next passa para o proximo passo
-		if (itterationComplete && GUI.Button (new Rect (Screen.width*1/10-BUTTON_WIDTH/2,  Screen.height*12/16, BUTTON_WIDTH, BUTTON_HEIGHT), "Next")) {
+		if (itterationComplete) { // && GUI.Button (new Rect (Screen.width*1/10-BUTTON_WIDTH/2,  Screen.height*12/16, BUTTON_WIDTH, BUTTON_HEIGHT), "Next")) {
 
 			// Move on to next iteration (if there are any to be done) or end verification (if not)
 			if (iteration+1 < circuit.GetComponentInChildren<StatePoint>().statelist.Length) {
