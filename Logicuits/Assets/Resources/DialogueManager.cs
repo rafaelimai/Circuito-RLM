@@ -86,7 +86,7 @@ public class DialogueManager : MonoBehaviour {
 		guiSkin.textArea.fontSize = Screen.width/16;
 
 		if (isOn) {
-			GUI.TextArea (new Rect (0, Screen.height*3/4, Screen.width, Screen.height*1/4), currentText.Substring(0,Convert.ToInt32(Math.Round(currentStep))));
+			GUI.TextArea (new Rect (0, Screen.height*11/16, Screen.width, Screen.height*5/16), currentText.Substring(0,Convert.ToInt32(Math.Round(currentStep))));
 		}
 	}
 	

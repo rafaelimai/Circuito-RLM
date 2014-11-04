@@ -2,44 +2,34 @@ DIALOGUES FILE - EN
 
 
 
-Welcome, Test Subject.
-I am Manjubator5000. I will aid you during your tests.
-The challenges ahead of you will test your ability to build logic circuits.
-In order to do that, you must draw wires by clicking and dragging between components.
-Do you see the tables on the lower right? That's your SPECIFICATION. I said it in CAPS because it's IMPORTANT.
-Every line of the tables represents a TEST. Your circuit must pass all tests to be accepted.
-The Input table indicates the logic values that will be provided on the inputs, the yellow arrows on the left.
-A 0 indicates that, during that test, the input will provide a 0-volt signal, which you will see as a black spot.
-A 1 indicates that it will provide a 5-volt signal, which is displayed as a white spot.
+Welcome, Test Subject. I am Manjubator5000, and I will aid you during your tests.
+I take it you have been to the briefing room, and are already familiar with this interface.
+As you know, you will be building logic circuits by placing logic gates and connecting them with wires.
+A 0 indicates a 0-volt signal, which you will see as a black spot. A 1 indicates a 5-volt signal, which is displayed as a white spot.
 All you need to know right now is that wires will carry those spots between components.
-The Expected table indicates the logic values expected on the outputs, the yellow arrows on the right.
-The Output table is what your circuit is actually bringing to the outputs.
 Your job is to make the Expected and Output tables IDENTICAL. EVERY LINE. Don't insist. Seriously.
-Begin by connecting the input, on the left of the screen, to the output, on the right.
-Then press "Check" to see your circuit in action. Press "Next" to advance to the next test.
+Begin by connecting the input, on the left of the screen, to the output, on the right. Then press "Check" to see your circuit in action.
 
 Congratulations. You managed to complete the simplest task possible. Are you proud of yourself?
 
-The next challenge will require you to use a new tool.
-Notice that simply connecting the input to the output will not solve your problem this time.
-Do you see the Toolbox on the upper left corner? It displays the tools available to you.
-It currently contains an INVERTER, or NOT gate. It outputs the oposite of its input. Simple as that.
+The next challenge will require you to use a new tool. Notice that simply connecting the input to the output will not solve your problem this time.
+Do you see the Toolbox on the upper left corner? It currently contains an INVERTER, or NOT gate.
+This gate has one INPUT and one OUTPUT. It outputs the oposite of its input. Simple as that. Try running a signal through it.
 
-As you can see, NOT gates are good when you have exactly the opposite of what you need.
+As you can see, NOT gates are handy when you have exactly the opposite of what you need. So screwing up badly is actually pretty close to succeding!
+That must be a relief for you, correct?
 
-Next up you'll be using an OR gate. It basically adds up two signals.
-So if either input is a 1, the output will be 1.
+Next up you'll be using an OR gate. It basically adds up two signals. So if either input is a 1, the output will be 1.
+It's no wonder OR gates are often represented as + in analytic expressions. This one has two INPUTS and one OUTPUT. Try it out!
 
-OR gates are great when you need MORE 1's in your signal. Keep that in mind.
+Good job! OR gates are great when you need MORE 1's in your signal. Keep that in mind.
+Say you've built a solution, but some tests went wrong because you got 0's instead of 1's. All you have to do is ADD more signals together.
 
-Finally, here's the last tool you'll be working with most of the time: the AND gate
-Like the OR gate, this one takes two inputs, but rather than adding them up, it multiplies them.
-So it'll only output 1 if BOTH inputs are 1. Use this level to understand this behaviour.
+Finally, here's the last tool you'll be working with for now: the AND gate. Like the OR gate, this one takes two inputs and one output.
+But rather than adding them up, it multiplies them. So it'll only output 1 if BOTH inputs are 1. Use this level to understand this behaviour.
 
-Good, now that you are familiar with the tools, it's time for some actual challenges!
-I'll leave you alone for now. Good luck!
-
-
+As you can see, AND gates, unlike OR gates, are good for cutting out unwanted 1 signals. Use them when you're getting 1's where you need 0's.
+Good, now that you are familiar with the tools, it's time for some actual challenges! I'll leave you alone for now. Good luck!
 
 
 
@@ -53,9 +43,11 @@ I'll leave you alone for now. Good luck!
 
 
 
-Did you notice something about the last two levels? They had the exact same specification.
-Yet you were given different tools. Interesting, right?
-A test subject before you, named De Morgan, figured you could transform an AND into an OR by using NOTS
+
+
+Did you notice something about the last two levels? They had the exact same specification. Yet you were given different tools. Interesting, right?
+A test subject before you, named De Morgan, figured you could transform an AND into an OR by inverting all the inputs and the output.
+That may sound absurd, but it actually works, and could come in handy should you have the wrong gates at your disposal.
 
 
 
