@@ -10,15 +10,14 @@ public class DialogueManager : MonoBehaviour {
 	public static int currentLine;
 	public static float currentStep;
 	public static bool isOn;
-	bool hasReturned;
 
-	string dialogue;
-	string[] lines;
+	public static string dialogue;
+	public static string[] lines;
 
-	public GameObject LeftIcon;
-	public GameObject RightIcon;
-	public GameObject dialogueBG;
-	public TextAsset dialoguetxt;
+	public static GameObject LeftIcon;
+	public static GameObject RightIcon;
+	public static GameObject dialogueBG;
+	public static TextAsset dialoguetxt;
 	public KeyCode pass;
 
 	public Sprite manjubatorSprite;
@@ -28,16 +27,9 @@ public class DialogueManager : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		dialoguetxt = Resources.Load("Dialogues") as TextAsset;
-		dialogue = Regex.Split(dialoguetxt.text,"\r\n\r\n")[2*Level_setup.currentLevel];
-		lines = Regex.Split(dialogue,"\r\n");
-
-		if (lines[0] != "") {
-			isOn = true;
-		}
-		hasReturned = false;
-		currentLine = 0;
-		currentStep = 0;
+		dialogueBG = GameObject.Find("Dialogue BG");
+		LeftIcon = GameObject.Find("Left Icon");
+		RightIcon = GameObject.Find("Right Icon");
 	}
 	
 	// Update is called once per frame
@@ -45,40 +37,32 @@ public class DialogueManager : MonoBehaviour {
 		if (isOn) {
 
 			dialogueBG.GetComponent<SpriteRenderer>().enabled = true;
-			RightIcon.GetComponent<SpriteRenderer>().enabled = true;
 			currentText = lines[currentLine];
 
-			currentStep += 20*Time.deltaTime;
-			if (currentStep > currentText.Length) {
-				currentStep = currentText.Length;
-			}
+			RightIcon.transform.position += (new Vector3(5,-1,0) - RightIcon.transform.position)*5*Time.deltaTime;
 
-			if (Input.GetKeyDown(pass)) {
-				currentLine ++;
-				currentStep = 0;
-			}
-			
-			if (currentLine >= lines.Length || currentText == "") {
-				isOn = false;
+			if (RightIcon.transform.position.magnitude < 6) {
+				currentStep += 20*Time.deltaTime;
+				if (currentStep > currentText.Length) {
+					currentStep = currentText.Length;
+				}
+
+				if (Input.GetKeyDown(pass)) {
+					currentLine ++;
+					currentStep = 0;
+				}
+				
+				if (currentLine >= lines.Length || currentText == "") {
+					isOn = false;
+				}
 			}
 
 		}
 		else {
 			dialogueBG.GetComponent<SpriteRenderer>().enabled = false;
-			RightIcon.GetComponent<SpriteRenderer>().enabled = false;
+			RightIcon.transform.position += (new Vector3(15,-1,0) - RightIcon.transform.position)*5*Time.deltaTime;
 		}
 
-		if (Level_setup.won && !hasReturned) {
-			dialogue = Regex.Split(dialoguetxt.text,"\r\n\r\n")[2*Level_setup.currentLevel+1];
-			lines = Regex.Split(dialogue,"\r\n");
-			currentLine = 0;
-			currentStep = 0;
-			if (lines[0] != "") {
-				isOn = true;
-				currentText = lines[currentLine];
-			}
-			hasReturned = true;
-		}
 	}
 
 	void OnGUI () {

@@ -17,6 +17,7 @@ public class Level_setup : MonoBehaviour {
 	GUISkin guiSkin;
 	Texture2D pointer;
 	Texture2D hand;
+	public Sprite manjubator;
 	GameObject gateManager;
 	GameObject circuit;
 	GameObject toolbox;
@@ -109,6 +110,18 @@ public class Level_setup : MonoBehaviour {
 		// Tomada de informaçoes do arquivo txt
 		LevelList = Regex.Split(LevelsInfo.text, "\r\n");
 		currentLevelInfo = Regex.Split(LevelList[currentLevel], ",");
+
+		// Variaveis de dialogo
+		DialogueManager.dialoguetxt = Resources.Load("Dialogues") as TextAsset;
+		DialogueManager.dialogue = Regex.Split(DialogueManager.dialoguetxt.text,"\r\n\r\n")[2*Level_setup.currentLevel];
+		DialogueManager.lines = Regex.Split(DialogueManager.dialogue,"\r\n");
+		DialogueManager.currentLine = 0;
+		DialogueManager.currentStep = 0;
+		DialogueManager.RightIcon.GetComponent<SpriteRenderer>().sprite = manjubator;
+
+		if (DialogueManager.lines[0] != "") {
+			DialogueManager.isOn = true;
+		}
 
 		// Atribuiçao de valores a variaveis
 		verify = false;
@@ -254,6 +267,13 @@ public class Level_setup : MonoBehaviour {
 			if (GameObject.FindGameObjectsWithTag("Correct").Length == inputStateList1.Length) {
 				endMessage = Instantiate(LevelComplete, new Vector3 (0,2,0), new Quaternion(0,0,0,0)) as GameObject;
 				won = true;
+				DialogueManager.dialogue = Regex.Split(DialogueManager.dialoguetxt.text,"\r\n\r\n")[2*Level_setup.currentLevel+1];
+				DialogueManager.lines = Regex.Split(DialogueManager.dialogue,"\r\n");
+				DialogueManager.currentLine = 0;
+				DialogueManager.currentStep = 0;
+				if (DialogueManager.lines[0] != "") {
+					DialogueManager.isOn = true;
+				}
 			}
 		}
 
@@ -403,7 +423,7 @@ public class Level_setup : MonoBehaviour {
 		 **************************************************
 		 */
 
-		if (won && GUI.Button(new Rect((Screen.width-BUTTON_WIDTH)*1/2, Screen.height*5/8, BUTTON_WIDTH, BUTTON_HEIGHT), "Next Level")) {
+		if (won && !DialogueManager.isOn &&GUI.Button(new Rect((Screen.width-BUTTON_WIDTH)*1/2, Screen.height*5/8, BUTTON_WIDTH, BUTTON_HEIGHT), "Next Level")) {
 			currentLevel++;
 			Application.LoadLevel("leveleditor");
 		}
