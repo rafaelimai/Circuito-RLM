@@ -1,6 +1,8 @@
 fileFormatVersion: 2
 guid: 3e31742d443ccfe499aeebbe94904f41
 TextureImporter:
+  fileIDToRecycleName:
+    21300000: ManjubuttonNormal
   serializedVersion: 2
   mipmaps:
     mipMapMode: 0
