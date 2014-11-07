@@ -47,6 +47,9 @@
   </ItemGroup>
   <ItemGroup>
      <Compile Include="Assets\BackgroundMovement.cs" />
+     <Compile Include="Assets\Button.cs" />
+     <Compile Include="Assets\ConveyorScript.cs" />
+     <Compile Include="Assets\FishScript.cs" />
      <Compile Include="Assets\Resources\DialogueManager.cs" />
      <Compile Include="Assets\Resources\Drawing.cs" />
      <Compile Include="Assets\Resources\GateButton.cs" />
@@ -66,6 +69,8 @@
      <Compile Include="Assets\Resources\Toolbox_setup.cs" />
      <Compile Include="Assets\Resources\Wire.cs" />
      <Compile Include="Assets\Resources\gatesBG.cs" />
+     <Compile Include="Assets\Tutorial.cs" />
+     <Compile Include="Assets\cutscene.cs" />
      <Compile Include="Assets\settingsMenu.cs" />
      <None Include="Assets\Resources\Dialogues.txt" />
      <None Include="Assets\Resources\LanguageManager\Resources\Languages\Chinese.txt" />
