@@ -6,7 +6,7 @@ using System.Text.RegularExpressions;
 public class DialogueManager : MonoBehaviour {
 	// The Dialogue Manager initiates, controls, and terminates dialogue scenes
 
-	string currentText;
+	public static string currentText;
 	public static int currentLine;
 	public static float currentStep;
 	public static bool isOn;
@@ -21,6 +21,7 @@ public class DialogueManager : MonoBehaviour {
 	public KeyCode pass;
 
 	public Sprite manjubatorSprite;
+	public Sprite K;
 
 	public GUISkin guiSkin;
 

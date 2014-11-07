@@ -12,6 +12,7 @@ public class Wire : MonoBehaviour {
 	GameObject newStatePoint;
 	GameObject Circuit;
 	Object INPUT;
+	public Object WIRE;
 
 	Camera mainCam;
 
@@ -21,6 +22,7 @@ public class Wire : MonoBehaviour {
 		mainCam = GameObject.Find("Main Camera").camera;
 		Circuit = GameObject.Find("Circuit") as GameObject;
 		INPUT = Resources.Load("Prefabs/Input");
+		WIRE = Resources.Load("Prefabs/Wire");
 	}
 	
 	// Update is called once per frame
@@ -84,8 +86,9 @@ public class Wire : MonoBehaviour {
 				newStatePoint.transform.position = new Vector3 (mousePos.x, mousePos.y, 0);
 				newStatePoint.transform.parent = Circuit.transform;
 				startPoint.GetComponent<StatePoint>().connections.Add(newStatePoint);
-				newStatePoint.gameObject.GetComponent<StatePoint>().connections.Add(this.gameObject);
-				StatePoint.PropagateAssignment(this.gameObject);
+				newStatePoint.gameObject.GetComponent<StatePoint>().connections.Add(startPoint);
+				StatePoint.PropagateAssignment(startPoint);
+				endPoint = newStatePoint;
 				valid = true;
 				isDrawing = false;
 				newStatePoint.GetComponent<StatePoint>().OnMouseDown();

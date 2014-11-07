@@ -12,7 +12,7 @@ public class StatePoint : MonoBehaviour {
 	// C-OUTPUTS, once they acquire values, associate them with C-INPUTS and sends results
 
 	public Camera mainCam;
-	public Object WIRE;
+	public static Object WIRE;
 	GameObject wire;
 	public GameObject statePoint;
 	public Object INPUT;
@@ -133,7 +133,7 @@ public class StatePoint : MonoBehaviour {
 	public void OnMouseDown () {
 
 		// Start drawing if user clicks valid area
-		wire = Instantiate(WIRE) as GameObject;
+		wire = Instantiate(StatePoint.WIRE) as GameObject;
 		wire.GetComponent<Wire>().isDrawing = true;
 		wire.transform.parent = transform;
 		wire.GetComponent<Wire>().startPoint = gameObject;
