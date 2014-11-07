@@ -9,6 +9,7 @@ public class Menu_setup : MonoBehaviour {
 	public int ScreenToButtonFontSizeRatio;
 	public int TitleTextHeight;
 	public float StartTextHeight;
+	public float TutorialTextHeight;
 	public float SettingsTextHeight;
 	public float CreditsTextHeight;
 	public Rect WindowRect;
@@ -31,6 +32,7 @@ public class Menu_setup : MonoBehaviour {
 		ScreenToLabelFontSizeRatio = 4;
 		ScreenToButtonFontSizeRatio = 16;
 		TitleTextHeight = 4;
+		TutorialTextHeight = 10.0f / 16.0f;
 		StartTextHeight = 11.0f/16.0f;
 		SettingsTextHeight = 12.0f / 16.0f;
 		CreditsTextHeight = 13.0f / 16.0f;
@@ -63,6 +65,12 @@ public class Menu_setup : MonoBehaviour {
 		
 		// Botoes sao como Labels, precisam de um retangulo e um string.
 		// Sao colocados dentro do if, e, quando acionados, executam o laço
+		
+		textSize = guiSkin.button.CalcSize(new GUIContent("Tutorial")).x;
+		if (GUI.Button(new Rect ((Screen.width - 2*textSize)/2, Screen.height * TutorialTextHeight, 2*textSize, guiSkin.button.fontSize), "Tutorial")) {
+			Application.LoadLevel("tutorial");
+		}
+
 		textSize = guiSkin.button.CalcSize(new GUIContent("Start Game")).x;
 		if (GUI.Button(new Rect ((Screen.width - 2*textSize)/2, Screen.height * StartTextHeight, 2*textSize, guiSkin.button.fontSize), "Start Game")) {
 			Application.LoadLevel("stageselect");
