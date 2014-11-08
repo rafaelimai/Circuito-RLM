@@ -21,7 +21,7 @@ TextureImporter:
   generateCubemap: 0
   seamlessCubemap: 0
   textureFormat: -1
-  maxTextureSize: 1024
+  maxTextureSize: 4096
   textureSettings:
     filterMode: -1
     aniso: 1
@@ -46,19 +46,39 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 0
-        width: 465
-        height: 644
+        y: 958
+        width: 466
+        height: 646
       alignment: 0
       pivot: {x: .5, y: .5}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: Elevator Door
       rect:
         serializedVersion: 2
-        x: 521
-        y: 25
-        width: 206
-        height: 611
+        x: 518
+        y: 981
+        width: 211
+        height: 618
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Elevator Interior
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 18
+        width: 2120
+        height: 903
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Elevator Button
+      rect:
+        serializedVersion: 2
+        x: 824
+        y: 1336
+        width: 22
+        height: 20
       alignment: 0
       pivot: {x: .5, y: .5}
       border: {x: 0, y: 0, z: 0, w: 0}
