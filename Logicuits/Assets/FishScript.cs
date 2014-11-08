@@ -4,10 +4,10 @@ using System.Collections;
 public class FishScript : MonoBehaviour {
 
 
-	public const float HORIZONTAL_UPPER_LIMIT=4.8f;
-	public const float HORIZONTAL_BOTTOM_LIMIT=-2f;
-	public const float VERTICAL_UPPER_LIMIT = -1f;
-	public const float VERTICAL_BOTTOM_LIMIT = 2.3f;
+	public const float HORIZONTAL_UPPER_LIMIT = 8.0f;
+	public const float HORIZONTAL_BOTTOM_LIMIT = 1.2f;
+	public const float VERTICAL_UPPER_LIMIT = 0.6f;
+	public const float VERTICAL_BOTTOM_LIMIT = 3.9f;
 	public float SCALE_MODULE;
 	public const float VELOCITY_MODULE = 0.5f; 
 
