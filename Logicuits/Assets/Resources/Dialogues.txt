@@ -91,100 +91,26 @@ In short words, it only returns true(1) if only one of the inputs is activated. 
 
 Have a try with your new toy. I mean, have a try with the unlocked component.
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+Piece of cake. Whoops, Piece of Raisins Pudding.
+
+Next problem! From now on, you'll face the hardest problems currently avaliable. By the end of them, you'll receive a surprise.
+Or even a Raisins Pudding.
+Or both.
+
+Excellent! Final countdown! You have completed one out of the four Mr.K levels!
+
+Mr.K was an old engineer that worked here until some time ago. He was quite a weird guy. 
+One could often find him sitting somewhere, writing squares and numbers inside them.
+We don't have any clue on what he was doing, but he was one of the fastest engineers here.
+He was able to solve circuits with up to 5 variables in a blink.
+He has disappeared. We're looking after him, he was such a good employee.
+Well, less chit-chat and more circuits!
+
+Outstanding! Two out of four! Less than 10% of the applicants have reached this point!
+
+Let me tell you something. You remind me somehow of Mr.K. Mr.K was a normal workmate here.
+They say that he went crazy after trying to solve a 6 variables circuit with his method.
+Ah, just to warn you, our Security team has been deploying a new Security system. Although we are harmless, we can still face some probelms.
+So, don't be scared if any kind of siren or weird loud sound start. It is probably a drill or a short circuit somewhere.
 
 
