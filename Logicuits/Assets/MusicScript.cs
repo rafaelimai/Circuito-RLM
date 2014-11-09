@@ -10,7 +10,6 @@ public class MusicScript : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		Debug.Log (Menu_setup.musicSlider);
 		audio.volume = Menu_setup.musicSlider/100;
 
 	}

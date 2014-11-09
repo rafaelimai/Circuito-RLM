@@ -122,7 +122,7 @@ public class Menu_setup : MonoBehaviour {
 		}
 
 
-		if (GUI.Button(new Rect ((Screen.width - 2*textSize)/2 - GUIoffset.x, Screen.height * MuteButtonHeight + GUIoffset.y, 2*textSize, guiSkin.button.fontSize), muteTexture) ) {
+		if (GUI.Button(new Rect ((Screen.width - 2*muteTexture.width)/2 - GUIoffset.x, Screen.height * MuteButtonHeight + GUIoffset.y, 2*textSize, guiSkin.button.fontSize), muteTexture) ) {
 			if (!(toggleMute)) {
 
 				musicAux = musicSlider;
