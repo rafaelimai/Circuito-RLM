@@ -58,6 +58,10 @@ public class cutscene : MonoBehaviour {
 				blackout.GetComponent<SpriteRenderer>().enabled = true;
 				PrepareDialogue(none);
 			}
+
+			if (!DialogueManager.isOn && cutsceneStep == 5 && timer > 1) { 
+				Application.LoadLevel("credits");
+			}
 		}
 	}
 
