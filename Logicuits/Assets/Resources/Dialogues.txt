@@ -78,7 +78,7 @@ Excellent! Our previous test subject would be proud of you. Whoops, talked too m
 
 Next problem!
 
-Let me tell you a joke. Sometimes, life may lead one to take decisions. Some musics that worked here sang "Should i stay or should i go?".
+Let me tell you a joke. Sometimes, life may lead one to take decisions. Some musicians that worked here sang "Should i stay or should i go?".
 I'm afraid to say that our anti-tautology policy has taken effect, and now they sing "I fought manjubator, and manjubator won".
 
 I don't know if you perceived that, but the output would be 1 only if any of the two first inputs were true or if the third input was false.
