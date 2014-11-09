@@ -92,10 +92,10 @@ public class Menu_setup : MonoBehaviour {
 		guiSkin.button.fontSize = Screen.height/ScreenToButtonFontSizeRatio;
 		
 		// CalcSize calcula o tamanho que um texto ocupa.
-		textSize = guiSkin.label.CalcSize(new GUIContent("L o g i c  C i r c u i t s")).x;
+		textSize = guiSkin.label.CalcSize(new GUIContent("P U D I M  D E  P A S S A S")).x;
 		// Os argumentos de uma Label sao: um retangulo, com centro x,y e arestas a,b, e um string
 		// GUI.Label(new Rect(x,y,a,b), string)
-		GUI.Label(new Rect ((Screen.width - textSize)/2 - GUIoffset.x, Screen.height/TitleTextHeight + GUIoffset.y, textSize, guiSkin.label.fontSize), "L o g i c  C i r c u i t s");
+		GUI.Label(new Rect ((Screen.width - textSize)/2 - GUIoffset.x, Screen.height/TitleTextHeight + GUIoffset.y, textSize, guiSkin.label.fontSize), "P U D I M  D E  P A S S A S");
 		
 		// Botoes sao como Labels, precisam de um retangulo e um string.
 		// Sao colocados dentro do if, e, quando acionados, executam o laço
