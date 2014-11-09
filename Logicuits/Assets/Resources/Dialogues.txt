@@ -11,10 +11,14 @@ Yes, these values can also be represented by false and true. In this way, the ci
 Let's imagine that your mother has asked you to go to the supermarket to buy eggs.
 She said that, if there are eggs and if you have enough money, you can buy them.
 Sentences like that are interpreted within combinational circuits by taking the existence of eggs and having enough money as inputs.
-Those inputs can hand in the values true(1) or false(0), according to the conditions. If there are eggs, the input "existence of eggs" will return true(1).Otherwise, it will return false(0). 
-The output (whether you can buy the eggs or not) will be only true(1) if you have enough money AND there are eggs available. So, you'll need to use an AND gate to process the inputs properly.
+Those inputs can hand in the values true(1) or false(0), according to the conditions. If there are eggs, the input "existence of eggs" will return true(1).
+Otherwise, it will return false(0). 
+The output (whether you can buy the eggs or not) will be only true(1) if you have enough money AND there are eggs available. 
+So, you'll need to use an AND gate to process the inputs properly.
 Electrically speaking, a 0 indicates a 0-volt signal, which you will see as a black spot. A 1 indicates a 5-volt signal, which is displayed as a white spot.
 All you need to know right now is that wires will carry those spots between components.
+Explaining briefly the table design, observe the inputs column. Given a zeros and ones sequence, it represents, from left to right, the values used in the 
+interface input, from the top to the bottom.
 Your job is to make the Expected and Output tables IDENTICAL. EVERY LINE. Don't insist. Seriously.
 Begin by connecting the input, on the left of the screen, to the output, on the right. Then press "Check" to see your circuit in action.
 
@@ -52,20 +56,34 @@ Nice! As you can see, X or [not X] is always 1. You could compare that to saying
 Of course that is true, there is no third option! We've had a test subject who could never grasp this concept. William was his name.
 He seemed deeply disturbed by tautologies. "To be, or not to be?", he asked, repeatedly, Well, the answer is YES, William. Poor guy.
 
+Ok then, let's continue. Play the following two levels. I'll remain quiet until you finish them. FIGHT!
 
-
-
-
-
-
-
+Good job!
+Now, the last one.
 
 
 
 Did you notice something about the last two levels? They had the exact same specification. Yet you were given different tools. Interesting, right?
 A test subject before you, named De Morgan, figured you could transform an AND into an OR by inverting all the inputs and the output.
 That may sound absurd, but it actually works, and could come in handy should you have the wrong gates at your disposal.
+Talking in other words, let A be the first input and B the second. NOT (A AND B) equals to NOT A OR NOT B. 
+Shortly speaking, invert the inputs (using a NOT gate), swap between AND and OR, and everything will be fine.
+A quick tip: As long as I like raisins pudding and chocolate, it is false that I don't like pudding or that I don't like chocolate at all.
 
+Your problems will become harder as long as you advance. I'm not talking about your life, it's about the game.
+A new gate will be introduced to you further. Until then, keep solving these problems.
+As they're a little bit harder, i'll be here computing numerical methods to find the answer of life.
+
+Excellent! Our previous test subject would be proud of you. Whoops, talked too much...
+
+Next problem!
+
+Let me tell you a joke. Sometimes, life may lead one to take decisions. Some musics that worked here sang "Should i stay or should i go?".
+I'm afraid to say that our anti-tautology policy has taken effect, and now they sing "I fought manjubator, and manjubator won".
+
+I don't know if you perceived that, but the output would be 1 only if any of the two first inputs were true or if the third input was false.
+What I can say for now is, a new component that allows this will be unlocked to you, given that the third input isn't inverted.
+And here we go again!
 
 
 
