@@ -85,7 +85,11 @@ I don't know if you perceived that, but the output would be 1 only if any of the
 What I can say for now is, a new component that allows this will be unlocked to you, given that the third input isn't inverted.
 And here we go again!
 
+Excellent. Outstanding. Amazing. <Insert random compliment here>.
+The new component was just unlocked. It is named XOR. The eXclusive OR.
+In short words, it only returns true(1) if only one of the inputs is activated. Otherwise, it will return false(0).
 
+Have a try with your new toy. I mean, have a try with the unlocked component.
 
 
 
