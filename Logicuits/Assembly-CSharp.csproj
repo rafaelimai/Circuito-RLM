@@ -52,6 +52,7 @@
      <Compile Include="Assets\CreditsButtonSetup.cs" />
      <Compile Include="Assets\ElevatorButton.cs" />
      <Compile Include="Assets\FishScript.cs" />
+     <Compile Include="Assets\MusicScript.cs" />
      <Compile Include="Assets\Resources\DialogueManager.cs" />
      <Compile Include="Assets\Resources\Drawing.cs" />
      <Compile Include="Assets\Resources\GateButton.cs" />
