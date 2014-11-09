@@ -10,6 +10,8 @@ public class DialogueManager : MonoBehaviour {
 	public static int currentLine;
 	public static float currentStep;
 	public static bool isOn;
+	public static float timer;
+	public float DIALOGUE_TIME;
 
 	public static string dialogue;
 	public static string[] lines;
@@ -31,10 +33,13 @@ public class DialogueManager : MonoBehaviour {
 		dialogueBG = GameObject.Find("Dialogue BG");
 		LeftIcon = GameObject.Find("Left Icon");
 		RightIcon = GameObject.Find("Right Icon");
+		timer = 0;
 	}
 	
 	// Update is called once per frame
 	void Update () {
+
+		timer += Time.deltaTime;
 		if (isOn) {
 
 			dialogueBG.GetComponent<SpriteRenderer>().enabled = true;
@@ -45,6 +50,12 @@ public class DialogueManager : MonoBehaviour {
 				currentStep += 20*Time.deltaTime;
 				if (currentStep > currentText.Length) {
 					currentStep = currentText.Length;
+				}
+
+				if (Application.loadedLevel == 5 && timer >= DIALOGUE_TIME) {
+					currentLine ++;
+					currentStep = 0;
+					timer = 0;
 				}
 
 				if (Input.GetKeyDown(pass)) {
