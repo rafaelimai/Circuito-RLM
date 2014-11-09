@@ -141,12 +141,12 @@ public class Menu_setup : MonoBehaviour {
 		
 		
 		// Slider do volume da musica 
-		musicSlider = GUI.HorizontalSlider (new Rect (((int)WindowRect.width - sliderSize) / 2, 2.5f * (int)WindowRect.height / SCALE, sliderSize, sliderSize / 32), musicSlider, 0, 100);
+		musicSlider = GUI.HorizontalSlider (new Rect (((int)WindowRect.width - sliderSize) / 2, 2.5f * (int)WindowRect.height / SCALE, sliderSize, sliderSize / 10), musicSlider, 0, 100);
 		
 		
 		// Slider do volume dos SFX
 		sliderSize = (int)WindowRect.width / 4;
-		sfxSlider = GUI.HorizontalSlider(new Rect (((int)WindowRect.width - sliderSize)/2, 2f*(int)WindowRect.height/SCALE, sliderSize, sliderSize/32), sfxSlider, 0, 100); 
+		sfxSlider = GUI.HorizontalSlider(new Rect (((int)WindowRect.width - sliderSize)/2, 2f*(int)WindowRect.height/SCALE, sliderSize, sliderSize/10), sfxSlider, 0, 100); 
 
 	}
 }
