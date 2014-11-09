@@ -12,7 +12,7 @@ public class Menu_setup : MonoBehaviour {
 	public float TutorialTextHeight;
 	public float SettingsTextHeight;
 	public float CreditsTextHeight;
-	public Rect WindowRect;
+	Rect WindowRect;
 	public int SCALE;
 	public static float sfxSlider = 75;
 	public static float musicSlider = 75;
@@ -46,6 +46,8 @@ public class Menu_setup : MonoBehaviour {
 		CreditsTextHeight = 13.0f / 16.0f;
 		settingsWindowOn = false;
 		goingToStageSelect = false;
+
+		WindowRect = new Rect (Screen.width/5, Screen.height/5, Screen.width/2, Screen.height/2);
 	}
 	
 	// Update is called once per frame
