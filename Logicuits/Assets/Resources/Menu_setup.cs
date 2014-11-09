@@ -5,7 +5,9 @@ public class Menu_setup : MonoBehaviour {
 
 	GameObject blackout;
 
-	public Texture muteTexture;
+	public Texture mute;
+	public Texture unmute;
+	Texture muteTexture;
 	public int ScreenToLabelFontSizeRatio;
 	public int ScreenToButtonFontSizeRatio;
 	public int TitleTextHeight;
@@ -53,6 +55,7 @@ public class Menu_setup : MonoBehaviour {
 		goingToStageSelect = false;
 
 		WindowRect = new Rect (Screen.width/5, Screen.height/5, Screen.width/2, Screen.height/2);
+		muteTexture = mute;
 	}
 	
 	// Update is called once per frame
@@ -122,19 +125,23 @@ public class Menu_setup : MonoBehaviour {
 		}
 
 
-		if (GUI.Button(new Rect ((Screen.width - 2*muteTexture.width)/2 - GUIoffset.x, Screen.height * MuteButtonHeight + GUIoffset.y, 2*textSize, guiSkin.button.fontSize), muteTexture) ) {
+		if (GUI.Button(new Rect ((Screen.width - 2*muteTexture.width)/2 - GUIoffset.x, Screen.height * MuteButtonHeight + GUIoffset.y, 2*muteTexture.width, guiSkin.button.fontSize), muteTexture) ) {
 			if (!(toggleMute)) {
 
 				musicAux = musicSlider;
 				sfxAux = sfxSlider;
 				musicSlider = 0;
 				sfxSlider = 0;
+				muteTexture = unmute;
+			
 			}
 
 			else{
 
 				sfxSlider = sfxAux;
 				musicSlider = musicAux;
+				muteTexture = mute;
+
 
 			}
 			toggleMute = !toggleMute;
