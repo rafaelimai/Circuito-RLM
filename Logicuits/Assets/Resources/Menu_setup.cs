@@ -5,6 +5,7 @@ public class Menu_setup : MonoBehaviour {
 
 	GameObject blackout;
 
+	public Texture muteTexture;
 	public int ScreenToLabelFontSizeRatio;
 	public int ScreenToButtonFontSizeRatio;
 	public int TitleTextHeight;
@@ -12,6 +13,7 @@ public class Menu_setup : MonoBehaviour {
 	public float TutorialTextHeight;
 	public float SettingsTextHeight;
 	public float CreditsTextHeight;
+	public float MuteButtonHeight;
 	Rect WindowRect;
 	public int SCALE;
 	public static float sfxSlider = 75;
@@ -26,6 +28,9 @@ public class Menu_setup : MonoBehaviour {
 	float textSize;
 	bool settingsWindowOn;
 	bool goingToStageSelect;
+	bool toggleMute;
+	float musicAux;
+	float sfxAux;
 	
 	
 	// Use this for initialization
@@ -99,9 +104,7 @@ public class Menu_setup : MonoBehaviour {
 
 		textSize = guiSkin.button.CalcSize(new GUIContent("Start Game")).x;
 		if (GUI.Button(new Rect ((Screen.width - 2*textSize)/2 - GUIoffset.x, Screen.height * StartTextHeight + GUIoffset.y, 2*textSize, guiSkin.button.fontSize), "Start Game")) {
-			Application.LoadLevel("stageselect");
-
-			//goingToStageSelect = true;
+			goingToStageSelect = true;
 		}
 		
 		textSize = guiSkin.button.CalcSize(new GUIContent("Settings")).x;
@@ -116,6 +119,25 @@ public class Menu_setup : MonoBehaviour {
 		textSize = guiSkin.button.CalcSize(new GUIContent("Credits")).x;
 		if (GUI.Button(new Rect ((Screen.width - 2*textSize)/2 - GUIoffset.x, Screen.height * CreditsTextHeight + GUIoffset.y, 2*textSize, guiSkin.button.fontSize), "Credits")) {
 			Application.LoadLevel("credits");
+		}
+
+
+		if (GUI.Button(new Rect ((Screen.width - 2*textSize)/2 - GUIoffset.x, Screen.height * MuteButtonHeight + GUIoffset.y, 2*textSize, guiSkin.button.fontSize), muteTexture) ) {
+			if (!(toggleMute)) {
+
+				musicAux = musicSlider;
+				sfxAux = sfxSlider;
+				musicSlider = 0;
+				sfxSlider = 0;
+			}
+
+			else{
+
+				sfxSlider = sfxAux;
+				musicSlider = musicAux;
+
+			}
+			toggleMute = !toggleMute;
 		}
 	}
 
@@ -149,6 +171,11 @@ public class Menu_setup : MonoBehaviour {
 		// Slider do volume dos SFX
 		sliderSize = (int)WindowRect.width / 4;
 		sfxSlider = GUI.HorizontalSlider(new Rect (((int)WindowRect.width - sliderSize)/2, 2f*(int)WindowRect.height/SCALE, sliderSize, sliderSize/10), sfxSlider, 0, 100); 
+
+		textSize = guiSkin.button.CalcSize(new GUIContent("Back")).x;
+		if (GUI.Button(new Rect ((WindowRect.width - 2*textSize)/2 - GUIoffset.x, WindowRect.height * SettingsTextHeight + GUIoffset.y, 2*textSize, guiSkin.button.fontSize), "Back")) {
+			settingsWindowOn = !settingsWindowOn;
+		}
 
 	}
 }
