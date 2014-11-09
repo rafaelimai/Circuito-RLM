@@ -38,7 +38,6 @@ public class DialogueManager : MonoBehaviour {
 		if (isOn) {
 
 			dialogueBG.GetComponent<SpriteRenderer>().enabled = true;
-			currentText = lines[currentLine];
 
 			RightIcon.transform.position += (new Vector3(5,-1,0) - RightIcon.transform.position)*5*Time.deltaTime;
 
@@ -71,6 +70,7 @@ public class DialogueManager : MonoBehaviour {
 		guiSkin.textArea.fontSize = Screen.width/16;
 
 		if (isOn) {
+			currentText = lines[currentLine];
 			GUI.TextArea (new Rect (0, Screen.height*11/16, Screen.width, Screen.height*5/16), currentText.Substring(0,Convert.ToInt32(Math.Round(currentStep))));
 		}
 	}

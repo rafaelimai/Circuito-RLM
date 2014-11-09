@@ -29,11 +29,20 @@ Finally, here's the last tool you'll be working with for now: the AND gate. Like
 But rather than adding them up, it multiplies them. So it'll only output 1 if BOTH inputs are 1. Use this level to understand this behaviour.
 
 As you can see, AND gates, unlike OR gates, are good for cutting out unwanted 1 signals. Use them when you're getting 1's where you need 0's.
-Good, now that you are familiar with the tools, it's time for some actual challenges! I'll leave you alone for now. Good luck!
+Good, now that you are familiar with the tools, it's time for some actual challenges! Good luck!
 
+In this stage, you'll need to create a circuit that always outputs 0. In logic terms, that means a CONTRADICTION.
+Try to do that with the gates in the Toolbox.
 
+Good job! X and [not X] is always 0. That's like saying you like and don't like computers. It doesn't make sense, it's CONTRADICTORY.
+Plus, who doesn't like computers?
 
+Now, as opposed to the last stage, we need a circuit that always outputs 1. In logic, we call that a TAUTOLOGY.
+Go ahead, do your best!
 
+Nice! As you can see, X or [not X] is always 1. You could compare that to saying you either like programming, or you don't.
+Of course that is true, there is no third option! We've had a test subject who could never grasp this concept. William was his name.
+He seemed deeply disturbed by tautologies. "To be, or not to be?", he asked, repeatedly, Well, the answer is YES, William. Poor guy.
 
 
 

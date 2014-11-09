@@ -60,7 +60,7 @@ public class Menu_setup : MonoBehaviour {
 		}
 
 		// Camera movement in case of button press
-		GUIoffset = 60f*mainCam.transform.position;
+		GUIoffset = 70f*mainCam.transform.position;
 		if (goingToStageSelect) {
 			if (mainCam.transform.position.x + 5*Time.deltaTime < 18f) {
 				mainCam.transform.position += new Vector3(5,0.5f*(float)System.Math.Sin(10*Time.timeSinceLevelLoad),0)*Time.deltaTime;
