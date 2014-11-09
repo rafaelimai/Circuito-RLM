@@ -99,7 +99,9 @@ public class Menu_setup : MonoBehaviour {
 
 		textSize = guiSkin.button.CalcSize(new GUIContent("Start Game")).x;
 		if (GUI.Button(new Rect ((Screen.width - 2*textSize)/2 - GUIoffset.x, Screen.height * StartTextHeight + GUIoffset.y, 2*textSize, guiSkin.button.fontSize), "Start Game")) {
-			goingToStageSelect = true;
+			Application.LoadLevel("stageselect");
+
+			//goingToStageSelect = true;
 		}
 		
 		textSize = guiSkin.button.CalcSize(new GUIContent("Settings")).x;
