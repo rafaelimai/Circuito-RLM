@@ -5,7 +5,15 @@ DIALOGUES FILE - EN
 Welcome, Test Subject. I am Manjubator5000, and I will aid you during your tests.
 I take it you have been to the briefing room, and are already familiar with this interface.
 As you know, you will be building logic circuits by placing logic gates and connecting them with wires.
-A 0 indicates a 0-volt signal, which you will see as a black spot. A 1 indicates a 5-volt signal, which is displayed as a white spot.
+A logic circuit is a circuit that, by the use of structures called logic gates (such as OR gates, AND gates, and so on), handles binary values.
+There are only two possible binary values, like 0 and 1. 0 stands for false, and 1 for true. 
+Yes, these values can also be represented by false and true. In this way, the circuits themselves act as a common language.
+Let's imagine that your mother has asked you to go to the supermarket to buy eggs.
+She said that, if there are eggs and if you have enough money, you can buy them.
+Sentences like that are interpreted within combinational circuits by taking the existence of eggs and having enough money as inputs.
+Those inputs can hand in the values true(1) or false(0), according to the conditions. If there are eggs, the input "existence of eggs" will return true(1).Otherwise, it will return false(0). 
+The output (whether you can buy the eggs or not) will be only true(1) if you have enough money AND there are eggs available. So, you'll need to use an AND gate to process the inputs properly.
+Electrically speaking, a 0 indicates a 0-volt signal, which you will see as a black spot. A 1 indicates a 5-volt signal, which is displayed as a white spot.
 All you need to know right now is that wires will carry those spots between components.
 Your job is to make the Expected and Output tables IDENTICAL. EVERY LINE. Don't insist. Seriously.
 Begin by connecting the input, on the left of the screen, to the output, on the right. Then press "Check" to see your circuit in action.
@@ -14,9 +22,9 @@ Congratulations. You managed to complete the simplest task possible. Are you pro
 
 The next challenge will require you to use a new tool. Notice that simply connecting the input to the output will not solve your problem this time.
 Do you see the Toolbox on the upper left corner? It currently contains an INVERTER, or NOT gate.
-This gate has one INPUT and one OUTPUT. It outputs the oposite of its input. Simple as that. Try running a signal through it.
+This gate has one INPUT and one OUTPUT. It outputs the opposite of its input. Simple as that. Try running a signal through it.
 
-As you can see, NOT gates are handy when you have exactly the opposite of what you need. So screwing up badly is actually pretty close to succeding!
+As you can see, NOT gates are handy when you have exactly the opposite of what you need. So screwing up badly is actually pretty close to succeeding!
 That must be a relief for you, correct?
 
 Next up you'll be using an OR gate. It basically adds up two signals. So if either input is a 1, the output will be 1.
