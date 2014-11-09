@@ -424,8 +424,15 @@ public class Level_setup : MonoBehaviour {
 		 */
 
 		if (won && !DialogueManager.isOn &&GUI.Button(new Rect((Screen.width-BUTTON_WIDTH)*1/2, Screen.height*5/8, BUTTON_WIDTH, BUTTON_HEIGHT), "Next Level")) {
-			currentLevel++;
-			Application.LoadLevel("leveleditor");
+
+			if(currentLevel <16){
+				currentLevel++;
+				Application.LoadLevel("leveleditor");
+			} else {
+				Application.LoadLevel("cutscene");
+			}
+
+
 		}
 
 		/*
