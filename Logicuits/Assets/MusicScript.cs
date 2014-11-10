@@ -17,6 +17,8 @@ public class MusicScript : MonoBehaviour {
 
 		musicSource = gameObject.AddComponent ("AudioSource") as AudioSource;
 		musicSource.clip = music;
+		musicSource.loop = true;
+		musicSource.Play ();
 		sfxSource = gameObject.AddComponent ("AudioSource") as AudioSource;
 
 
@@ -27,6 +29,8 @@ public class MusicScript : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+		musicSource.volume = Menu_setup.musicSlider/100;
+		sfxSource.volume = Menu_setup.sfxSlider/100;
 
 
 	}
