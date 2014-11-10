@@ -33,6 +33,7 @@ public class Menu_setup : MonoBehaviour {
 	bool toggleMute;
 	float musicAux;
 	float sfxAux;
+	float timer;
 	
 	
 	// Use this for initialization
@@ -56,10 +57,16 @@ public class Menu_setup : MonoBehaviour {
 
 		WindowRect = new Rect (Screen.width/5, Screen.height/5, Screen.width/2, Screen.height/2);
 		muteTexture = mute;
+
+		timer = 0;
 	}
 	
 	// Update is called once per frame
 	void Update () {
+
+		if (goingToStageSelect) {
+			timer += Time.deltaTime;
+		}
 
 		// Fade in
 		if (Time.timeSinceLevelLoad < 1) {
@@ -92,10 +99,10 @@ public class Menu_setup : MonoBehaviour {
 		guiSkin.button.fontSize = Screen.height/ScreenToButtonFontSizeRatio;
 		
 		// CalcSize calcula o tamanho que um texto ocupa.
-		textSize = guiSkin.label.CalcSize(new GUIContent("P U D I M  D E  P A S S A S")).x;
+		textSize = guiSkin.label.CalcSize(new GUIContent("D I G I T V S")).x;
 		// Os argumentos de uma Label sao: um retangulo, com centro x,y e arestas a,b, e um string
 		// GUI.Label(new Rect(x,y,a,b), string)
-		GUI.Label(new Rect ((Screen.width - textSize)/2 - GUIoffset.x, Screen.height/TitleTextHeight + GUIoffset.y, textSize, guiSkin.label.fontSize), "P U D I M  D E  P A S S A S");
+		GUI.Label(new Rect ((Screen.width - textSize)/2 - GUIoffset.x, Screen.height/TitleTextHeight + GUIoffset.y, textSize, guiSkin.label.fontSize), "D I G I T V S");
 		
 		// Botoes sao como Labels, precisam de um retangulo e um string.
 		// Sao colocados dentro do if, e, quando acionados, executam o laço
@@ -145,6 +152,23 @@ public class Menu_setup : MonoBehaviour {
 
 			}
 			toggleMute = !toggleMute;
+		}
+
+		if (timer > 10) {
+			guiSkin.button.fontSize = Screen.height/16;
+			float BUTTON_WIDTH = Screen.width/8;
+			for (int i = 1; i <= 8; i++) {
+				if (GUI.Button(new Rect ((Screen.width - BUTTON_WIDTH)*21f/32f, Screen.height * (4+i)/16, BUTTON_WIDTH, guiSkin.button.fontSize), "Level "+System.Convert.ToString(i))) {
+					Level_setup.currentLevel = i;
+					Application.LoadLevel("leveleditor");
+				}
+			}
+			for (int i = 9; i <= 16; i++) {
+				if (GUI.Button(new Rect ((Screen.width - BUTTON_WIDTH)*27f/32f, Screen.height * (i-4)/16, BUTTON_WIDTH, guiSkin.button.fontSize), "Level "+System.Convert.ToString(i))) {
+					Level_setup.currentLevel = i;
+					Application.LoadLevel("leveleditor");
+				}
+			}
 		}
 	}
 

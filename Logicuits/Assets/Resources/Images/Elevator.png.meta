@@ -1,6 +1,14 @@
 fileFormatVersion: 2
 guid: 8b820609c8d1ef64696e8649f9596208
 TextureImporter:
+  fileIDToRecycleName:
+    21300000: Elevator
+    21300002: Elevator Door
+    21300004: Elevator Panel
+    21300006: Elevator Button
+    21300008: Elevator Bar
+    21300010: Elevator Wall
+    21300012: Elevator Buttons
   serializedVersion: 2
   mipmaps:
     mipMapMode: 0
@@ -46,7 +54,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 958
+        y: 3514
         width: 466
         height: 646
       alignment: 0
@@ -56,7 +64,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 518
-        y: 981
+        y: 3537
         width: 211
         height: 618
       alignment: 0
@@ -66,7 +74,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 18
+        y: 2572
         width: 873
         height: 903
       alignment: 0
@@ -75,8 +83,8 @@ TextureImporter:
     - name: Elevator Button
       rect:
         serializedVersion: 2
-        x: 824
-        y: 1336
+        x: 823
+        y: 3892
         width: 22
         height: 20
       alignment: 0
@@ -85,8 +93,8 @@ TextureImporter:
     - name: Elevator Bar
       rect:
         serializedVersion: 2
-        x: 815
-        y: 1187
+        x: 814
+        y: 3743
         width: 614
         height: 28
       alignment: 4
@@ -95,12 +103,22 @@ TextureImporter:
     - name: Elevator Wall
       rect:
         serializedVersion: 2
-        x: 1495
-        y: 20
+        x: 1493
+        y: 2578
         width: 623
         height: 887
       alignment: 4
       pivot: {x: 0, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Elevator Buttons
+      rect:
+        serializedVersion: 2
+        x: 2249
+        y: 3369
+        width: 512
+        height: 732
+      alignment: 0
+      pivot: {x: .5, y: .5}
       border: {x: 0, y: 0, z: 0, w: 0}
   spritePackingTag: 
   userData: 

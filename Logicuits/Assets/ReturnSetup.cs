@@ -18,8 +18,7 @@ public class ReturnSetup : MonoBehaviour {
 		ScreenToButtonFontSizeRatio = 16;
 		ReturnButtonX = 10.0f / 16.0f;
 		ReturnButtonY = 15.0f / 16.0f;
-	
-	
+
 	}
 
 	void OnGUI() {
@@ -30,8 +29,6 @@ public class ReturnSetup : MonoBehaviour {
 			Application.LoadLevel("menu");
 		}
 
-
-	
 	}
 	
 	// Update is called once per frame
