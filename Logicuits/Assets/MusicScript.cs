@@ -4,28 +4,30 @@ using System.Collections;
 public class MusicScript : MonoBehaviour {
 
 
-	AudioSource[] audioSources;
-	public AudioClip[] clips;
+	AudioSource musicSource;
+	AudioSource sfxSource;
+	public AudioClip music;
+	public AudioClip[] sfx;
+
+
 		
 
 	// Use this for initialization
 	void Start () {
 
-		clips = new AudioClip[2];
-		audioSources = new AudioSource[2];
-		for (int i = 0; i<1; i++) {
-			audioSources[i] = new AudioSource;
-			audioSources[i].clip = clips[i];
+		musicSource = gameObject.AddComponent ("AudioSource") as AudioSource;
+		musicSource.clip = music;
+		sfxSource = gameObject.AddComponent ("AudioSource") as AudioSource;
 
-		}
+
 	}
+
 
 
 	
 	// Update is called once per frame
 	void Update () {
 
-		audioSources[0].volume = Menu_setup.musicSlider/100;
-		audioSources[1].volume = Menu_setup.sfxSlider/100;
+
 	}
 }
