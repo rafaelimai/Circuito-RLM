@@ -5,7 +5,7 @@ public class Menu_setup : MonoBehaviour {
 
 	GameObject blackout;
 	GameObject bubuttons;
-	GameObject barulhinhator;
+	//GameObject barulhinhator;
 
 	public Texture mute;
 	public Texture unmute;
@@ -72,7 +72,7 @@ public class Menu_setup : MonoBehaviour {
 
 		timer = 0;
 
-		barulhinhator = GameObject.Find ("AudioManager");
+		//barulhinhator = GameObject.Find ("AudioManager");
 	}
 	
 	// Update is called once per frame
@@ -140,19 +140,19 @@ public class Menu_setup : MonoBehaviour {
 		
 		textSize = guiSkin.button.CalcSize(new GUIContent("Tutorial")).x;
 		if (GUI.Button(new Rect ((Screen.width - 2*textSize)/2 - GUIoffset.x, Screen.height * TutorialTextHeight + GUIoffset.y, 2*textSize, guiSkin.button.fontSize), "Tutorial")) {
-			barulhinhator.GetComponent<MusicScript>().playclic();
+			//barulhinhator.GetComponent<MusicScript>().playclic();
 			Application.LoadLevel("tutorial");
 		}
 
 		textSize = guiSkin.button.CalcSize(new GUIContent("Start Game")).x;
 		if (GUI.Button(new Rect ((Screen.width - 2*textSize)/2 - GUIoffset.x, Screen.height * StartTextHeight + GUIoffset.y, 2*textSize, guiSkin.button.fontSize), "Start Game")) {
-			barulhinhator.GetComponent<MusicScript>().playclic();
+			//barulhinhator.GetComponent<MusicScript>().playclic();
 			goingToStageSelect = true;
 		}
 		
 		textSize = guiSkin.button.CalcSize(new GUIContent("Settings")).x;
 		if (GUI.Button(new Rect ((Screen.width - 2*textSize)/2 - GUIoffset.x, Screen.height * SettingsTextHeight + GUIoffset.y, 2*textSize, guiSkin.button.fontSize), "Settings")) {
-			barulhinhator.GetComponent<MusicScript>().playclic();
+			//barulhinhator.GetComponent<MusicScript>().playclic();
 			settingsWindowOn = !settingsWindowOn;
 		}
 
@@ -162,7 +162,7 @@ public class Menu_setup : MonoBehaviour {
 		
 		textSize = guiSkin.button.CalcSize(new GUIContent("Credits")).x;
 		if (GUI.Button(new Rect ((Screen.width - 2*textSize)/2 - GUIoffset.x, Screen.height * CreditsTextHeight + GUIoffset.y, 2*textSize, guiSkin.button.fontSize), "Credits")) {
-			barulhinhator.GetComponent<MusicScript>().playclic();
+			//barulhinhator.GetComponent<MusicScript>().playclic();
 			Application.LoadLevel("credits");
 		}
 
@@ -249,7 +249,7 @@ public class Menu_setup : MonoBehaviour {
 
 		textSize = guiSkin.button.CalcSize(new GUIContent("Back")).x;
 		if (GUI.Button(new Rect ((WindowRect.width - 2*textSize)/2 - GUIoffset.x, WindowRect.height * SettingsTextHeight + GUIoffset.y, 2*textSize, guiSkin.button.fontSize), "Back")) {
-			barulhinhator.GetComponent<MusicScript>().playclic();
+			//barulhinhator.GetComponent<MusicScript>().playclic();
 			settingsWindowOn = !settingsWindowOn;
 		}
 
