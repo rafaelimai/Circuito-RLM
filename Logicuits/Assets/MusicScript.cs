@@ -5,9 +5,9 @@ public class MusicScript : MonoBehaviour {
 
 
 	AudioSource musicSource;
-	AudioSource sfxSource;
+	static AudioSource sfxSource;
 	public AudioClip music;
-	public AudioClip[] sfx;
+	static public AudioClip[] sfx;
 
 
 		
@@ -33,5 +33,11 @@ public class MusicScript : MonoBehaviour {
 		sfxSource.volume = Menu_setup.sfxSlider/100;
 
 
+	}
+
+	public static void playclic () {
+
+		sfxSource.clip = sfx[(int)Random.Range (0, sfx.Length)];
+		sfxSource.PlayOneShot (sfxSource.clip);
 	}
 }
