@@ -4,6 +4,7 @@ using System.Collections;
 public class Menu_setup : MonoBehaviour {
 
 	GameObject blackout;
+	GameObject bubuttons;
 
 	public Texture mute;
 	public Texture unmute;
@@ -34,12 +35,22 @@ public class Menu_setup : MonoBehaviour {
 	float musicAux;
 	float sfxAux;
 	float timer;
+	public static int levelUnlocked;
 	
 	
 	// Use this for initialization
 	void Start () {
 
+		if (PlayerPrefs.GetInt("levelUnlocked") == 0) {
+			levelUnlocked = 1;
+			PlayerPrefs.SetInt("levelUnlocked", 1);
+		}
+		else {
+			levelUnlocked = PlayerPrefs.GetInt("levelUnlocked");
+		}
+
 		blackout = GameObject.Find("Blackout");
+		bubuttons = GameObject.Find("Bubuttons");
 		blackout.GetComponent<SpriteRenderer>().enabled = true;
 		mainCam = GameObject.Find ("Main Camera").camera;
 		stageSelect = GameObject.Find("Stage Select");
@@ -64,6 +75,20 @@ public class Menu_setup : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 
+		// Chat Code: Unlock all levels
+		if (Input.GetKey("r") && Input.GetKey("l") && Input.GetKey("m")) {
+			Menu_setup.levelUnlocked = 16;
+			PlayerPrefs.SetInt("levelUnlocked", Menu_setup.levelUnlocked);
+			PlayerPrefs.Save();
+		}
+		if (Input.GetKey("p") && Input.GetKey("e") && Input.GetKey("a")) {
+			Menu_setup.levelUnlocked = 1;
+			PlayerPrefs.SetInt("levelUnlocked", Menu_setup.levelUnlocked);
+			PlayerPrefs.Save();
+		}
+
+
+		// Animation
 		if (goingToStageSelect) {
 			timer += Time.deltaTime;
 		}
@@ -83,9 +108,12 @@ public class Menu_setup : MonoBehaviour {
 				mainCam.transform.position += new Vector3(5,0.5f*(float)System.Math.Sin(10*Time.timeSinceLevelLoad),0)*Time.deltaTime;
 			}
 			else if (stageSelect.transform.localScale.x < 7) {
-				mainCam.transform.position += new Vector3(0f,2f + 1f*(float)System.Math.Sin(10*Time.timeSinceLevelLoad),0f)*Time.deltaTime;
+				mainCam.transform.position += new Vector3(0f,2f,0f)*Time.deltaTime;
 				stageSelect.transform.localScale += new Vector3(2f,2f,0f)*Time.deltaTime;
 				elevator.GetComponent<Animator>().SetTrigger("open");
+			}
+			else if (timer < 9.7) {
+				bubuttons.GetComponent<SpriteRenderer>().enabled = true;
 			}
 		}
 	}
@@ -154,20 +182,29 @@ public class Menu_setup : MonoBehaviour {
 			toggleMute = !toggleMute;
 		}
 
-		if (timer > 10) {
+		if (timer > 9.7) {
+			bubuttons.GetComponent<SpriteRenderer>().enabled = false;
 			guiSkin.button.fontSize = Screen.height/16;
 			float BUTTON_WIDTH = Screen.width/8;
 			for (int i = 1; i <= 8; i++) {
+				if (i > levelUnlocked) {
+					GUI.enabled = false;
+				}
 				if (GUI.Button(new Rect ((Screen.width - BUTTON_WIDTH)*21f/32f, Screen.height * (4+i)/16, BUTTON_WIDTH, guiSkin.button.fontSize), "Level "+System.Convert.ToString(i))) {
 					Level_setup.currentLevel = i;
 					Application.LoadLevel("leveleditor");
 				}
+				GUI.enabled = true;
 			}
 			for (int i = 9; i <= 16; i++) {
+				if (i > levelUnlocked) {
+					GUI.enabled = false;
+				}
 				if (GUI.Button(new Rect ((Screen.width - BUTTON_WIDTH)*27f/32f, Screen.height * (i-4)/16, BUTTON_WIDTH, guiSkin.button.fontSize), "Level "+System.Convert.ToString(i))) {
 					Level_setup.currentLevel = i;
 					Application.LoadLevel("leveleditor");
 				}
+				GUI.enabled = true;
 			}
 		}
 	}

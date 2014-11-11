@@ -267,6 +267,11 @@ public class Level_setup : MonoBehaviour {
 			if (GameObject.FindGameObjectsWithTag("Correct").Length == inputStateList1.Length) {
 				endMessage = Instantiate(LevelComplete, new Vector3 (0,2,0), new Quaternion(0,0,0,0)) as GameObject;
 				won = true;
+				if (Menu_setup.levelUnlocked == currentLevel) {
+					Menu_setup.levelUnlocked++;
+					PlayerPrefs.SetInt("levelUnlocked", Menu_setup.levelUnlocked);
+					PlayerPrefs.Save();
+				}
 				DialogueManager.dialogue = Regex.Split(DialogueManager.dialoguetxt.text,"\r\n\r\n")[2*Level_setup.currentLevel+1];
 				DialogueManager.lines = Regex.Split(DialogueManager.dialogue,"\r\n");
 				DialogueManager.currentLine = 0;
@@ -425,10 +430,11 @@ public class Level_setup : MonoBehaviour {
 
 		if (won && !DialogueManager.isOn &&GUI.Button(new Rect((Screen.width-BUTTON_WIDTH)*1/2, Screen.height*5/8, BUTTON_WIDTH, BUTTON_HEIGHT), "Next Level")) {
 
-			if(currentLevel <16){
+			if (currentLevel < 16){
 				currentLevel++;
 				Application.LoadLevel("leveleditor");
-			} else {
+			}
+			else {
 				Application.LoadLevel("cutscene");
 			}
 

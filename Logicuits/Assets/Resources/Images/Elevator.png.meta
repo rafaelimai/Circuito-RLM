@@ -1,14 +1,6 @@
 fileFormatVersion: 2
 guid: 8b820609c8d1ef64696e8649f9596208
 TextureImporter:
-  fileIDToRecycleName:
-    21300000: Elevator
-    21300002: Elevator Door
-    21300004: Elevator Panel
-    21300006: Elevator Button
-    21300008: Elevator Bar
-    21300010: Elevator Wall
-    21300012: Elevator Buttons
   serializedVersion: 2
   mipmaps:
     mipMapMode: 0
@@ -117,6 +109,16 @@ TextureImporter:
         y: 3369
         width: 512
         height: 732
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Bubuttons
+      rect:
+        serializedVersion: 2
+        x: 1652
+        y: 3664
+        width: 383
+        height: 378
       alignment: 0
       pivot: {x: .5, y: .5}
       border: {x: 0, y: 0, z: 0, w: 0}
