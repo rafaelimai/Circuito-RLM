@@ -10,13 +10,30 @@ public class MusicScript : MonoBehaviour {
 	static public AudioClip[] sfx;
 	public bool hascreated;
 
+	public static MusicScript Instance;
+	void Awake()
+	{
+		if (Instance) {
+			DestroyImmediate (gameObject);
+		}
+		else
 
-		
+		{
+			DontDestroyOnLoad(gameObject);
+			Instance = this;
+		}
+	}
+
+
+
+	
 
 	// Use this for initialization
 	void Start () {
 
-		DontDestroyOnLoad(transform.gameObject);
+		DontDestroyOnLoad (transform.gameObject);
+
+
 
 		if (!hascreated) {
 
@@ -50,6 +67,7 @@ public class MusicScript : MonoBehaviour {
 
 		if (musicSource.isPlaying) {
 
+			musicSource.loop = false;
 			musicSource.Pause();
 			musicSource.Stop ();
 		}
@@ -58,4 +76,6 @@ public class MusicScript : MonoBehaviour {
 		musicSource.loop = true;
 		musicSource.Play ();
 	}
+
+
 }
