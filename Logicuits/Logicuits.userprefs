@@ -1,8 +1,8 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\ReturnTutorialButton.cs">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\MusicScript.cs">
     <Files>
-      <File FileName="Assets\Resources\Menu_setup.cs" Line="48" Column="5" />
+      <File FileName="Assets\Resources\Menu_setup.cs" Line="49" Column="3" />
       <File FileName="Assets\MusicScript.cs" Line="29" Column="3" />
       <File FileName="Assets\ReturnTutorialButton.cs" Line="34" Column="4" />
     </Files>
