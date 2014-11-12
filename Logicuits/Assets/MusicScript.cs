@@ -15,6 +15,8 @@ public class MusicScript : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 
+		DontDestroyOnLoad(transform.gameObject);
+
 		musicSource = gameObject.AddComponent ("AudioSource") as AudioSource;
 		musicSource.clip = music;
 		musicSource.loop = true;

@@ -37,10 +37,12 @@ public class Menu_setup : MonoBehaviour {
 	float sfxAux;
 	float timer;
 	public static int levelUnlocked;
-	
+
+
 	
 	// Use this for initialization
 	void Start () {
+
 
 		if (PlayerPrefs.GetInt("levelUnlocked") == 0) {
 			levelUnlocked = 1;
