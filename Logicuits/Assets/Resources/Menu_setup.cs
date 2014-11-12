@@ -3,7 +3,7 @@ using System.Collections;
 
 public class Menu_setup : MonoBehaviour {
 
-	public AudioClip menuMusic;
+	//public AudioClip menuMusic;
 
 	GameObject blackout;
 	GameObject bubuttons;
@@ -45,7 +45,7 @@ public class Menu_setup : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 
-		MusicScript.changeclip (menuMusic);
+		//MusicScript.changeclip (menuMusic);
 
 
 		if (PlayerPrefs.GetInt("levelUnlocked") == 0) {

@@ -31,6 +31,7 @@ public class ReturnTutorialButton : MonoBehaviour {
 		textSize = guiSkin.button.CalcSize(new GUIContent("Return")).x;
 		if (GUI.Button(new Rect (ReturnButtonX*Screen.width, Screen.height * ReturnButtonY, textSize, 1.8f*guiSkin.button.fontSize), "Off")) {
 			MusicScript.playclic ();
+
 			Application.LoadLevel("menu");
 
 		}
