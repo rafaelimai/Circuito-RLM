@@ -6,7 +6,7 @@ public class MusicScript : MonoBehaviour {
 
 	static AudioSource musicSource;
 	static AudioSource sfxSource;
-	static public AudioClip music;
+	public AudioClip music;
 	public AudioClip[] sfxp;
 	static public AudioClip[] sfx;
 
