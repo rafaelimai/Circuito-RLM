@@ -21,7 +21,7 @@ public class Menu_setup : MonoBehaviour {
 	Rect WindowRect;
 	public int SCALE;
 	public static float sfxSlider = 75;
-	public static float musicSlider = 75;
+	public static float musicSlider = 50;
 	public int sliderSize;
 	Vector3 GUIoffset;
 	
@@ -74,7 +74,6 @@ public class Menu_setup : MonoBehaviour {
 
 		timer = 0;
 
-		//barulhinhator = GameObject.Find ("AudioManager");
 	}
 	
 	// Update is called once per frame
@@ -143,28 +142,31 @@ public class Menu_setup : MonoBehaviour {
 		textSize = guiSkin.button.CalcSize(new GUIContent("Tutorial")).x;
 		if (GUI.Button(new Rect ((Screen.width - 2*textSize)/2 - GUIoffset.x, Screen.height * TutorialTextHeight + GUIoffset.y, 2*textSize, guiSkin.button.fontSize), "Tutorial")) {
 			//barulhinhator.GetComponent<MusicScript>().playclic();
+			MusicScript.playclic ();
 			Application.LoadLevel("tutorial");
 		}
 
 		textSize = guiSkin.button.CalcSize(new GUIContent("Start Game")).x;
 		if (GUI.Button(new Rect ((Screen.width - 2*textSize)/2 - GUIoffset.x, Screen.height * StartTextHeight + GUIoffset.y, 2*textSize, guiSkin.button.fontSize), "Start Game")) {
-			//barulhinhator.GetComponent<MusicScript>().playclic();
+			MusicScript.playclic ();
 			goingToStageSelect = true;
 		}
 		
 		textSize = guiSkin.button.CalcSize(new GUIContent("Settings")).x;
 		if (GUI.Button(new Rect ((Screen.width - 2*textSize)/2 - GUIoffset.x, Screen.height * SettingsTextHeight + GUIoffset.y, 2*textSize, guiSkin.button.fontSize), "Settings")) {
-			//barulhinhator.GetComponent<MusicScript>().playclic();
 			settingsWindowOn = !settingsWindowOn;
+			MusicScript.playclic ();
+
 		}
 
 		if (settingsWindowOn) {
-			GUI.Window (0, WindowRect, SettingsWindowMaker, "SettingsWindow");
+			GUI.Window (0, WindowRect, SettingsWindowMaker, "Settings");
+
 		}
 		
 		textSize = guiSkin.button.CalcSize(new GUIContent("Credits")).x;
 		if (GUI.Button(new Rect ((Screen.width - 2*textSize)/2 - GUIoffset.x, Screen.height * CreditsTextHeight + GUIoffset.y, 2*textSize, guiSkin.button.fontSize), "Credits")) {
-			//barulhinhator.GetComponent<MusicScript>().playclic();
+			MusicScript.playclic ();
 			Application.LoadLevel("credits");
 		}
 
@@ -220,23 +222,23 @@ public class Menu_setup : MonoBehaviour {
 
 	private void SettingsWindowMaker (int id) {
 
-		guiSkin.label.fontSize = (int)WindowRect.height/(2*SCALE);
-		guiSkin.button.fontSize = (int)WindowRect.height/(SCALE*SCALE);
+		guiSkin.label.fontSize = (int)WindowRect.height/(SCALE);
+		guiSkin.button.fontSize = (int)WindowRect.height/(2*SCALE);
 		
 		// CalcSize calcula o tamanho que um texto ocupa.
 		textSize = guiSkin.label.CalcSize(new GUIContent("Settings")).x;
 		// Os argumentos de uma etiqueta (Label) sao: um retangulo, com centro x,y e arestas a,b, e um string
 		// GUI.Label(new Rect(x,y,a,b), string)
-		GUI.Label(new Rect ((int)(WindowRect.width - textSize)/2 , (int)WindowRect.height/(2*SCALE) , textSize , guiSkin.label.fontSize), "Settings");
+		GUI.Label(new Rect ((int)(WindowRect.width - textSize)/2 , (int)WindowRect.height/1.5f*SCALE , textSize , guiSkin.label.fontSize), "Settings");
 		
 		// Etiqueta do slider do volume das musicas
-		guiSkin.label.fontSize = (int)WindowRect.height/(4*SCALE);
+		guiSkin.label.fontSize = (int)WindowRect.height/(2*SCALE);
 		textSize = guiSkin.label.CalcSize (new GUIContent ("Music Volume")).x;
 		GUI.Label (new Rect ((int)(WindowRect.width - textSize) / 2, 2.5f * (int)WindowRect.height/SCALE - guiSkin.label.fontSize, textSize, guiSkin.label.fontSize), "Music Volume");
 		
 		
 		// Etiqueta do slider do volume dos SFX
-		guiSkin.label.fontSize = (int)WindowRect.height/(4*SCALE);
+		guiSkin.label.fontSize = (int)WindowRect.height/(2*SCALE);
 		textSize = guiSkin.label.CalcSize (new GUIContent ("SFX Volume")).x;
 		GUI.Label (new Rect ((int)(WindowRect.width - textSize) / 2, 2f*(int)WindowRect.height/SCALE - guiSkin.label.fontSize, textSize, guiSkin.label.fontSize), "SFX Volume");
 		
@@ -251,8 +253,9 @@ public class Menu_setup : MonoBehaviour {
 
 		textSize = guiSkin.button.CalcSize(new GUIContent("Back")).x;
 		if (GUI.Button(new Rect ((WindowRect.width - 2*textSize)/2 - GUIoffset.x, WindowRect.height * SettingsTextHeight + GUIoffset.y, 2*textSize, guiSkin.button.fontSize), "Back")) {
-			//barulhinhator.GetComponent<MusicScript>().playclic();
 			settingsWindowOn = !settingsWindowOn;
+			MusicScript.playclic ();
+
 		}
 
 	}

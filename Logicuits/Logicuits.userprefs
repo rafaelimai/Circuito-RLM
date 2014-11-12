@@ -2,8 +2,8 @@
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
   <MonoDevelop.Ide.Workbench ActiveDocument="Assets\MusicScript.cs">
     <Files>
-      <File FileName="Assets\MusicScript.cs" Line="18" Column="43" />
-      <File FileName="Assets\Resources\Menu_setup.cs" Line="45" Column="3" />
+      <File FileName="Assets\Resources\Menu_setup.cs" Line="169" Column="15" />
+      <File FileName="Assets\MusicScript.cs" Line="44" Column="3" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

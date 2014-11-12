@@ -4,9 +4,10 @@ using System.Collections;
 public class MusicScript : MonoBehaviour {
 
 
-	AudioSource musicSource;
+	static AudioSource musicSource;
 	static AudioSource sfxSource;
-	public AudioClip music;
+	static public AudioClip music;
+	public AudioClip[] sfxp;
 	static public AudioClip[] sfx;
 
 
@@ -22,6 +23,7 @@ public class MusicScript : MonoBehaviour {
 		musicSource.loop = true;
 		musicSource.Play ();
 		sfxSource = gameObject.AddComponent ("AudioSource") as AudioSource;
+		sfx = sfxp;
 
 
 	}
