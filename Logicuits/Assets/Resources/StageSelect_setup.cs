@@ -6,6 +6,7 @@ public class StageSelect_setup : MonoBehaviour {
 	public GUISkin guiSkin;
 	float textSize;
 	float BUTTON_WIDTH;
+	public AudioClip levelMusic;
 
 	// Use this for initialization
 	void Start () {

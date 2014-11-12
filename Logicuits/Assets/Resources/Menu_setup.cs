@@ -22,7 +22,7 @@ public class Menu_setup : MonoBehaviour {
 	public float MuteButtonHeight;
 	Rect WindowRect;
 	public int SCALE;
-	public static float sfxSlider = 75;
+	public static float sfxSlider = 50;
 	public static float musicSlider = 50;
 	public int sliderSize;
 	Vector3 GUIoffset;

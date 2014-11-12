@@ -1,10 +1,11 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\MusicScript.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Resources\Level_setup.cs">
     <Files>
+      <File FileName="Assets\Resources\Menu_setup.cs" Line="1" Column="1" />
       <File FileName="Assets\MusicScript.cs" Line="20" Column="4" />
-      <File FileName="Assets\Resources\Menu_setup.cs" Line="49" Column="3" />
-      <File FileName="Assets\ReturnTutorialButton.cs" Line="37" Column="4" />
+      <File FileName="Assets\ReturnTutorialButton.cs" Line="19" Column="14" />
+      <File FileName="Assets\Resources\Level_setup.cs" Line="45" Column="31" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

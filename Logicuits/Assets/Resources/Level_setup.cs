@@ -41,6 +41,8 @@ public class Level_setup : MonoBehaviour {
 	 * answerString: Texto formatado a ser impresso no final da verificaçao
 	 * zueira: Ao incluir zueiras, sempre usar if (zueira) {}
 	 * iteration: Indica o numero do teste programado para o nivel
+	 * haschangedmusic: (temporaria, usada para checar a mudança de musicas)
+	 * levelmusic: faixa de audio
 	 */
 	public static int currentLevel = 16;
 	public static bool handCursor = false;
@@ -59,6 +61,8 @@ public class Level_setup : MonoBehaviour {
 	public static bool zueira = false;
 	public static int iteration;
 	bool taskOn;
+	public bool haschangedmusic;
+	public AudioClip levelMusic;
 
 	/*-----VARIAVEIS CRIADORAS DE NIVEL-----> Devem ser editadas por developers para criar niveis
 	 * numberOfInputs/Outputs: numero de Inputs e outputs do circuito
@@ -106,6 +110,12 @@ public class Level_setup : MonoBehaviour {
 		Correct = Resources.Load("Prefabs/Correct");
 		Wrong = Resources.Load("Prefabs/Wrong");
 		LevelComplete = Resources.Load("Prefabs/LevelComplete");
+
+		if (!haschangedmusic) {
+
+			MusicScript.changeclip (levelMusic);
+			haschangedmusic = true;
+		}
 
 		// Tomada de informaçoes do arquivo txt
 		LevelList = Regex.Split(LevelsInfo.text, "\r\n");
