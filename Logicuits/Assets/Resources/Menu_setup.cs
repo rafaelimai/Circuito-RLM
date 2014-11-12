@@ -3,6 +3,8 @@ using System.Collections;
 
 public class Menu_setup : MonoBehaviour {
 
+	public AudioClip menuMusic;
+
 	GameObject blackout;
 	GameObject bubuttons;
 	//GameObject barulhinhator;
@@ -42,6 +44,8 @@ public class Menu_setup : MonoBehaviour {
 	
 	// Use this for initialization
 	void Start () {
+
+		MusicScript.changeclip (menuMusic);
 
 
 		if (PlayerPrefs.GetInt("levelUnlocked") == 0) {

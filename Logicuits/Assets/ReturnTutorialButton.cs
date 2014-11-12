@@ -9,12 +9,14 @@ public class ReturnTutorialButton : MonoBehaviour {
 	public float ReturnButtonX;
 	public float ReturnButtonY;
 	public GUISkin guiSkin;	
+	public AudioClip creditsMusic;
 	float textSize;
 	
 	
 	// Use this for initialization
 	void Start () {
-		
+
+		MusicScript.changeclip (creditsMusic);
 		ScreenToLabelFontSizeRatio = 4;
 		ScreenToButtonFontSizeRatio = 16;
 		ReturnButtonX = 4.4f / 16.0f;
@@ -28,7 +30,9 @@ public class ReturnTutorialButton : MonoBehaviour {
 		GUI.skin = guiSkin; 
 		textSize = guiSkin.button.CalcSize(new GUIContent("Return")).x;
 		if (GUI.Button(new Rect (ReturnButtonX*Screen.width, Screen.height * ReturnButtonY, textSize, 1.8f*guiSkin.button.fontSize), "Off")) {
+			MusicScript.playclic ();
 			Application.LoadLevel("menu");
+
 		}
 
 		

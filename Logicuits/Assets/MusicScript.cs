@@ -6,9 +6,9 @@ public class MusicScript : MonoBehaviour {
 
 	static AudioSource musicSource;
 	static AudioSource sfxSource;
-	public AudioClip music;
 	public AudioClip[] sfxp;
 	static public AudioClip[] sfx;
+	public bool hascreated;
 
 
 		
@@ -18,12 +18,13 @@ public class MusicScript : MonoBehaviour {
 
 		DontDestroyOnLoad(transform.gameObject);
 
-		musicSource = gameObject.AddComponent ("AudioSource") as AudioSource;
-		musicSource.clip = music;
-		musicSource.loop = true;
-		musicSource.Play ();
-		sfxSource = gameObject.AddComponent ("AudioSource") as AudioSource;
-		sfx = sfxp;
+		if (!hascreated) {
+
+			musicSource = gameObject.AddComponent ("AudioSource") as AudioSource;
+			sfxSource = gameObject.AddComponent ("AudioSource") as AudioSource;
+			sfx = sfxp;
+			hascreated = true;
+		}
 
 
 	}
@@ -43,5 +44,18 @@ public class MusicScript : MonoBehaviour {
 
 		sfxSource.clip = sfx[(int)Random.Range (0, sfx.Length)];
 		sfxSource.PlayOneShot (sfxSource.clip);
+	}
+
+	public static void changeclip(AudioClip olar){
+
+		if (musicSource.isPlaying) {
+
+			musicSource.Pause();
+			musicSource.Stop ();
+		}
+
+		musicSource.clip = olar;
+		musicSource.loop = true;
+		musicSource.Play ();
 	}
 }
